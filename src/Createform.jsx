@@ -13,11 +13,10 @@ import {
   Card,
   CardContent,
 } from "@mui/material";
+import helper from "./helper.js";
 
 const Createform = () => {
-  // const [profilePicture, setProfilePicture] = useState({
-  //   selectedFile: null,
-  // });
+  //Main Data
 
   const [mainUserData, setMainUserData] = useState({
     name: "",
@@ -29,65 +28,6 @@ const Createform = () => {
     country: "",
     city: "",
   });
-
-  const titles = {
-    name: "Name",
-    surname: "Surname",
-    position: "Position",
-    birthday: "Birthday",
-    email: "Email",
-    phone: "Phone",
-    country: "Country",
-    city: "City",
-    education: "Education",
-    skills: "Skills",
-    workExp: "Work Experience",
-    projects: "Projects",
-    languages: "Languages",
-    certNcourse: "Certifications & courses",
-  };
-  const [education, setEducation] = useState([
-    {
-      name: "",
-      department: "",
-      earlyYear: "",
-      lateYear: "",
-    },
-  ]);
-  const [skills, setSkills] = useState([
-    {
-      skillDiscription: "",
-    },
-  ]);
-  const [workExperience, setWorkExperience] = useState([
-    {
-      name: "",
-      position: "",
-      earlyYear: "",
-      lateYear: "",
-      description: "",
-    },
-  ]);
-
-  const addWorkList = () => {
-    setWorkExperience([
-      ...workExperience,
-      {
-        name: "",
-        position: "",
-        earlyYear: "",
-        lateYear: "",
-        description: "",
-      },
-    ]);
-  };
-  const educationDataHandler = (e, index) => {
-    const { name, value } = e.target;
-    const list = [...education];
-    list[index][name] = value;
-    setEducation(list);
-  };
-
   const handleMainDataChange = (e) => {
     const { name, value } = e.target;
     setMainUserData({
@@ -96,6 +36,87 @@ const Createform = () => {
     });
   };
 
+  //Certificate
+
+  const [certificate, setCertificate] = useState([
+    {
+      name: "",
+    },
+  ]);
+  const removeCertificateList = (index) => {
+    const list = [...certificate];
+    list.splice(index, 1);
+    setCertificate(list);
+  };
+  const certificatesHandler = (e, index) => {
+    const { name, value } = e.target;
+    const list = [...certificate];
+    list[index][name] = value;
+    setCertificate(list);
+  };
+  const addCertificateList = () => {
+    setCertificate([
+      ...certificate,
+      {
+        certificate: "",
+      },
+    ]);
+  };
+
+  //Project
+
+  const [project, setProject] = useState([
+    {
+      name: "",
+      description: "",
+      responsibilities: "",
+    },
+  ]);
+  const addProjectList = () => {
+    setProject([
+      ...project,
+      {
+        name: "",
+        description: "",
+        responsibilities: "",
+      },
+    ]);
+  };
+  const handleProject = (e, index) => {
+    const { name, value } = e.target;
+    const list = [...project];
+    list[index][name] = value;
+    setProject(list);
+  };
+
+  const removeProjectList = (index) => {
+    const list = [...workExperience];
+    list.splice(index, 1);
+    setProject(list);
+  };
+
+  //Education
+
+  const [education, setEducation] = useState([
+    {
+      name: "",
+      department: "",
+      earlyYear: "",
+      lateYear: "",
+    },
+  ]);
+
+  const educationDataHandler = (e, index) => {
+    const { name, value } = e.target;
+    const list = [...education];
+    list[index][name] = value;
+    setEducation(list);
+  };
+  const educationListRemover = (index) => {
+    const list = [...education];
+    list.splice(index, 1);
+    setEducation(list);
+  };
   const addEducationList = () => {
     setEducation([
       ...education,
@@ -107,15 +128,28 @@ const Createform = () => {
       },
     ]);
   };
+
+  //Skills
+
+  const [skills, setSkills] = useState([
+    {
+      skillDiscription: "",
+    },
+  ]);
+
   const addSkillList = () => {
     setSkills([
       ...skills,
       {
-        skill: "",
+        skillDiscription: "",
       },
     ]);
   };
-
+  const skillListRemover = (index) => {
+    const list = [...skills];
+    list.splice(index, 1);
+    setSkills(list);
+  };
   const skillDataHandler = (e, index) => {
     const { name, value } = e.target;
     const list = [...skills];
@@ -123,42 +157,95 @@ const Createform = () => {
     setSkills(list);
   };
 
+  //Work Functionality
+
+  const [workExperience, setWorkExperience] = useState([
+    {
+      name: "",
+      position: "",
+      earlyYear: "",
+      lateYear: "",
+      description: "",
+      locationCity: "",
+      locationCountry: "",
+    },
+  ]);
+
   const workDataHandler = (e, index) => {
     const { name, value } = e.target;
     const list = [...workExperience];
     list[index][name] = value;
     setWorkExperience(list);
   };
-
-  const workListRemover = (index) =>{
-    const list =[...workExperience];
-    list.splice(index,1)
-    setWorkExperience(list)
-  }
-
-  const skillListRemover = (index) =>{
-    const list = [...skills];
-    list.splice(index,1);
-    setSkills(list)
-  }
-  const educationListRemover = (index) =>{
-    const list = [...education];
-    list.splice(index,1);
-    setEducation(list)
-  }
-  const handleSubmit = () => {
-    console.log(education, skills);
+  const addWorkList = () => {
+    setWorkExperience([
+      ...workExperience,
+      {
+        name: "",
+        earlyYear: "",
+        lateYear: "",
+        description: "",
+        locationCity: "",
+        locationCountry: "",
+      },
+    ]);
   };
+  const workListRemover = (index) => {
+    const list = [...workExperience];
+    list.splice(index, 1);
+    setWorkExperience(list);
+  };
+
+  //Language functionality
+
+  const [language, setLanguage] = useState([
+    {
+      language: "",
+    },
+  ]);
+  const addLanguageList = () => {
+    setLanguage([
+      ...language,
+      {
+        language: "",
+      },
+    ]);
+  };
+  const languageDataHandler = (e, index) => {
+    const { name, value } = e.target;
+    const list = [...language];
+    list[index][name] = value;
+    setLanguage(list);
+  };
+  const languageListRemover = (index) => {
+    const list = [...language];
+    list.splice(index, 1);
+    setLanguage(list);
+  };
+
+  const handleSubmit = () => {
+    console.log(
+      mainUserData,
+      education,
+      skills,
+      workExperience,
+      language,
+      certificate,
+      project
+    );
+  };
+
   return (
-    <Container className="container" component="main" maxWidth="sm" >
+    <Container className="container" component="main" maxWidth="md">
       <AppBar>
         <Typography
           align="center"
           gutterBottom={true}
           noWrap={true}
           variant="h5"
+          x={{ fontWeight: "bold" }}
         >
-          Profile Form
+          {helper.profileForm}
         </Typography>
       </AppBar>
       <div style={{ paddingTop: "50px" }}>
@@ -176,13 +263,14 @@ const Createform = () => {
             gutterBottom={true}
             noWrap={true}
             variant="h5"
+            sx={{ fontWeight: "bold" }}
           >
-            Position
+            {helper.position}
           </Typography>
           <Grid item xs={4}>
             <TextField
               type="text"
-              label={titles.position}
+              label={helper.position}
               variant="outlined"
               name="position"
               value={mainUserData.position}
@@ -196,18 +284,23 @@ const Createform = () => {
             noValidate
             sx={{ mt: 3 }}
           >
-            <Typography gutterBottom={true} variant="h5" align="center">
-              Main Info
-            </Typography>
             <Grid
               container
               rowSpacing={1}
               columnSpacing={{ xs: 1, sm: 1, md: 1 }}
             >
               <Grid item xs={12}>
+                <Typography
+                  gutterBottom={true}
+                  variant="h5"
+                  align="center"
+                  sx={{ fontWeight: "bold" }}
+                >
+                  {helper.personalInfo}
+                </Typography>
                 <TextField
                   type="text"
-                  label={titles.name}
+                  label={helper.name}
                   name="name"
                   variant="outlined"
                   value={mainUserData.name}
@@ -219,7 +312,7 @@ const Createform = () => {
                 <TextField
                   type="text"
                   name="surname"
-                  label={titles.surname}
+                  label={helper.surname}
                   variant="outlined"
                   value={mainUserData.surname}
                   onChange={handleMainDataChange}
@@ -229,12 +322,17 @@ const Createform = () => {
             </Grid>
             <Card sx={{ mt: 2 }} raised={false}>
               <CardContent>
-                <Typography gutterBottom={true} variant="h5" align="center" sx={{ fontWeight: 'bold' }}>
-                  Birth Date
+                <Typography
+                  gutterBottom={true}
+                  variant="h5"
+                  align="center"
+                  sx={{ fontWeight: "bold" }}
+                >
+                  {helper.birthday}
                 </Typography>
                 <Input
                   type="date"
-                  label={titles.position}
+                  label={helper.position}
                   variant="contained"
                   name="birthday"
                   value={mainUserData.birthday}
@@ -244,33 +342,42 @@ const Createform = () => {
             </Card>
           </Box>
         </Box>
-        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 2 }}>
-          <Grid rowSpacing={1} sx={{alignItems:"center"}} columnSpacing={{ xs: 1, sm: 1, md: 2 }}>
-            <Typography gutterBottom={true} variant="h5" align="center" sx={{ fontWeight: 'bold' }}>
-              Contact Info
+        <Box onSubmit={handleSubmit} sx={{ mt: 2 }}>
+          <Grid
+            rowSpacing={1}
+            sx={{ alignItems: "center" }}
+            columnSpacing={{ xs: 1, sm: 1, md: 2 }}
+          >
+            <Typography
+              gutterBottom={true}
+              variant="h5"
+              align="center"
+              sx={{ fontWeight: "bold" }}
+            >
+              {helper.contactInfo}
             </Typography>
             <Grid sx={{}}>
-            <Grid item xs={4}>
-              <TextField
-                type="text"
-                label={titles.email}
-                name="email"
-                autoComplete="email"
-                variant="outlined"
-                value={mainUserData.email}
-                onChange={handleMainDataChange}
-              />
-            </Grid>
-            <Grid item xs={4}>
-              <TextField
-                type="text"
-                name="phone"
-                label={titles.phone}
-                variant="outlined"
-                value={mainUserData.phone}
-                onChange={handleMainDataChange}
-              />
-            </Grid>
+              <Grid item xs={4}>
+                <TextField
+                  type="text"
+                  label={helper.email}
+                  name="email"
+                  autoComplete="email"
+                  variant="outlined"
+                  value={mainUserData.email}
+                  onChange={handleMainDataChange}
+                />
+              </Grid>
+              <Grid item xs={4}>
+                <TextField
+                  type="text"
+                  name="phone"
+                  label={helper.phone}
+                  variant="outlined"
+                  value={mainUserData.phone}
+                  onChange={handleMainDataChange}
+                />
+              </Grid>
             </Grid>
           </Grid>
         </Box>
@@ -279,17 +386,17 @@ const Createform = () => {
             <Grid>
               <TextField
                 type="text"
-                label={titles.city}
+                label={helper.city}
                 name="city"
                 value={mainUserData.city}
                 onChange={handleMainDataChange}
                 variant="outlined"
               />
             </Grid>
-            <Grid item>
+            <Grid>
               <TextField
                 type="text"
-                label={titles.country}
+                label={helper.country}
                 name="country"
                 value={mainUserData.country}
                 onChange={handleMainDataChange}
@@ -309,8 +416,13 @@ const Createform = () => {
         >
           <Card sx={{ mt: 4 }} raised={true}>
             <CardContent>
-              <Typography gutterBottom={true} variant="h5" align="center" sx={{ fontWeight: 'bold' }}>
-                Education Info
+              <Typography
+                gutterBottom={true}
+                variant="h5"
+                align="center"
+                sx={{ fontWeight: "bold" }}
+              >
+                {helper.eduInfo}
               </Typography>
               {education.map((singleEducation, index) => (
                 <div key={index}>
@@ -318,7 +430,7 @@ const Createform = () => {
                     <Grid item xs={4}>
                       <TextField
                         name="name"
-                        label="Educational Institution Name"
+                        label={helper.eduLabel}
                         onChange={(e) => educationDataHandler(e, index)}
                         value={singleEducation.name}
                       />
@@ -326,19 +438,31 @@ const Createform = () => {
                     <Grid item xs={6}>
                       <TextField
                         name="department"
-                        label="Department"
+                        label={helper.departmentLabel}
                         onChange={(e) => educationDataHandler(e, index)}
                         value={singleEducation.department}
                       />
                     </Grid>
                     <Grid>
+                      <Grid>
+                      <Typography
+                        gutterBottom={true}
+                        variant="h6"
+                        align="center"
+                        sx={{ fontStyle: "italic" }}
+                      >
+                        {helper.years}
+                      </Typography>
+                      </Grid>
                       <Input
                         type="number"
+                        label={helper.labelEarly}
                         placeholder="2014"
-                        label="early"
                         name="earlyYear"
+                        margin="dense"
                         min="1900"
                         max="2099"
+                        variant="contained"
                         step="1"
                         onChange={(e) => educationDataHandler(e, index)}
                         value={singleEducation.earlyYear}
@@ -346,7 +470,7 @@ const Createform = () => {
                       -
                       <Input
                         type="number"
-                        label="late"
+                        label={helper.labelEarly}
                         name="lateYear"
                         min="1900"
                         placeholder="2022"
@@ -362,14 +486,14 @@ const Createform = () => {
                         color="warning"
                         onClick={addEducationList}
                       >
-                        Add
+                        {helper.addButton}
                       </Button>
                       <Button
                         variant="contained"
                         color="error"
                         onClick={educationListRemover}
                       >
-                        Remove
+                        {helper.removeButton}
                       </Button>
                     </Grid>
                   </Grid>
@@ -390,8 +514,13 @@ const Createform = () => {
       >
         <Card sx={{ mt: 4 }} raised={true}>
           <CardContent>
-            <Typography gutterBottom={true} variant="h5" align="center" sx={{ fontWeight: 'bold' }}>
-              Skills
+            <Typography
+              gutterBottom={true}
+              variant="h5"
+              align="center"
+              sx={{ fontWeight: "bold" }}
+            >
+              {helper.skills}
             </Typography>
             {skills.map((singleSkill, index) => (
               <div key={index}>
@@ -399,19 +528,19 @@ const Createform = () => {
                   <Grid>
                     <TextField
                       value={singleSkill.skillDiscription}
-                      label="Skill"
+                      label={helper.skills}
                       name="skillDiscription"
                       onChange={(e) => skillDataHandler(e, index)}
                     />
                   </Grid>
                   <Grid sx={{ p: 2 }}>
-                    <span className="">
+                    <span>
                       <Button
                         variant="contained"
                         color="warning"
                         onClick={addSkillList}
                       >
-                        Add
+                        {helper.addButton}
                       </Button>
                     </span>
                     <span>
@@ -420,7 +549,7 @@ const Createform = () => {
                         color="error"
                         onClick={skillListRemover}
                       >
-                        Remove
+                        {helper.removeButton}
                       </Button>
                     </span>
                   </Grid>
@@ -433,41 +562,57 @@ const Createform = () => {
       {
         //Work Menu
       }
-        <Box
-          component="form"
-          onSubmit={handleSubmit}
-          noValidate
-          sx={{ pt: 3, pb: 4 }}
-        >
-          <Card sx={{ mt: 4 }} raised={true}>
-            <CardContent>
-              <Typography gutterBottom={true} variant="h5" align="center" sx={{ fontWeight: 'bold' }}>
-                Work Experience
-              </Typography>
-              {workExperience.map((singleWork, index) => (
+      <Box
+        component="form"
+        onSubmit={handleSubmit}
+        noValidate
+        sx={{ pt: 3, pb: 4 }}
+      >
+        <Card sx={{ mt: 4 }} raised={true}>
+          <CardContent>
+            <Typography
+              gutterBottom={true}
+              variant="h5"
+              align="center"
+              sx={{ fontWeight: "bold" }}
+            >
+              {helper.workPlace}
+            </Typography>
+            {workExperience.map((singleWork, index) => (
               <div key={index}>
                 <TextField
                   name="name"
-                  label="Workplace Name"
-                  onChange={workDataHandler}
+                  label={helper.workPlace}
+                  onChange={(e) => workDataHandler(e, index)}
                   value={singleWork.name}
                 />
                 <TextField
-                  name="Position"
-                  label="Position"
-                  onChange={workDataHandler}
+                  name="position"
+                  label={helper.position}
+                  onChange={(e) => workDataHandler(e, index)}
                   value={singleWork.position}
                 />
                 <div>
-                  <div className="yearWrapper">
+                  <Grid>
+                    <Grid>
+                    <Typography
+                        gutterBottom={true}
+                        variant="h6"
+                        align="center"
+                        sx={{ fontStyle: "italic" }}
+                      >
+                        {helper.years}
+                      </Typography>
+                    </Grid>
                     <Input
                       type="number"
+                      placeholder="2020"
                       label="early"
                       name="earlyYear"
                       min="1900"
                       max="2099"
                       step="1"
-                      onChange={workDataHandler}
+                      onChange={(e) => workDataHandler(e, index)}
                       value={singleWork.earlyYear}
                     />
                     -
@@ -475,22 +620,39 @@ const Createform = () => {
                       type="number"
                       label="late"
                       name="lateYear"
+                      placeholder="2022"
                       min="1900"
                       max="2099"
                       step="1"
-                      onChange={workDataHandler}
+                      onChange={(e) => workDataHandler(e, index)}
                       value={singleWork.lateYear}
                     />
-                  </div>
+                  </Grid>
                   <div>
-                    <Typography sx={{ fontStyle: 'italic' }}>Description</Typography>
+                    <Grid>
+                      <TextField
+                        name="locationCity"
+                        label={helper.workCity}
+                        onChange={(e) => workDataHandler(e, index)}
+                        value={singleWork.locationCity}
+                      />
+                      <TextField
+                        name="locationCountry"
+                        label={helper.workCountry}
+                        onChange={(e) => workDataHandler(e, index)}
+                        value={singleWork.locationCountry}
+                      />
+                    </Grid>
+                    <Typography sx={{ fontStyle: "italic" }}>
+                      {helper.description}
+                    </Typography>
                     <TextareaAutosize
-                      label="Description"
+                      label={helper.description}
                       name="description"
                       value={singleWork.description}
-                      onChange={workDataHandler}
+                      onChange={(e) => workDataHandler(e, index)}
                     />
-                  </div> 
+                  </div>
                   <Grid sx={{ p: 2 }}>
                     <span>
                       <Button
@@ -498,7 +660,7 @@ const Createform = () => {
                         color="warning"
                         onClick={addWorkList}
                       >
-                        Add
+                        {helper.addButton}
                       </Button>
                     </span>
                     <span>
@@ -507,19 +669,219 @@ const Createform = () => {
                         color="error"
                         onClick={workListRemover}
                       >
-                        Remove
+                        {helper.removeButton}
                       </Button>
                     </span>
                   </Grid>
                 </div>
               </div>
-                    ))}
+            ))}
+          </CardContent>
+        </Card>
+        {
+          // Language Menu
+        }
+        <Box
+          component="form"
+          onSubmit={handleSubmit}
+          noValidate
+          sx={{ pt: 3, p3: 4 }}
+        >
+          <Card sx={{ mt: 4 }} raised={true}>
+            <CardContent>
+              <Typography
+                gutterBottom={true}
+                variant="h5"
+                align="center"
+                sx={{ fontWeight: "bold" }}
+              >
+                {helper.language}
+              </Typography>
+              {language.map((singleLanguage, index) => (
+                <div key={index}>
+                  <Grid>
+                    <Grid>
+                      <TextField
+                        value={singleLanguage.skill}
+                        label={helper.language}
+                        name="language"
+                        onChange={(e) => languageDataHandler(e, index)}
+                      />
+                    </Grid>
+                    <Grid sx={{ p: 2 }}>
+                      <span>
+                        <Button
+                          variant="contained"
+                          color="warning"
+                          onClick={addLanguageList}
+                        >
+                          {helper.addButton}
+                        </Button>
+                      </span>
+                      <span>
+                        <Button
+                          variant="contained"
+                          color="error"
+                          onClick={languageListRemover}
+                        >
+                          {helper.removeButton}
+                        </Button>
+                      </span>
+                    </Grid>
+                  </Grid>
+                </div>
+              ))}
             </CardContent>
           </Card>
         </Box>
-        <Button variant="contained" onClick={handleSubmit} color="primary">
-          Save
-        </Button>
+        {
+          // Certificates and Courser
+        }
+        <Box
+          component="form"
+          onSubmit={handleSubmit}
+          noValidate
+          sx={{ pt: 3, p3: 4 }}
+        >
+          <Card sx={{ mt: 4 }} raised={true}>
+            <CardContent>
+              <Typography
+                gutterBottom={true}
+                variant="h5"
+                align="center"
+                sx={{ fontWeight: "bold" }}
+              >
+                {helper.certAndCourse}
+              </Typography>
+              {certificate.map((singleCerteficate, index) => (
+                <div key={index}>
+                  <Grid>
+                    <Grid>
+                      <TextField
+                        value={singleCerteficate.skillDiscription}
+                        label={helper.certAndCourse}
+                        name="certificate"
+                        onChange={(e) => certificatesHandler(e, index)}
+                      />
+                    </Grid>
+                    <Grid sx={{ p: 2 }}>
+                      <span>
+                        <Button
+                          variant="contained"
+                          color="warning"
+                          onClick={addCertificateList}
+                        >
+                          {helper.addButton}
+                        </Button>
+                      </span>
+                      <span>
+                        <Button
+                          variant="contained"
+                          color="error"
+                          onClick={removeCertificateList}
+                        >
+                          {helper.removeButton}
+                        </Button>
+                      </span>
+                    </Grid>
+                  </Grid>
+                </div>
+              ))}
+            </CardContent>
+          </Card>
+        </Box>
+        {
+          // Projects
+        }
+        <Box
+          component="form"
+          onSubmit={handleSubmit}
+          noValidate
+          sx={{ pt: 3, p3: 4 }}
+        >
+          <Card sx={{ mt: 4 }} raised={true}>
+            <CardContent>
+              <Typography
+                gutterBottom={true}
+                variant="h5"
+                align="center"
+                sx={{ fontWeight: "bold" }}
+              >
+                {helper.projects}
+              </Typography>
+              {project.map((singleProject, index) => (
+                <div key={index}>
+                  <Grid>
+                    <Grid>
+                      <TextField
+                        value={singleProject.name}
+                        label={helper.projectName}
+                        name="name"
+                        onChange={(e) => handleProject(e, index)}
+                      />
+                    </Grid>
+                    <Grid>
+                      <Typography
+                        gutterBottom={true}
+                        variant="h6"
+                        align="center"
+                        sx={{ fontStyle: "italic" }}
+                      >
+                        {helper.description}
+                      </Typography>
+                      <TextareaAutosize
+                        value={singleProject.description}
+                        label={helper.description}
+                        name="description"
+                        onChange={(e) => handleProject(e, index)}
+                      />
+                    </Grid>
+                    <Grid>
+                      <Typography
+                        gutterBottom={true}
+                        variant="h6"
+                        align="center"
+                        sx={{ fontStyle: "italic" }}
+                      >
+                        {helper.responsibilities}
+                      </Typography>
+                      <TextareaAutosize
+                        value={singleProject.responsibilities}
+                        label={helper.responsibilities}
+                        name="responsibilities"
+                        onChange={(e) => handleProject(e, index)}
+                      />
+                    </Grid>
+                    <Grid sx={{ p: 2 }}>
+                      <span>
+                        <Button
+                          variant="contained"
+                          color="warning"
+                          onClick={addProjectList}
+                        >
+                          {helper.addButton}
+                        </Button>
+                      </span>
+                      <span>
+                        <Button
+                          variant="contained"
+                          color="error"
+                          onClick={removeProjectList}
+                        >
+                          {helper.removeButton}
+                        </Button>
+                      </span>
+                    </Grid>
+                  </Grid>
+                </div>
+              ))}
+            </CardContent>
+          </Card>
+        </Box>
+      </Box>
+      <Button variant="contained" onClick={handleSubmit} color="primary">
+        {helper.save}
+      </Button>
     </Container>
   );
 };
