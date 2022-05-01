@@ -3,4 +3,10 @@
   align-items: center;
   margin: 0;
   padding: 0;
+  background-color: rgb(232, 233, 235);
+  border-style: inset;
+  border-width: 5px;
+}
+.menuWrapper{
+  padding:10px;
 }

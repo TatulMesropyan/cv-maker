@@ -21,7 +21,7 @@ const helper = {
     addButton:"Add",
     removeButton:"Remove",
     workeExperience:"Work Experience",
-    workPlace:"Workplace Name",
+    workPlace:"Workplace",
     description:"Description",
     labelEarly:"Early",
     labelLate:"Late",

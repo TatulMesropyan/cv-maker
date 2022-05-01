@@ -157,7 +157,7 @@ const Createform = () => {
     setSkills(list);
   };
 
-  //Work Functionality
+  //Work
 
   const [workExperience, setWorkExperience] = useState([
     {
@@ -196,7 +196,7 @@ const Createform = () => {
     setWorkExperience(list);
   };
 
-  //Language functionality
+  //Language
 
   const [language, setLanguage] = useState([
     {
@@ -250,34 +250,15 @@ const Createform = () => {
       </AppBar>
       <div style={{ paddingTop: "50px" }}>
         <Box
-          align="left"
+          align="center"
           sx={{
             marginTop: 8,
             display: "flex",
             flexDirection: "column",
-            alignItems: "left",
           }}
         >
-          <Typography
-            align="center"
-            gutterBottom={true}
-            noWrap={true}
-            variant="h5"
-            sx={{ fontWeight: "bold" }}
-          >
-            {helper.position}
-          </Typography>
-          <Grid item xs={4}>
-            <TextField
-              type="text"
-              label={helper.position}
-              variant="outlined"
-              name="position"
-              value={mainUserData.position}
-              onChange={handleMainDataChange}
-              fullWidth
-            />
-          </Grid>
+          <Card>
+            <CardContent>
           <Box
             component="form"
             onSubmit={handleSubmit}
@@ -340,8 +321,33 @@ const Createform = () => {
                 />
               </CardContent>
             </Card>
+            <Typography
+            align="center"
+            gutterBottom={true}
+            noWrap={true}
+            variant="h5"
+            sx={{ fontWeight: "bold" ,pt:3}}
+          >
+            {helper.position}
+          </Typography>
+          <Grid item xs={4}>
+            <TextField
+              type="text"
+              label={helper.position}
+              variant="outlined"
+              name="position"
+              value={mainUserData.position}
+              onChange={handleMainDataChange}
+              fullWidth
+            />
+          </Grid>
           </Box>
+          </CardContent>
+          </Card>
         </Box>
+        <Box sx={{pt:6}}>
+        <Card>
+          <CardContent>
         <Box onSubmit={handleSubmit} sx={{ mt: 2 }}>
           <Grid
             rowSpacing={1}
@@ -405,6 +411,9 @@ const Createform = () => {
             </Grid>
           </Grid>
         </Box>
+        </CardContent>
+        </Card>
+        </Box>
         {
           //Education Menu
         }
@@ -425,26 +434,31 @@ const Createform = () => {
                 {helper.eduInfo}
               </Typography>
               {education.map((singleEducation, index) => (
-                <div key={index}>
-                  <Grid rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 2 }}>
-                    <Grid item xs={4}>
-                      <TextField
-                        name="name"
-                        label={helper.eduLabel}
-                        onChange={(e) => educationDataHandler(e, index)}
-                        value={singleEducation.name}
-                      />
-                    </Grid>
-                    <Grid item xs={6}>
-                      <TextField
-                        name="department"
-                        label={helper.departmentLabel}
-                        onChange={(e) => educationDataHandler(e, index)}
-                        value={singleEducation.department}
-                      />
-                    </Grid>
+                <div key={index} className="menuWrapper">
+                <Box sx={{p:4,border:0.5,borderRadius:10}}>
+                  <Grid
+                    rowSpacing={1}
+                    columnSpacing={{ xs: 1, sm: 2, md: 2 }}
+                    item
+                    xs={4}
+                  >
+                    <TextField
+                      name="name"
+                      label={helper.eduLabel}
+                      onChange={(e) => educationDataHandler(e, index)}
+                      value={singleEducation.name}
+                    />
+                  </Grid>
+                  <Grid item xs={6}>
+                    <TextField
+                      name="department"
+                      label={helper.departmentLabel}
+                      onChange={(e) => educationDataHandler(e, index)}
+                      value={singleEducation.department}
+                    />
+                  </Grid>
+                  <Grid>
                     <Grid>
-                      <Grid>
                       <Typography
                         gutterBottom={true}
                         variant="h6"
@@ -453,56 +467,57 @@ const Createform = () => {
                       >
                         {helper.years}
                       </Typography>
-                      </Grid>
-                      <Input
-                        type="number"
-                        label={helper.labelEarly}
-                        placeholder="2014"
-                        name="earlyYear"
-                        margin="dense"
-                        min="1900"
-                        max="2099"
-                        variant="contained"
-                        step="1"
-                        onChange={(e) => educationDataHandler(e, index)}
-                        value={singleEducation.earlyYear}
-                      />
-                      -
-                      <Input
-                        type="number"
-                        label={helper.labelEarly}
-                        name="lateYear"
-                        min="1900"
-                        placeholder="2022"
-                        max="2099"
-                        step="1"
-                        onChange={(e) => educationDataHandler(e, index)}
-                        value={singleEducation.lateYear}
-                      />
                     </Grid>
-                    <Grid item xs={3} sx={{ p: 2 }}>
-                      <Button
-                        variant="contained"
-                        color="warning"
-                        onClick={addEducationList}
-                      >
-                        {helper.addButton}
-                      </Button>
-                      <Button
-                        variant="contained"
-                        color="error"
-                        onClick={educationListRemover}
-                      >
-                        {helper.removeButton}
-                      </Button>
-                    </Grid>
+                    <Input
+                      type="number"
+                      label={helper.labelEarly}
+                      placeholder="2014"
+                      name="earlyYear"
+                      margin="dense"
+                      min="1900"
+                      max="2099"
+                      variant="contained"
+                      step="1"
+                      onChange={(e) => educationDataHandler(e, index)}
+                      value={singleEducation.earlyYear}
+                    />
+                    -
+                    <Input
+                      type="number"
+                      label={helper.labelEarly}
+                      name="lateYear"
+                      min="1900"
+                      placeholder="2022"
+                      max="2099"
+                      step="1"
+                      onChange={(e) => educationDataHandler(e, index)}
+                      value={singleEducation.lateYear}
+                    />
                   </Grid>
+                  </Box>
                 </div>
               ))}
+              <Grid item xs={3} sx={{ p: 2 }}>
+                <Button
+                  variant="contained"
+                  color="warning"
+                  onClick={addEducationList}
+                >
+                  {helper.addButton}
+                </Button>
+                {education.length > 1 && (
+                  <Button
+                    variant="contained"
+                    color="error"
+                    onClick={educationListRemover}
+                  >
+                    {helper.removeButton}
+                  </Button>
+                )}
+              </Grid>
             </CardContent>
           </Card>
         </Box>
-      </div>
       {
         //Skill Menu
       }
@@ -525,37 +540,33 @@ const Createform = () => {
             {skills.map((singleSkill, index) => (
               <div key={index}>
                 <Grid>
-                  <Grid>
-                    <TextField
-                      value={singleSkill.skillDiscription}
-                      label={helper.skills}
-                      name="skillDiscription"
-                      onChange={(e) => skillDataHandler(e, index)}
-                    />
-                  </Grid>
-                  <Grid sx={{ p: 2 }}>
-                    <span>
-                      <Button
-                        variant="contained"
-                        color="warning"
-                        onClick={addSkillList}
-                      >
-                        {helper.addButton}
-                      </Button>
-                    </span>
-                    <span>
-                      <Button
-                        variant="contained"
-                        color="error"
-                        onClick={skillListRemover}
-                      >
-                        {helper.removeButton}
-                      </Button>
-                    </span>
-                  </Grid>
+                  <TextField
+                    value={singleSkill.skillDiscription}
+                    label={helper.skills}
+                    name="skillDiscription"
+                    onChange={(e) => skillDataHandler(e, index)}
+                  />
                 </Grid>
               </div>
             ))}
+            <Grid sx={{ p: 2 }}>
+              <Button
+                variant="contained"
+                color="warning"
+                onClick={addSkillList}
+              >
+                {helper.addButton}
+              </Button>
+              {skills.length > 1 && (
+                <Button
+                  variant="contained"
+                  color="error"
+                  onClick={skillListRemover}
+                >
+                  {helper.removeButton}
+                </Button>
+              )}
+            </Grid>
           </CardContent>
         </Card>
       </Box>
@@ -579,7 +590,8 @@ const Createform = () => {
               {helper.workPlace}
             </Typography>
             {workExperience.map((singleWork, index) => (
-              <div key={index}>
+              <div key={index} className="menuWrapper">
+                <Box sx={{p:1,border:0.5,borderRadius:10}}>
                 <TextField
                   name="name"
                   label={helper.workPlace}
@@ -592,90 +604,81 @@ const Createform = () => {
                   onChange={(e) => workDataHandler(e, index)}
                   value={singleWork.position}
                 />
-                <div>
+                <Grid>
                   <Grid>
-                    <Grid>
                     <Typography
-                        gutterBottom={true}
-                        variant="h6"
-                        align="center"
-                        sx={{ fontStyle: "italic" }}
-                      >
-                        {helper.years}
-                      </Typography>
-                    </Grid>
-                    <Input
-                      type="number"
-                      placeholder="2020"
-                      label="early"
-                      name="earlyYear"
-                      min="1900"
-                      max="2099"
-                      step="1"
-                      onChange={(e) => workDataHandler(e, index)}
-                      value={singleWork.earlyYear}
-                    />
-                    -
-                    <Input
-                      type="number"
-                      label="late"
-                      name="lateYear"
-                      placeholder="2022"
-                      min="1900"
-                      max="2099"
-                      step="1"
-                      onChange={(e) => workDataHandler(e, index)}
-                      value={singleWork.lateYear}
-                    />
-                  </Grid>
-                  <div>
-                    <Grid>
-                      <TextField
-                        name="locationCity"
-                        label={helper.workCity}
-                        onChange={(e) => workDataHandler(e, index)}
-                        value={singleWork.locationCity}
-                      />
-                      <TextField
-                        name="locationCountry"
-                        label={helper.workCountry}
-                        onChange={(e) => workDataHandler(e, index)}
-                        value={singleWork.locationCountry}
-                      />
-                    </Grid>
-                    <Typography sx={{ fontStyle: "italic" }}>
-                      {helper.description}
+                      gutterBottom={true}
+                      variant="h6"
+                      align="center"
+                      sx={{ fontStyle: "italic" }}
+                    >
+                      {helper.years}
                     </Typography>
-                    <TextareaAutosize
-                      label={helper.description}
-                      name="description"
-                      value={singleWork.description}
-                      onChange={(e) => workDataHandler(e, index)}
-                    />
-                  </div>
-                  <Grid sx={{ p: 2 }}>
-                    <span>
-                      <Button
-                        variant="contained"
-                        color="warning"
-                        onClick={addWorkList}
-                      >
-                        {helper.addButton}
-                      </Button>
-                    </span>
-                    <span>
-                      <Button
-                        variant="contained"
-                        color="error"
-                        onClick={workListRemover}
-                      >
-                        {helper.removeButton}
-                      </Button>
-                    </span>
                   </Grid>
-                </div>
+                  <Input
+                    type="number"
+                    placeholder="2020"
+                    label="early"
+                    name="earlyYear"
+                    min="1900"
+                    max="2099"
+                    step="1"
+                    onChange={(e) => workDataHandler(e, index)}
+                    value={singleWork.earlyYear}
+                  />
+                  -
+                  <Input
+                    type="number"
+                    label="late"
+                    name="lateYear"
+                    placeholder="2022"
+                    min="1900"
+                    max="2099"
+                    step="1"
+                    onChange={(e) => workDataHandler(e, index)}
+                    value={singleWork.lateYear}
+                  />
+                </Grid>
+                <Grid>
+                  <TextField
+                    name="locationCity"
+                    label={helper.workCity}
+                    onChange={(e) => workDataHandler(e, index)}
+                    value={singleWork.locationCity}
+                  />
+                  <TextField
+                    name="locationCountry"
+                    label={helper.workCountry}
+                    onChange={(e) => workDataHandler(e, index)}
+                    value={singleWork.locationCountry}
+                  />
+                </Grid>
+                <Typography sx={{ fontStyle: "italic" }}>
+                  {helper.description}
+                </Typography>
+                <TextareaAutosize
+                  label={helper.description}
+                  name="description"
+                  value={singleWork.description}
+                  onChange={(e) => workDataHandler(e, index)}
+                />
+                </Box>
               </div>
             ))}
+            <Grid sx={{ p: 2 }}>
+              <Button variant="contained" color="warning" onClick={addWorkList}>
+                {helper.addButton}
+              </Button>
+              {workExperience.length > 1 && (
+                <Button
+                  variant="contained"
+                  color="error"
+                  onClick={workListRemover}
+                >
+                  {helper.removeButton}
+                </Button>
+              )}
+            </Grid>
           </CardContent>
         </Card>
         {
@@ -700,37 +703,33 @@ const Createform = () => {
               {language.map((singleLanguage, index) => (
                 <div key={index}>
                   <Grid>
-                    <Grid>
-                      <TextField
-                        value={singleLanguage.skill}
-                        label={helper.language}
-                        name="language"
-                        onChange={(e) => languageDataHandler(e, index)}
-                      />
-                    </Grid>
-                    <Grid sx={{ p: 2 }}>
-                      <span>
-                        <Button
-                          variant="contained"
-                          color="warning"
-                          onClick={addLanguageList}
-                        >
-                          {helper.addButton}
-                        </Button>
-                      </span>
-                      <span>
-                        <Button
-                          variant="contained"
-                          color="error"
-                          onClick={languageListRemover}
-                        >
-                          {helper.removeButton}
-                        </Button>
-                      </span>
-                    </Grid>
+                    <TextField
+                      value={singleLanguage.skill}
+                      label={helper.language}
+                      name="language"
+                      onChange={(e) => languageDataHandler(e, index)}
+                    />
                   </Grid>
                 </div>
               ))}
+              <Grid sx={{ p: 2 }}>
+                <Button
+                  variant="contained"
+                  color="warning"
+                  onClick={addLanguageList}
+                >
+                  {helper.addButton}
+                </Button>
+                {language.length > 1 && (
+                  <Button
+                    variant="contained"
+                    color="error"
+                    onClick={languageListRemover}
+                  >
+                    {helper.removeButton}
+                  </Button>
+                )}
+              </Grid>
             </CardContent>
           </Card>
         </Box>
@@ -756,37 +755,33 @@ const Createform = () => {
               {certificate.map((singleCerteficate, index) => (
                 <div key={index}>
                   <Grid>
-                    <Grid>
-                      <TextField
-                        value={singleCerteficate.skillDiscription}
-                        label={helper.certAndCourse}
-                        name="certificate"
-                        onChange={(e) => certificatesHandler(e, index)}
-                      />
-                    </Grid>
-                    <Grid sx={{ p: 2 }}>
-                      <span>
-                        <Button
-                          variant="contained"
-                          color="warning"
-                          onClick={addCertificateList}
-                        >
-                          {helper.addButton}
-                        </Button>
-                      </span>
-                      <span>
-                        <Button
-                          variant="contained"
-                          color="error"
-                          onClick={removeCertificateList}
-                        >
-                          {helper.removeButton}
-                        </Button>
-                      </span>
-                    </Grid>
+                    <TextField
+                      value={singleCerteficate.skillDiscription}
+                      label={helper.certAndCourse}
+                      name="certificate"
+                      onChange={(e) => certificatesHandler(e, index)}
+                    />
                   </Grid>
                 </div>
               ))}
+              <Grid sx={{ p: 2 }}>
+                <Button
+                  variant="contained"
+                  color="warning"
+                  onClick={addCertificateList}
+                >
+                  {helper.addButton}
+                </Button>
+                {certificate.length > 1 && (
+                  <Button
+                    variant="contained"
+                    color="error"
+                    onClick={removeCertificateList}
+                  >
+                    {helper.removeButton}
+                  </Button>
+                )}
+              </Grid>
             </CardContent>
           </Card>
         </Box>
@@ -797,10 +792,11 @@ const Createform = () => {
           component="form"
           onSubmit={handleSubmit}
           noValidate
-          sx={{ pt: 3, p3: 4 }}
+          sx={{ pt: 3 }}
         >
           <Card sx={{ mt: 4 }} raised={true}>
             <CardContent>
+            <Box>
               <Typography
                 gutterBottom={true}
                 variant="h5"
@@ -809,72 +805,71 @@ const Createform = () => {
               >
                 {helper.projects}
               </Typography>
+              </Box>
               {project.map((singleProject, index) => (
-                <div key={index}>
+                <div key={index} className="menuWrapper">
+                 <Box sx={{p:4,border:0.5,borderRadius:10}}>
                   <Grid>
-                    <Grid>
-                      <TextField
-                        value={singleProject.name}
-                        label={helper.projectName}
-                        name="name"
-                        onChange={(e) => handleProject(e, index)}
-                      />
-                    </Grid>
-                    <Grid>
-                      <Typography
-                        gutterBottom={true}
-                        variant="h6"
-                        align="center"
-                        sx={{ fontStyle: "italic" }}
-                      >
-                        {helper.description}
-                      </Typography>
-                      <TextareaAutosize
-                        value={singleProject.description}
-                        label={helper.description}
-                        name="description"
-                        onChange={(e) => handleProject(e, index)}
-                      />
-                    </Grid>
-                    <Grid>
-                      <Typography
-                        gutterBottom={true}
-                        variant="h6"
-                        align="center"
-                        sx={{ fontStyle: "italic" }}
-                      >
-                        {helper.responsibilities}
-                      </Typography>
-                      <TextareaAutosize
-                        value={singleProject.responsibilities}
-                        label={helper.responsibilities}
-                        name="responsibilities"
-                        onChange={(e) => handleProject(e, index)}
-                      />
-                    </Grid>
-                    <Grid sx={{ p: 2 }}>
-                      <span>
-                        <Button
-                          variant="contained"
-                          color="warning"
-                          onClick={addProjectList}
-                        >
-                          {helper.addButton}
-                        </Button>
-                      </span>
-                      <span>
-                        <Button
-                          variant="contained"
-                          color="error"
-                          onClick={removeProjectList}
-                        >
-                          {helper.removeButton}
-                        </Button>
-                      </span>
-                    </Grid>
+                    <TextField
+                      value={singleProject.name}
+                      label={helper.projectName}
+                      name="name"
+                      onChange={(e) => handleProject(e, index)}
+                    />
                   </Grid>
+                  <Grid>
+                    <Typography
+                      gutterBottom={true}
+                      variant="h6"
+                      align="center"
+                      sx={{ fontStyle: "italic" }}
+                    >
+                      {helper.description}
+                    </Typography>
+                    <TextareaAutosize
+                      value={singleProject.description}
+                      label={helper.description}
+                      name="description"
+                      onChange={(e) => handleProject(e, index)}
+                    />
+                  </Grid>
+                  <Grid>
+                    <Typography
+                      gutterBottom={true}
+                      variant="h6"
+                      align="center"
+                      sx={{ fontStyle: "italic" }}
+                    >
+                      {helper.responsibilities}
+                    </Typography>
+                    <TextareaAutosize
+                      value={singleProject.responsibilities}
+                      label={helper.responsibilities}
+                      name="responsibilities"
+                      onChange={(e) => handleProject(e, index)}
+                    />
+                  </Grid>
+                  </Box>
                 </div>
               ))}
+              <Grid sx={{ p: 2 }}>
+                <Button
+                  variant="contained"
+                  color="warning"
+                  onClick={addProjectList}
+                >
+                  {helper.addButton}
+                </Button>
+                {project.length > 1 && (
+                  <Button
+                    variant="contained"
+                    color="error"
+                    onClick={removeProjectList}
+                  >
+                    {helper.removeButton}
+                  </Button>
+                )}
+              </Grid>
             </CardContent>
           </Card>
         </Box>
@@ -882,6 +877,7 @@ const Createform = () => {
       <Button variant="contained" onClick={handleSubmit} color="primary">
         {helper.save}
       </Button>
+      </div>
     </Container>
   );
 };
