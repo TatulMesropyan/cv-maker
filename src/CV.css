@@ -1,14 +1,15 @@
-.mainContainer{
-    width: 1792px;
-    height: 2888px;
+h1, h2, h3, p, li{
+    font-family : "Montserrat", sans-serif !important;
 }
 
-.watermark{
-    position: absolute;
-    width: 1246px;
-    top: 444px;
-    right: 0;
-    margin-right: -386px;
+.mainContainer{
+    width: 1792px;
+    padding-bottom: 120px;
+    background-image: url("./images/img_3.png");
+    background-repeat: no-repeat;
+    background-size: 1246px auto;
+    background-position-x: right;
+    background-position-y: 444px;
 }
 
 .header-background{
@@ -25,7 +26,16 @@
     margin : 0;
     font-size : 16px;
     color : white;
-    font-family : "Montserrat", sans-serif;
+}
+
+.image-container{
+    width: 185px;
+    height: 185px;
+    border-radius: 50%;
+    background-size: 80%;
+    background-position-x: 20px;
+    background-repeat: no-repeat;
+    background-color: #f6f6f6;
 }
 
 .textAlignRight {
@@ -37,29 +47,79 @@
 }
 
 .topic{
-    padding: 0;
-    margin: 0 0 32px 0;
+    padding: 0 0 32px 0;
+    margin: 0;
     color: black;
     font-size: 24px;
-    font-family : "Montserrat", sans-serif;
     font-weight: 900;
 }
 
 .sub-topic{
-    padding: 0;
-    margin: 0 0 9px 0;
+    padding: 0 0 9px 0;
+    margin: 0;
     color: #08A202;
     font-size: 18px;
     font-weight: 900;
-    font-family : "Montserrat", sans-serif;
 }
 
 .text-secondary{
-    padding: 0;
-    margin: 0 0 16px 0;
+    padding: 0 0 16px 0;
+    margin: 0;
     color: black;
     font-size: 16px;
-    font-family : "Montserrat", sans-serif;
+}
+
+.sub-topic-secondary{
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.sub-topic-secondary > h2{
+    padding: 0 12px 0 0;
+    margin: 0;
+    color: black;
+    font-weight: 600;
+    font-style: italic;
+    font-size: 16px;
+}
+
+.sub-topic-secondary > h3{
+    padding: 4px 8px;
+    margin: 0;
+    border-radius: 100px;
+    background-color: #08A2021A;
+    color: #08A202;
+    font-weight: 400;
+    font-size: 12px;
+
+}
+
+.text-list{
+    padding: 0 0 16px 20px;
+    margin: 0;
+    color: black;
+    font-size: 16px;
+}
+
+.location{
+    padding-bottom: 32px;
+    display: flex;
+    align-items: center;
+}
+
+.location > span{
+    margin-right: 7px;
+    font-size: 16px;
+    color: #08A202;
+}
+
+.location > h3{
+    padding: 0;
+    margin: 0;
+    font-size: 12px;
+    font-weight: 300;
+    color: #0C0C0C80;
 }
 
 /*.header-logo-section{*/
