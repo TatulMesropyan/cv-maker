@@ -33,7 +33,9 @@ const helper = {
     workCountry:"Country",
     projectName:"Project Name",
     responsibilities:"Responsibilities",
-    years:"Years"
+    years:"Years",
+    profilePicture:"Profile Picture",
+    summary:"Summary"
 
   };
 
