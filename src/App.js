@@ -1,9 +1,13 @@
 
+import './App.css';
+import {CvTemplate} from './Components/CvTemplate';
 import Createform from './Createform'
+
+
 function App() {
   return (
-    <div className='App'>
-        <Createform/>
+    <div>
+      <CvTemplate/>
     </div>
   );
 }
