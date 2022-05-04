@@ -1,13 +1,13 @@
 import React from "react";
 import '../CV.css';
-import { Grid, Container, Typography, Box } from '@mui/material';
+import { Box } from '@mui/material';
 
 
 export function Article({topic, subtopic, secondarySubtopic, date, secondaryText, location}) {
     let secText;
 
     if (secondaryText !== undefined)
-        if (Array.isArray(secondaryText)){
+        if (Array.isArray(secondaryText)) {
             secText = secondaryText.map((itm, index) => {
                 return (
                     <ul className="text-list" key={index}>
@@ -15,7 +15,7 @@ export function Article({topic, subtopic, secondarySubtopic, date, secondaryText
                     </ul>
                 );
             });
-        }else{
+        } else {
             secText = <p className="text-secondary">{secondaryText}</p>;
         }
 
