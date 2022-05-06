@@ -43,9 +43,9 @@ const Project = () => {
     setProjectData(list);
   };
 
-  const handleSubmit = () =>{
-      console.log(projectData)
-  }
+  const handleSubmit = () => {
+    console.log(projectData);
+  };
   return (
     <Box component="form" onSubmit={handleSubmit} noValidate sx={{ pt: 3 }}>
       <Card sx={{ mt: 4 }} raised={true}>

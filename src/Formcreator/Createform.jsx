@@ -12,8 +12,7 @@ import Skills from './Skills'
 import Certificates from './Certificates'
 import Languages from './Languages'
 import Work from './Work'
-import Project from './Project'
-
+import Project from './Project'      
 const Createform = () => {
   return (
     <Container className="container" component="main" maxWidth="md">
@@ -23,7 +22,7 @@ const Createform = () => {
           gutterBottom={true}
           noWrap={true}
           variant="h5"
-          x={{ fontWeight: "bold" }}
+          sx={{ fontWeight: "bold" }}
         >
           {helper.profileForm}
         </Typography>

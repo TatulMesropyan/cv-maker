@@ -10,8 +10,14 @@ import {
   Card,
   CardContent,
 } from "@mui/material";
-
+import { useDispatch } from "react-redux";
+import store from "../redux/store";
+import { personalDataReducer } from "../redux/Reducers/personalDataReducer";
+import { personalNameChange } from "../redux/actions";
 const Personal = () => {
+  
+  const dispatch=useDispatch()
+
   const [personalData, setPersonalData] = useState({
     name: "",
     surname: "",
@@ -27,10 +33,14 @@ const Personal = () => {
     setPersonalData({
       ...personalData,
       [name]: value,
-    });
+      
+    })
+    store.dispatch(personalNameChange(personalData.name))
+    console.log(store.getState())
   };
+  
   const handleSubmit = () => {
-    console.log(personalData);
+    console.log(store);
   };
   return (
     <>
