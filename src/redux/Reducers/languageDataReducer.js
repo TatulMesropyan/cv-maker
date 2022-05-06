@@ -1,22 +1,26 @@
+const languagesDataReducer = (state = [{ language: "" }], action) => {
+  switch (action.type) {
+    case 'ADD_LANGUAGE':
+      return [
+        ...state,
+        {
+          language: action.payload,
+        },
+      ]
 
-const languagesDataReducer = (state=[{}],action) => {
-    switch (action.type) {
-        case 'ADD_LANGUAGE':
-          return [
-            ...state,
-            {
-              language: action.language,
-            },
-          ]
-          
-        case 'REMOVE_LANGUAGE':
-          return state.slice(action.index).concat(
-            state.slice(action.index+1)
-        );
-          
-        default:
-          return state
-      }
-    }
-    
+    case 'REMOVE_LANGUAGE':
+      return state.slice(action.index).concat(
+        state.slice(action.index + 1)
+      );
+
+    case 'CHANGE_LANGUAGE':
+      return [{
+        language: action.payload
+      }];
+
+    default:
+      return state
+  }
+}
+
 export default languagesDataReducer;

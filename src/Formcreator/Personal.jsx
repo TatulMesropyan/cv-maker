@@ -35,7 +35,7 @@ const Personal = () => {
       [name]: value,
       
     })
-    store.dispatch(personalNameChange(personalData.name))
+    store.dispatch(personalNameChange())
     console.log(store.getState())
   };
   

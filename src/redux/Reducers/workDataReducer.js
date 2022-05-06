@@ -1,46 +1,78 @@
-
-const workDataReducer = (state,action) => {
+const workDataReducer = (state = [{
+    name: "",
+    position: "",
+    earlyYear: "",
+    lateYear: "",
+    description: "",
+    locationCity: "",
+    locationCountry: "",
+}], action) => {
     switch (action.type) {
-        case "CHANGE_NAME":
+        case "CHANGE_WORK_NAME":
             {
                 return [{
-                    ...state
+                    name: action.payload
                 }]
             }
-            case "CHANGE_DISCRIPTION":
+        case "CHANGE_WORK_DESCRIPTION":
             {
                 return [{
-                    ...state
+                    description: action.payload
                 }]
             }
-            case "CHANGE_RESPONSIBILITIES":
+        case "CHANGE_WORK_POSITION":
             {
                 return [{
-                    ...state
+                    position: action.payload
                 }]
             }
-            case "ADD_PROJECT":
+        case "CHANGE_WORK_EARLY":
+            {
+                return [{
+                    earlyYear: action.payload
+                }]
+            }
+        case "CHANGE_WORK_LATE":
+            {
+                return [{
+                    lateYear: action.payload
+                }]
+            }
+        case "CHANGE_WORK_COUNTRY":
+            {
+                return [{
+                    locationCountry: action.payload
+                }]
+            }
+        case "CHANGE_WORK_CITY":
+            {
+                return [{
+                    locationCity: action.payload
+                }]
+            }
+        case "ADD_PROJECT":
             {
                 return [
-                    ...state,{
-                        name:action.payload,
-                        earlyYear:action.payload,
-                        lateYear:action.payload,
-                        description:action.payload,
-                        locationCity:action.payload,
-                        locationCountry:action.payload
+                    ...state, {
+                        name: action.payload,
+                        position: action.payload,
+                        earlyYear: action.payload,
+                        lateYear: action.payload,
+                        description: action.payload,
+                        locationCity: action.payload,
+                        locationCountry: action.payload
                     }
                 ]
             }
-            case "REMOVE_PROJECT":
+        case "REMOVE_WORK":
             {
                 return state.slice(action.index).concat(
-                    state.slice(action.index+1)
+                    state.slice(action.index + 1)
                 )
             }
-    
+
         default:
             return state;
     }
 }
-    export default workDataReducer;
+export default workDataReducer;

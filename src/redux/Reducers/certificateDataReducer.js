@@ -1,7 +1,7 @@
-const certificatesDataReducer = (state=[{}], action) => {
+const certificateDataReducer = (state = [{certificate:""}], action) => {
     switch (action.type) {
         case "CHANGE_CERT": {
-            return {certificate: action.payload }
+            return [{ certificate: action.payload }]
         }
         case "ADD_CERT":
             {
@@ -9,9 +9,9 @@ const certificatesDataReducer = (state=[{}], action) => {
                 { certificate: action.payload }
                 ]
             }
-        case "REMOVE_CERT":{
+        case "REMOVE_CERT": {
             return state.slice(action.index).concat(
-                state.slice(action.index+1)
+                state.slice(action.index + 1)
             );
         }
         default: {
@@ -20,4 +20,4 @@ const certificatesDataReducer = (state=[{}], action) => {
     }
 }
 
-export default certificatesDataReducer;
+export default certificateDataReducer;
