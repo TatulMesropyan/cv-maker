@@ -9,7 +9,6 @@ import {
   Card,
   CardContent,
 } from "@mui/material";
-import skillsDataReducer from "../redux/Reducers/skillsDataReducer";
 import { useDispatch, useSelector } from "react-redux";
 import * as actions from "../redux/actions";
 const Skills = () => {
@@ -20,6 +19,9 @@ const Skills = () => {
   const handleSkillChange = (e) => {
     dispatch(actions.skillsChange(e.target.value));
   };
+  const addSkillList = (e) => {
+    dispatch(actions.skillsAdd())
+  }
   return (
     <Box component="form" noValidate sx={{ pt: 3, p3: 4 }}>
       <Card sx={{ mt: 4 }} raised={true}>
@@ -48,9 +50,9 @@ const Skills = () => {
             <Button
               variant="contained"
               color="warning"
-              onClick={actions.skillsAdd}
+              onClick={addSkillList}
             >
-              {helper.skills}
+              {helper.add}
             </Button>
             {/* {skillsData.length > 1 && ( */}
             <Button

@@ -10,7 +10,6 @@ import {
   CardContent,
 } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import store from "../redux/store";
 import * as actions from "../redux/actions";
 const Personal = () => {
   const dispatch = useDispatch();
@@ -57,7 +56,7 @@ const Personal = () => {
     dispatch(actions.personalCountryChange(e.target.value));
   };
   const handleCityChange = (e) => {
-    store.dispatch(actions.personalCityChange(e.target.value));
+    dispatch(actions.personalCityChange(e.target.value));
   };
   return (
     <>
@@ -183,7 +182,6 @@ const Personal = () => {
                   </Grid>
                   <Grid item xs={4}>
                     <TextField
-                      type="text"
                       name="phone"
                       label={helper.phone}
                       variant="outlined"

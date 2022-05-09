@@ -1,7 +1,6 @@
 import helper from "../Components/helper";
 import * as actions from "../redux/actions";
 import { useSelector, useDispatch } from "react-redux";
-import store from "../redux/store";
 import "../App.css";
 import {
   TextField,
@@ -22,10 +21,7 @@ const Languages = () => {
   const handleLanguageChange = (e) => {
     dispatch(actions.languageChange(e.target.value));
   };
-  const handleSubmit = () => {
-    console.log(store.getState());
-  };
-
+ 
   return (
     <Box component="form" noValidate sx={{ pt: 3, p3: 4 }}>
       <Card sx={{ mt: 4 }} raised={true}>

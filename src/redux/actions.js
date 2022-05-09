@@ -22,8 +22,8 @@ export const personalPhoneChange = number => ({
 })
 
 export const personalBirthdayChange = value => ({
-  type:"CHANGE_PERSONAL_BIRTHDAY",
-  payload:value
+  type: "CHANGE_PERSONAL_BIRTHDAY",
+  payload: value
 })
 
 export const personalPositionChange = value => ({
@@ -73,7 +73,7 @@ export const educationEarlyYearChange = value => ({
   payload: value
 })
 
-export const educationLateYearChange = value  => ({
+export const educationLateYearChange = value => ({
   type: "CHANGE_EDUCATION_LATE",
   payload: value
 })
@@ -111,7 +111,7 @@ export const projectRemove = value => ({
 
 export const projectResponseChange = value => ({
   type: "CHANGE_PROJECT_RESPONSIBILITIES",
-  payload:value
+  payload: value
 })
 
 export const projectNameChange = value => ({
@@ -134,7 +134,7 @@ export const skillsRemove = value => ({
 })
 export const skillsChange = value => ({
   type: "CHANGE_SKILLS",
-  payload:value
+  payload: value
 })
 
 //Work
@@ -149,30 +149,30 @@ export const workDescriptionChange = value => ({
   payload: value
 })
 
-export const workPositionChange = value =>({
-  type:"CHANGE_WORK_POSITION",
-  payload:value
+export const workPositionChange = value => ({
+  type: "CHANGE_WORK_POSITION",
+  payload: value
 
 })
 
-export const workEarlyYearChange = number => ({
+export const workEarlyYearChange = value => ({
   type: "CHANGE_WORK_EARLY",
-  payload: number
+  payload: value
 })
 
-export const workLateYearChange = number => ({
+export const workLateYearChange = value => ({
   type: "CHANGE_WORK_LATE",
-  payload: number
+  payload: value
 })
 
-export const workCountryChange = value =>({
-  type:"CHANGE_WORK_COUNTRY",
-  payload:value
+export const workCountryChange = value => ({
+  type: "CHANGE_WORK_COUNTRY",
+  payload: value
 })
 
-export const workCityChange = value =>({
-type:"CHANGE_WORK_CITY",
-payload:value
+export const workCityChange = value => ({
+  type: "CHANGE_WORK_CITY",
+  payload: value
 
 })
 
