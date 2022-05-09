@@ -68,14 +68,14 @@ export const educationDepartmentChange = value => ({
   payload: value
 })
 
-export const educationEarlyYearChange = number => ({
+export const educationEarlyYearChange = value => ({
   type: "CHANGE_EDUCATION_EARLY",
-  payload: number
+  payload: value
 })
 
-export const educationLateYearChange = number => ({
+export const educationLateYearChange = value  => ({
   type: "CHANGE_EDUCATION_LATE",
-  payload: number
+  payload: value
 })
 
 export const educationRemove = value => ({

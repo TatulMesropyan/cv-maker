@@ -1,7 +1,7 @@
 const certificateDataReducer = (state = [{certificate:""}], action) => {
     switch (action.type) {
         case "CHANGE_CERT": {
-            return [{ certificate: action.payload }]
+            return [{...state , certificate: action.payload }]
         }
         case "ADD_CERT":
             {

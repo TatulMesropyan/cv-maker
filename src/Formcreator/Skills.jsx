@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import helper from "../Components/helper";
 import "../App.css";
 import {
@@ -10,90 +9,62 @@ import {
   Card,
   CardContent,
 } from "@mui/material";
-import skillDataHandler from '../redux/actions'
-import skillsDataReducer from '../redux/Reducers/skillsDataReducer'
-import { useDispatch } from "react-redux";
-const Skills = () =>{
-  const dispatch = useDispatch()
-const [skillsData, setSkillsData] = useState([
-    {
-      skillDiscription: "",
-    },
-  ]);
-
-  const addSkillList = () => {
-    setSkillsData([
-      ...skillsData,
-      {
-        skillDiscription: "",
-      },
-    ]);
+import skillsDataReducer from "../redux/Reducers/skillsDataReducer";
+import { useDispatch, useSelector } from "react-redux";
+import * as actions from "../redux/actions";
+const Skills = () => {
+  const dispatch = useDispatch();
+  const skillInputValue = useSelector(
+    (state) => state.skillsDataReducer.skillDiscription
+  );
+  const handleSkillChange = (e) => {
+    dispatch(actions.skillsChange(e.target.value));
   };
-  const skillListRemover = (index) => {
-    const list = [...skillsData];
-    list.splice(index, 1);
-    setSkillsData(list);
-  };
-  const skillDataHandler = (e, index) => {
-    const { name, value } = e.target;
-    const list = [...skillsData];
-    list[index][name] = value;
-    setSkillsData(list);
-  };
-
-  const handleSubmit = () =>{
-      console.log(skillsData)
-  }
   return (
-    <Box
-    component="form"
-    onSubmit={handleSubmit}
-    noValidate
-    sx={{ pt: 3, p3: 4 }}
-  >
-    <Card sx={{ mt: 4 }} raised={true}>
-      <CardContent>
-        <Typography
-          gutterBottom={true}
-          variant="h5"
-          align="center"
-          sx={{ fontWeight: "bold" }}
-        >
-          {helper.skills}
-        </Typography>
-        {skillsData.map((singleSkill, index) => (
-          <div key={index}>
+    <Box component="form" noValidate sx={{ pt: 3, p3: 4 }}>
+      <Card sx={{ mt: 4 }} raised={true}>
+        <CardContent>
+          <Typography
+            gutterBottom={true}
+            variant="h5"
+            align="center"
+            sx={{ fontWeight: "bold" }}
+          >
+            {helper.skills}
+          </Typography>
+          {/* {skillsData.map((singleSkill, index) => ( */}
+          <div key={"index"}>
             <Grid>
               <TextField
-                value={singleSkill.skillDiscription}
+                value={skillInputValue}
                 label={helper.skills}
                 name="skillDiscription"
-                onChange={(e) => skillDataHandler(e, index)} 
+                onChange={handleSkillChange}
               />
             </Grid>
           </div>
-        ))}
-        <Grid sx={{ p: 2 }}>
-          <Button
-            variant="contained"
-            color="warning"
-            onClick={()=>skillsDataReducer({type:"ADD_SKILLS"})}
-          >
-            {helper.addButton}
-          </Button>
-          {skillsData.length > 1 && (
+          {/* ))} */}
+          <Grid sx={{ p: 2 }}>
+            <Button
+              variant="contained"
+              color="warning"
+              onClick={actions.skillsAdd}
+            >
+              {helper.skills}
+            </Button>
+            {/* {skillsData.length > 1 && ( */}
             <Button
               variant="contained"
               color="error"
-              onClick={skillListRemover}
+              onClick={actions.skillsRemove}
             >
               {helper.removeButton}
             </Button>
-          )}
-        </Grid>
-      </CardContent>
-    </Card>
-  </Box>
-  )
-}
+            {/* )} */}
+          </Grid>
+        </CardContent>
+      </Card>
+    </Box>
+  );
+};
 export default Skills;

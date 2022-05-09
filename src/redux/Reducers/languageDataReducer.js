@@ -14,9 +14,9 @@ const languagesDataReducer = (state = [{ language: "" }], action) => {
       );
 
     case 'CHANGE_LANGUAGE':
-      return [{
+      return {...state,
         language: action.payload
-      }];
+      };
 
     default:
       return state

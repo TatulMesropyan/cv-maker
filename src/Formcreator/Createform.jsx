@@ -8,7 +8,11 @@ import Certificates from "./Certificates";
 import Languages from "./Languages";
 import Work from "./Work";
 import Project from "./Project";
-const Createform = (store) => {
+import store from "../redux/store";
+const Createform = () => {
+  const handleSubmit = () => {
+    console.log(store.getState());
+  };
   return (
     <Container className="container" component="main" maxWidth="md">
       <AppBar>
@@ -23,14 +27,14 @@ const Createform = (store) => {
         </Typography>
       </AppBar>
       <div style={{ paddingTop: "50px" }}>
-        <Personal store={store} />
+        <Personal />
         <Education />
         <Skills />
         <Certificates />
         <Languages />
         <Project />
         <Work />
-        <Button variant="contained" onClick={"handleSubmit"} color="primary">
+        <Button variant="contained" onClick={handleSubmit} color="success">
           {helper.save}
         </Button>
       </div>

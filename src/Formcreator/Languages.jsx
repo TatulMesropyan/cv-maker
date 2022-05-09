@@ -1,5 +1,7 @@
-import React, { useState } from "react";
 import helper from "../Components/helper";
+import * as actions from "../redux/actions";
+import { useSelector, useDispatch } from "react-redux";
+import store from "../redux/store";
 import "../App.css";
 import {
   TextField,
@@ -12,41 +14,20 @@ import {
 } from "@mui/material";
 
 const Languages = () => {
-  const [languagesData, setLanguagesData] = useState([
-    {
-      language: "",
-    },
-  ]);
-  const addLanguageList = () => {
-    setLanguagesData([
-      ...languagesData,
-      {
-        language: "",
-      },
-    ]);
-  };
-  const languageDataHandler = (e, index) => {
-    const { name, value } = e.target;
-    const list = [...languagesData];
-    list[index][name] = value;
-    setLanguagesData(list);
-  };
-  const languageListRemover = (index) => {
-    const list = [...languagesData];
-    list.splice(index, 1);
-    setLanguagesData(list);
+  const dispatch = useDispatch();
+
+  const languageInputValue = useSelector(
+    (state) => state.languageDataReducer.language
+  );
+  const handleLanguageChange = (e) => {
+    dispatch(actions.languageChange(e.target.value));
   };
   const handleSubmit = () => {
-    console.log(languagesData);
+    console.log(store.getState());
   };
 
   return (
-    <Box
-      component="form"
-      onSubmit={handleSubmit}
-      noValidate
-      sx={{ pt: 3, p3: 4 }}
-    >
+    <Box component="form" noValidate sx={{ pt: 3, p3: 4 }}>
       <Card sx={{ mt: 4 }} raised={true}>
         <CardContent>
           <Typography
@@ -57,35 +38,35 @@ const Languages = () => {
           >
             {helper.language}
           </Typography>
-          {languagesData.map((singleLanguage, index) => (
-            <div key={index}>
-              <Grid>
-                <TextField
-                  value={singleLanguage.skill}
-                  label={helper.language}
-                  name="language"
-                  onChange={(e) => languageDataHandler(e, index)}
-                />
-              </Grid>
-            </div>
-          ))}
+          {/* {languagesData.map((singleLanguage, index) => ( */}
+          <div key={"index"}>
+            <Grid>
+              <TextField
+                value={languageInputValue}
+                label={helper.language}
+                name="language"
+                onChange={handleLanguageChange}
+              />
+            </Grid>
+          </div>
+          {/* ))} */}
           <Grid sx={{ p: 2 }}>
             <Button
               variant="contained"
               color="warning"
-              onClick={addLanguageList}
+              onClick={actions.languageAdd}
             >
               {helper.addButton}
             </Button>
-            {languagesData.length > 1 && (
-              <Button
-                variant="contained"
-                color="error"
-                onClick={languageListRemover}
-              >
-                {helper.removeButton}
-              </Button>
-            )}
+            {/* {languagesData.length > 1 && ( */}
+            <Button
+              variant="contained"
+              color="error"
+              onClick={actions.languageRemove}
+            >
+              {helper.removeButton}
+            </Button>
+            {/* )} */}
           </Grid>
         </CardContent>
       </Card>

@@ -1,4 +1,3 @@
-import { useState, useCallback } from "react";
 import helper from "../Components/helper";
 import "../App.css";
 import {
@@ -9,25 +8,33 @@ import {
   Box,
   Card,
   CardContent,
-  Button,
 } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import store from "../redux/store";
-import { personalDataReducer } from "../redux/Reducers/personalDataReducer";
 import * as actions from "../redux/actions";
 const Personal = () => {
   const dispatch = useDispatch();
-   const nameInputValue = useSelector((state) => state.personalDataReducer.name);
-   const surnameInputValue =useSelector((state) => state.personalDataReducer.surname);
-   const positionInputValue = useSelector((state) => state.personalDataReducer.position);
-   const birthdayInputValue = useSelector((state) => state.personalDataReducer.birthday);
-   const emailInputValue = useSelector((state) => state.personalDataReducer.email);
-   const phoneInputValue = useSelector((state) => state.personalDataReducer.phone);
-   const countryInputValue = useSelector((state) => state.personalDataReducer.country);
-   const cityInputValue = useSelector((state) => state.personalDataReducer.city);
-  const handleSubmit = () => {
-    console.log(store.getState());
-  };
+  const nameInputValue = useSelector((state) => state.personalDataReducer.name);
+  const surnameInputValue = useSelector(
+    (state) => state.personalDataReducer.surname
+  );
+  const positionInputValue = useSelector(
+    (state) => state.personalDataReducer.position
+  );
+  const birthdayInputValue = useSelector(
+    (state) => state.personalDataReducer.birthday
+  );
+  const emailInputValue = useSelector(
+    (state) => state.personalDataReducer.email
+  );
+  const phoneInputValue = useSelector(
+    (state) => state.personalDataReducer.phone
+  );
+  const countryInputValue = useSelector(
+    (state) => state.personalDataReducer.country
+  );
+  const cityInputValue = useSelector((state) => state.personalDataReducer.city);
+
   const handleNameChange = (e) => {
     dispatch(actions.personalNameChange(e.target.value));
   };
@@ -64,12 +71,7 @@ const Personal = () => {
       >
         <Card>
           <CardContent>
-            <Box
-              component="form"
-              onSubmit={handleSubmit}
-              noValidate
-              sx={{ mt: 3 }}
-            >
+            <Box component="form" noValidate sx={{ mt: 3 }}>
               <Grid
                 container
                 rowSpacing={1}
@@ -149,12 +151,11 @@ const Personal = () => {
             </Box>
           </CardContent>
         </Card>
-        <Button onClick={handleSubmit}>TEST BUTTON</Button>
       </Box>
       <Box sx={{ pt: 6 }}>
         <Card>
           <CardContent>
-            <Box onSubmit={handleSubmit} sx={{ mt: 2 }}>
+            <Box sx={{ mt: 2 }}>
               <Grid
                 rowSpacing={1}
                 sx={{ alignItems: "center" }}

@@ -6,21 +6,21 @@ const projecDataReducer = (state = [{
     switch (action.type) {
         case "CHANGE_PROJECT_NAME":
             {
-                return [{
+                return {...state,
                     name: action.payload
-                }]
+                }
             }
         case "CHANGE_PROJECT_DESCRIPTION":
             {
-                return [{
+                return {...state,
                     description: action.payload
-                }]
+                }
             }
         case "CHANGE_PROJECT_RESPONSIBILITIES":
             {
-                return [{
+                return {...state,
                     responsibilities: action.payload
-                }]
+                }
             }
         case "ADD_PROJECT":
             {
