@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import helper from "../Components/helper";
-import "../App.css"
+import "../App.css";
 import {
   TextField,
   Input,
@@ -9,38 +9,48 @@ import {
   Box,
   Card,
   CardContent,
+  Button,
 } from "@mui/material";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import store from "../redux/store";
 import { personalDataReducer } from "../redux/Reducers/personalDataReducer";
-import { personalNameChange } from "../redux/actions";
+import * as actions from "../redux/actions";
 const Personal = () => {
-  
-  const dispatch=useDispatch()
-
-  const [personalData, setPersonalData] = useState({
-    name: "",
-    surname: "",
-    position: "",
-    birthday: "",
-    email: "",
-    phone: "",
-    country: "",
-    city: "",
-  });
-  const handlePersonalDataChange = (e) => {
-    const { name, value } = e.target;
-    setPersonalData({
-      ...personalData,
-      [name]: value,
-      
-    })
-    store.dispatch(personalNameChange())
-    console.log(store.getState())
-  };
-  
+  const dispatch = useDispatch();
+   const nameInputValue = useSelector((state) => state.personalDataReducer.name);
+   const surnameInputValue =useSelector((state) => state.personalDataReducer.surname);
+   const positionInputValue = useSelector((state) => state.personalDataReducer.position);
+   const birthdayInputValue = useSelector((state) => state.personalDataReducer.birthday);
+   const emailInputValue = useSelector((state) => state.personalDataReducer.email);
+   const phoneInputValue = useSelector((state) => state.personalDataReducer.phone);
+   const countryInputValue = useSelector((state) => state.personalDataReducer.country);
+   const cityInputValue = useSelector((state) => state.personalDataReducer.city);
   const handleSubmit = () => {
-    console.log(store);
+    console.log(store.getState());
+  };
+  const handleNameChange = (e) => {
+    dispatch(actions.personalNameChange(e.target.value));
+  };
+  const handleSurnameChange = (e) => {
+    dispatch(actions.personalSurnameChange(e.target.value));
+  };
+  const handlePositionChange = (e) => {
+    dispatch(actions.personalPositionChange(e.target.value));
+  };
+  const handleBirthdayChange = (e) => {
+    dispatch(actions.personalBirthdayChange(e.target.value));
+  };
+  const handleEmailChange = (e) => {
+    dispatch(actions.personalEmailChange(e.target.value));
+  };
+  const handlePhoneChange = (e) => {
+    dispatch(actions.personalPhoneChange(e.target.value));
+  };
+  const handleCountryChange = (e) => {
+    dispatch(actions.personalCountryChange(e.target.value));
+  };
+  const handleCityChange = (e) => {
+    store.dispatch(actions.personalCityChange(e.target.value));
   };
   return (
     <>
@@ -79,8 +89,8 @@ const Personal = () => {
                     label={helper.name}
                     name="name"
                     variant="outlined"
-                    value={personalData.name}
-                    onChange={handlePersonalDataChange}
+                    onChange={handleNameChange}
+                    value={nameInputValue}
                     fullWidth
                   />
                 </Grid>
@@ -90,8 +100,8 @@ const Personal = () => {
                     name="surname"
                     label={helper.surname}
                     variant="outlined"
-                    value={personalData.surname}
-                    onChange={handlePersonalDataChange}
+                    value={surnameInputValue}
+                    onChange={handleSurnameChange}
                     fullWidth
                   />
                 </Grid>
@@ -111,8 +121,8 @@ const Personal = () => {
                     label={helper.position}
                     variant="contained"
                     name="birthday"
-                    value={personalData.birthday}
-                    onChange={handlePersonalDataChange}
+                    value={birthdayInputValue}
+                    onChange={handleBirthdayChange}
                   />
                 </CardContent>
               </Card>
@@ -131,14 +141,15 @@ const Personal = () => {
                   label={helper.position}
                   variant="outlined"
                   name="position"
-                  value={personalData.position}
-                  onChange={handlePersonalDataChange}
+                  value={positionInputValue}
+                  onChange={handlePositionChange}
                   fullWidth
                 />
               </Grid>
             </Box>
           </CardContent>
         </Card>
+        <Button onClick={handleSubmit}>TEST BUTTON</Button>
       </Box>
       <Box sx={{ pt: 6 }}>
         <Card>
@@ -165,8 +176,8 @@ const Personal = () => {
                       name="email"
                       autoComplete="email"
                       variant="outlined"
-                      value={personalData.email}
-                      onChange={handlePersonalDataChange}
+                      value={emailInputValue}
+                      onChange={handleEmailChange}
                     />
                   </Grid>
                   <Grid item xs={4}>
@@ -175,8 +186,8 @@ const Personal = () => {
                       name="phone"
                       label={helper.phone}
                       variant="outlined"
-                      value={personalData.phone}
-                      onChange={handlePersonalDataChange}
+                      value={phoneInputValue}
+                      onChange={handlePhoneChange}
                     />
                   </Grid>
                 </Grid>
@@ -189,8 +200,8 @@ const Personal = () => {
                     type="text"
                     label={helper.city}
                     name="city"
-                    value={personalData.city}
-                    onChange={handlePersonalDataChange}
+                    onChange={handleCityChange}
+                    value={cityInputValue}
                     variant="outlined"
                   />
                 </Grid>
@@ -199,8 +210,8 @@ const Personal = () => {
                     type="text"
                     label={helper.country}
                     name="country"
-                    value={personalData.country}
-                    onChange={handlePersonalDataChange}
+                    value={countryInputValue}
+                    onChange={handleCountryChange}
                     variant="outlined"
                   />
                 </Grid>

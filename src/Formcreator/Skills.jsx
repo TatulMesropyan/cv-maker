@@ -10,8 +10,11 @@ import {
   Card,
   CardContent,
 } from "@mui/material";
-
+import skillDataHandler from '../redux/actions'
+import skillsDataReducer from '../redux/Reducers/skillsDataReducer'
+import { useDispatch } from "react-redux";
 const Skills = () =>{
+  const dispatch = useDispatch()
 const [skillsData, setSkillsData] = useState([
     {
       skillDiscription: "",
@@ -65,7 +68,7 @@ const [skillsData, setSkillsData] = useState([
                 value={singleSkill.skillDiscription}
                 label={helper.skills}
                 name="skillDiscription"
-                onChange={(e) => skillDataHandler(e, index)}
+                onChange={(e) => skillDataHandler(e, index)} 
               />
             </Grid>
           </div>
@@ -74,7 +77,7 @@ const [skillsData, setSkillsData] = useState([
           <Button
             variant="contained"
             color="warning"
-            onClick={addSkillList}
+            onClick={()=>skillsDataReducer({type:"ADD_SKILLS"})}
           >
             {helper.addButton}
           </Button>

@@ -1,19 +1,19 @@
 
 //Personal 
 
-export const personalNameChange = text => ({
+export const personalNameChange = (value) => ({
   type: "CHANGE_PERSONAL_FIRSTNAME",
-  payload: text,
+  payload: value,
 })
 
-export const personalSurnameChange = text => ({
+export const personalSurnameChange = value => ({
   type: "CHANGE_PERSONAL_SURNAME",
-  payload: text
+  payload: value
 })
 
-export const personalEmailChange = text => ({
+export const personalEmailChange = value => ({
   type: "CHANGE_PERSONAL_EMAIL",
-  payload: text
+  payload: value
 })
 
 export const personalPhoneChange = number => ({
@@ -21,51 +21,51 @@ export const personalPhoneChange = number => ({
   payload: number
 })
 
-export const personalBirthdayChange = text => ({
+export const personalBirthdayChange = value => ({
   type:"CHANGE_PERSONAL_BIRTHDAY",
-  payload:text
+  payload:value
 })
 
-export const personalPositionChange = text => ({
+export const personalPositionChange = value => ({
   type: "CHANGE_PERSONAL_POSITION",
-  payload: text
+  payload: value
 })
 
-export const personalCountryChange = text => ({
+export const personalCountryChange = value => ({
   type: "CHANGE_PERSONAL_COUNTRY",
-  payload: text
+  payload: value
 })
 
-export const personalCityChange = text => ({
+export const personalCityChange = value => ({
   type: "CHANGE_PERSONAL_CITY`",
-  payload: text,
+  payload: value,
 })
 
 //Language 
 
-export const languageAdd = text => ({
+export const languageAdd = value => ({
   type: "ADD_LANGUAGE",
 })
 
-export const languageRemove = text => ({
+export const languageRemove = value => ({
   type: "REMOVE_LANGUAGE",
 })
 
-export const languageChange = text => ({
+export const languageChange = value => ({
   type: "CHANGE_LANGUAGE",
-  payload: text
+  payload: value
 })
 
 //Education
 
-export const educationNameChange = text => ({
+export const educationNameChange = value => ({
   type: "CHANGE_EDUCATION_NAME",
-  payload: text
+  payload: value
 })
 
-export const educationDepartmentChange = text => ({
+export const educationDepartmentChange = value => ({
   type: "CHANGE_EDUCATION_DEPARTMENT",
-  payload: text
+  payload: value
 })
 
 export const educationEarlyYearChange = number => ({
@@ -78,80 +78,80 @@ export const educationLateYearChange = number => ({
   payload: number
 })
 
-export const educationRemove = text => ({
+export const educationRemove = value => ({
   type: "REMOVE_EDUCATION",
 })
-export const educationAdd = text => ({
+export const educationAdd = value => ({
   type: "ADD_EDUCATION",
 })
 
 //Certificate
 
-export const certificateAdd = text => ({
+export const certificateAdd = value => ({
   type: "ADD_CERT",
 })
 
-export const certificateChange = text => ({
+export const certificateChange = value => ({
   type: "CHANGE_CERT",
 })
 
-export const certificateRemove = text => ({
+export const certificateRemove = value => ({
   type: "REMOVE_CERT"
 })
 
 //Project 
 
-export const projectAdd = text => ({
+export const projectAdd = value => ({
   type: "ADD_PROJECT"
 })
 
-export const projectRemove = text => ({
+export const projectRemove = value => ({
   type: "REMOVE_PROJECT"
 })
 
-export const projectResponseChange = text => ({
+export const projectResponseChange = value => ({
   type: "CHANGE_PROJECT_RESPONSIBILITIES",
-  payload:text
+  payload:value
 })
 
-export const projectNameChange = text => ({
+export const projectNameChange = value => ({
   type: "CHANGE_PROJECT_NAME",
-  payload: text
+  payload: value
 })
 
-export const projectDescriptionChange = text => ({
+export const projectDescriptionChange = value => ({
   type: "CHANGE_PROJECT_DESCRIPTION",
-  payload: text
+  payload: value
 })
 
 //Skills
 
-export const skillsAdd = text => ({
+export const skillsAdd = value => ({
   type: "ADD_SKILLS",
 })
-export const skillsRemove = text => ({
+export const skillsRemove = value => ({
   type: "REMOVE_SKILLS"
 })
-export const skillsChange = text => ({
+export const skillsChange = value => ({
   type: "CHANGE_SKILLS",
-  payload:text
+  payload:value
 })
 
 //Work
 
-export const workNameChange = text => ({
+export const workNameChange = value => ({
   type: "CHANGE_WORK_NAME",
-  payload: text
+  payload: value
 })
 
-export const workDescriptionChange = text => ({
+export const workDescriptionChange = value => ({
   type: "CHANGE_WORK_DESCRIPTION",
-  payload: text
+  payload: value
 })
 
-export const workPositionChange = text =>({
+export const workPositionChange = value =>({
   type:"CHANGE_WORK_POSITION",
-  payload:text
+  payload:value
 
 })
 
@@ -165,21 +165,21 @@ export const workLateYearChange = number => ({
   payload: number
 })
 
-export const workCountryChange = text =>({
+export const workCountryChange = value =>({
   type:"CHANGE_WORK_COUNTRY",
-  payload:text
+  payload:value
 })
 
-export const workCityChange = text =>({
+export const workCityChange = value =>({
 type:"CHANGE_WORK_CITY",
-payload:text
+payload:value
 
 })
 
-export const workRemove = text => ({
+export const workRemove = value => ({
   type: "REMOVE_WORK",
 })
 
-export const workAdd = text => ({
+export const workAdd = value => ({
   type: "ADD_WORK",
 })
