@@ -1,4 +1,4 @@
-import React from "react";
+import React from "react"
 import { AppBar, Typography, Button, Container } from "@mui/material";
 import helper from "../Components/helper";
 import Personal from "./Personal";

@@ -28,10 +28,16 @@ const educationDataReducer = (state = [{
       }
 
     case 'ADD_EDUCATION':
-      return { 
-        ...state,
-        arr: [...state.arr, action.newItem]
-      }
+      console.log(state)
+      console.log(action.payload)
+      return [        ...state,
+        { 
+       name:action.payload,
+       department:action.payload,
+       earlyYear: action.payload,
+       lateYear: action.payload,
+      }]
+
 
     case 'REMOVE_EDUCATION':
       return state.slice(action.index).concat(

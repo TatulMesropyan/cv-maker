@@ -10,7 +10,8 @@ import {
   CardContent,
 } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import * as actions from "../redux/actions";
+import * as actions from "../redux/Actions/personalActions";
+import store from "../redux/store";
 const Personal = () => {
   const dispatch = useDispatch();
   const nameInputValue = useSelector((state) => state.personalDataReducer.name);
@@ -36,9 +37,10 @@ const Personal = () => {
 
   const handleNameChange = (e) => {
     dispatch(actions.personalNameChange(e.target.value));
-  };
+  }
+  
   const handleSurnameChange = (e) => {
-    dispatch(actions.personalSurnameChange(e.target.value));
+     dispatch(actions.personalSurnameChange(e.target.value));
   };
   const handlePositionChange = (e) => {
     dispatch(actions.personalPositionChange(e.target.value));

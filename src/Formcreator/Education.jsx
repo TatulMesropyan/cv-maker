@@ -1,4 +1,4 @@
-import * as actions from "../redux/actions";
+import * as actions from "../redux/Actions/educationActions";
 import helper from "../Components/helper";
 import "../App.css";
 import {
@@ -120,7 +120,7 @@ const Education = () => {
           <Grid item xs={3} sx={{ p: 2 }}>
             <Button
               variant="contained"
-              color="warning"
+              color="success"
               onClick={actions.educationAdd}
             >
               {helper.addButton}

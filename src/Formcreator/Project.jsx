@@ -11,7 +11,7 @@ import {
   Card,
   CardContent,
 } from "@mui/material";
-import * as actions from "../redux/actions";
+import * as actions from "../redux/Actions/projectActions";
 
 const Project = () => {
   const dispatch = useDispatch();
@@ -96,7 +96,7 @@ const Project = () => {
           <Grid sx={{ p: 2 }}>
             <Button
               variant="contained"
-              color="warning"
+              color="success"
               onClick={actions.projectAdd}
             >
               {helper.addButton}

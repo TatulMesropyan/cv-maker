@@ -10,18 +10,20 @@ import {
   CardContent,
 } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import * as actions from "../redux/actions";
+import * as actions from "../redux/Actions/skillsActions";
+import skillsDataReducer from "../redux/Reducers/skillsDataReducer";
+import { useCallback } from "react";
 const Skills = () => {
   const dispatch = useDispatch();
-  const skillInputValue = useSelector(
-    (state) => state.skillsDataReducer.skillDiscription
+  const { skills, inputValue } = useSelector(
+    (state) => state.skillsDataReducer
   );
   const handleSkillChange = (e) => {
-    dispatch(actions.skillsChange(e.target.value));
+    dispatch(actions.setSkillsInput(e.target.value));
   };
-  const addSkillList = (e) => {
-    dispatch(actions.skillsAdd())
-  }
+  const addSkillList = useCallback(() => {
+    dispatch(actions.skillsAdd());
+  }, [dispatch]);
   return (
     <Box component="form" noValidate sx={{ pt: 3, p3: 4 }}>
       <Card sx={{ mt: 4 }} raised={true}>
@@ -34,25 +36,17 @@ const Skills = () => {
           >
             {helper.skills}
           </Typography>
-          {/* {skillsData.map((singleSkill, index) => ( */}
-          <div key={"index"}>
-            <Grid>
-              <TextField
-                value={skillInputValue}
-                label={helper.skills}
-                name="skillDiscription"
-                onChange={handleSkillChange}
-              />
-            </Grid>
-          </div>
-          {/* ))} */}
+          <Grid>
+            <TextField
+              value={inputValue}
+              label={helper.skills}
+              name="skill"
+              onChange={(e) => handleSkillChange(e)}
+            />
+          </Grid>
           <Grid sx={{ p: 2 }}>
-            <Button
-              variant="contained"
-              color="warning"
-              onClick={addSkillList}
-            >
-              {helper.add}
+            <Button variant="contained" color="success" onClick={addSkillList}>
+              {helper.addButton}
             </Button>
             {/* {skillsData.length > 1 && ( */}
             <Button
@@ -64,6 +58,18 @@ const Skills = () => {
             </Button>
             {/* )} */}
           </Grid>
+          {skills.map((skill, index) => (
+            <div key={index}>
+              <Grid>
+                <TextField
+                  value={skill}
+                  label={helper.skill}
+                  name="skill"
+                  onChange={handleSkillChange}
+                />
+              </Grid>
+            </div>
+          ))}
         </CardContent>
       </Card>
     </Box>

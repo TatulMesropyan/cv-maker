@@ -1,7 +1,7 @@
 import helper from "../Components/helper";
 import "../App.css";
 import { useDispatch, useSelector } from "react-redux";
-import * as actions from "../redux/actions";
+import * as actions from "../redux/Actions/workActions";
 import store from "../redux/store";
 import {
   TextField,
@@ -146,7 +146,7 @@ const Work = () => {
           <Grid sx={{ p: 2 }}>
             <Button
               variant="contained"
-              color="warning"
+              color="success"
               onClick={actions.workAdd}
             >
               {helper.addButton}

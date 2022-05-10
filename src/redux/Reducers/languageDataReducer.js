@@ -1,12 +1,21 @@
-const languagesDataReducer = (state = [{ language: "" }], action) => {
+const initialState = {
+  inputValue: '',
+  languages: []
+};
+
+const languagesDataReducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'ADD_LANGUAGE':
-      return [
+    case 'SET_LANGUAGE_INPUT':
+      return {
         ...state,
-        {
-          language: action.payload,
-        },
-      ]
+        inputValue: action.payload
+      }
+    case 'ADD_LANGUAGE':
+      return {
+        ...state,
+        inputValue: '',
+        languages: [...state.languages, state.inputValue]
+      }
 
     case 'REMOVE_LANGUAGE':
       return state.slice(action.index).concat(
