@@ -1,6 +1,7 @@
-import React, { useState } from "react";
 import helper from "../Components/helper";
 import "../App.css";
+import { useDispatch, useSelector } from "react-redux";
+import * as actions from "../redux/Actions/workActions";
 import {
   TextField,
   Button,
@@ -12,54 +13,60 @@ import {
   Card,
   CardContent,
 } from "@mui/material";
+import { useCallback } from "react";
+import store from "../redux/store";
+import workDataReducer from "../redux/Reducers/workDataReducer";
 
 const Work = () => {
-  const [workData, setWorkData] = useState([
-    {
-      name: "",
-      position: "",
-      earlyYear: "",
-      lateYear: "",
-      description: "",
-      locationCity: "",
-      locationCountry: "",
-    },
-  ]);
+  const dispatch = useDispatch();
 
-  const workDataHandler = (e, index) => {
-    const { name, value } = e.target;
-    const list = [...workData];
-    list[index][name] = value;
-    setWorkData(list);
+  const { names, nameInputValue } = useSelector(
+    (state) => state.workDataReducer
+  );
+  const { earlyYears, earlyInputValue } = useSelector(
+    (state) => state.workDataReducer
+  );
+  const { positions, positionInputValue } = useSelector(
+    (state) => state.workDataReducer
+  );
+  const { lateYears, lateInputValue } = useSelector(
+    (state) => state.workDataReducer
+  );
+  const { descriptions, descriptionInputValue } = useSelector(
+    (state) => state.workDataReducer
+  );
+  const { cities, cityInputValue } = useSelector(
+    (state) => state.workDataReducer
+  );
+  const { countries, countryInputValue } = useSelector(
+    (state) => state.workDataReducer
+  );
+  const handleNameChange = (e) => {
+    dispatch(actions.setWorkName(e.target.value));
   };
-  const addWorkList = () => {
-    setWorkData([
-      ...workData,
-      {
-        name: "",
-        earlyYear: "",
-        lateYear: "",
-        description: "",
-        locationCity: "",
-        locationCountry: "",
-      },
-    ]);
+  const handleDescriptionChange = (e) => {
+    dispatch(actions.setWorkDescription(e.target.value));
   };
-  const workListRemover = (index) => {
-    const list = [...workData];
-    list.splice(index, 1);
-    setWorkData(list);
+  const handlePositionChange = (e) => {
+    dispatch(actions.setWorkPosition(e.target.value));
   };
-  const handleSubmit = () => {
-    console.log(workData);
+  const handleEarlyChange = (e) => {
+    dispatch(actions.setWorkEarlyYear(e.target.value));
   };
+  const handleLateChange = (e) => {
+    dispatch(actions.setWorkLateYear(e.target.value));
+  };
+  const handleCountryChange = (e) => {
+    dispatch(actions.setWorkCountry(e.target.value));
+  };
+  const handleCityChange = (e) => {
+    dispatch(actions.setWorkCity(e.target.value));
+  };
+  const handleAddClick = useCallback(() => {
+    dispatch(actions.workAdd());
+  }, [dispatch]);
   return (
-    <Box
-      component="form"
-      onSubmit={handleSubmit}
-      noValidate
-      sx={{ pt: 3, pb: 4 }}
-    >
+    <Box component="form" noValidate sx={{ pt: 3, pb: 4 }}>
       <Card sx={{ mt: 4 }} raised={true}>
         <CardContent>
           <Typography
@@ -70,22 +77,107 @@ const Work = () => {
           >
             {helper.workPlace}
           </Typography>
-          {workData.map((singleWork, index) => (
-            <div key={index} className="menuWrapper">
-              <Box sx={{ p: 1, border: 0.5, borderRadius: 10 }}>
+          <Box sx={{ p: 1, border: 0.5, borderRadius: 10 }}>
+            <TextField
+              name="name"
+              label={helper.workPlace}
+              onChange={(e) => handleNameChange(e)}
+              value={nameInputValue}
+            />
+            <TextField
+              name="position"
+              label={helper.position}
+              onChange={(e) => handlePositionChange(e)}
+              value={positionInputValue}
+            />
+            <Grid>
+              <Grid>
+                <Typography
+                  gutterBottom={true}
+                  variant="h6"
+                  align="center"
+                  sx={{ fontStyle: "italic" }}
+                >
+                  {helper.years}
+                </Typography>
+              </Grid>
+              <Input
+                type="number"
+                placeholder="2020"
+                label="early"
+                name="earlyYear"
+                min="1900"
+                max="2099"
+                step="1"
+                onChange={(e) => handleEarlyChange(e)}
+                value={earlyInputValue}
+              />
+              -
+              <Input
+                type="number"
+                label="late"
+                name="lateYear"
+                placeholder="2022"
+                min="1900"
+                max="2099"
+                step="1"
+                onChange={(e) => handleLateChange(e)}
+                value={lateInputValue}
+              />
+            </Grid>
+            <Grid>
+              <TextField
+                name="locationCity"
+                label={helper.workCity}
+                onChange={(e) => handleCityChange(e)}
+                value={cityInputValue}
+              />
+              <TextField
+                name="locationCountry"
+                label={helper.workCountry}
+                onChange={(e) => handleCountryChange(e)}
+                value={countryInputValue}
+              />
+            </Grid>
+            <Typography sx={{ fontStyle: "italic" }}>
+              {helper.description}
+            </Typography>
+            <TextareaAutosize
+              label={helper.description}
+              name="description"
+              value={descriptionInputValue}
+              onChange={(e) => handleDescriptionChange(e)}
+            />
+          </Box>
+
+          <Box sx={{ p: 1, border: 0.5, borderRadius: 10 }}>
+            {names.map((name, index) => (
+              <div key={index}>
                 <TextField
                   name="name"
                   label={helper.workPlace}
-                  onChange={(e) => workDataHandler(e, index)}
-                  value={singleWork.name}
+                  onChange={handleNameChange}
+                  value={name}
+                  disabled
+                  variant="filled"
                 />
+              </div>
+            ))}
+            {positions.map((position, index) => (
+              <div key={index}>
                 <TextField
                   name="position"
                   label={helper.position}
-                  onChange={(e) => workDataHandler(e, index)}
-                  value={singleWork.position}
+                  onChange={handlePositionChange}
+                  value={position}
+                  disabled
+                  variant="filled"
                 />
-                <Grid>
+              </div>
+            ))}
+            <Grid>
+              {earlyYears.map((earlyYear, index) => (
+                <div key={index}>
                   <Grid>
                     <Typography
                       gutterBottom={true}
@@ -96,69 +188,84 @@ const Work = () => {
                       {helper.years}
                     </Typography>
                   </Grid>
-                  <Input
+                  <TextField
                     type="number"
-                    placeholder="2020"
-                    label="early"
+                    label={helper.labelEarly}
                     name="earlyYear"
-                    min="1900"
-                    max="2099"
-                    step="1"
-                    onChange={(e) => workDataHandler(e, index)}
-                    value={singleWork.earlyYear}
+                    onChange={handleEarlyChange}
+                    value={earlyYear}
+                    disabled
+                    variant="filled"
                   />
-                  -
-                  <Input
+                </div>
+              ))}
+              {lateYears.map((lateYear, index) => (
+                <div key={index}>
+                  <TextField
                     type="number"
-                    label="late"
+                    label={helper.labelLate}
                     name="lateYear"
-                    placeholder="2022"
-                    min="1900"
-                    max="2099"
-                    step="1"
-                    onChange={(e) => workDataHandler(e, index)}
-                    value={singleWork.lateYear}
+                    onChange={handleLateChange}
+                    value={lateYear}
+                    disabled
+                    variant="filled"
                   />
-                </Grid>
-                <Grid>
-                  <TextField
-                    name="locationCity"
-                    label={helper.workCity}
-                    onChange={(e) => workDataHandler(e, index)}
-                    value={singleWork.locationCity}
-                  />
-                  <TextField
-                    name="locationCountry"
-                    label={helper.workCountry}
-                    onChange={(e) => workDataHandler(e, index)}
-                    value={singleWork.locationCountry}
-                  />
-                </Grid>
+                </div>
+              ))}
+            </Grid>
+            {cities.map((city, index) => (
+              <div key={index}>
+                <TextField
+                  name="locationCity"
+                  label={helper.workCity}
+                  onChange={handleCityChange}
+                  value={city}
+                  disabled
+                  variant="filled"
+                />
+              </div>
+            ))}
+            {countries.map((country, index) => (
+              <div key={index}>
+                <TextField
+                  name="locationCountry"
+                  label={helper.workCountry}
+                  onChange={handleCountryChange}
+                  value={country}
+                  variant="filled"
+                  disabled
+                />
+              </div>
+            ))}
+            {descriptions.map((description, index) => (
+              <div key={index}>
                 <Typography sx={{ fontStyle: "italic" }}>
                   {helper.description}
                 </Typography>
                 <TextareaAutosize
                   label={helper.description}
                   name="description"
-                  value={singleWork.description}
-                  onChange={(e) => workDataHandler(e, index)}
+                  value={description}
+                  onChange={handleDescriptionChange}
                 />
-              </Box>
-            </div>
-          ))}
+              </div>
+            ))}
+          </Box>
           <Grid sx={{ p: 2 }}>
-            <Button variant="contained" color="warning" onClick={addWorkList}>
+            <Button
+              variant="contained"
+              color="success"
+              onClick={handleAddClick}
+            >
               {helper.addButton}
             </Button>
-            {workData.length > 1 && (
-              <Button
-                variant="contained"
-                color="error"
-                onClick={workListRemover}
-              >
-                {helper.removeButton}
-              </Button>
-            )}
+            <Button
+              variant="contained"
+              color="error"
+              onClick={actions.workRemove}
+            >
+              {helper.removeButton}
+            </Button>
           </Grid>
         </CardContent>
       </Card>

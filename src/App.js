@@ -2,10 +2,10 @@ import Createform from './Formcreator/Createform';
 import './App.css';
 
 
-function App() {
+function App(store) {
   return (
     <div>
-        <Createform/>
+        <Createform store={store}/>
     </div>
   );
 }

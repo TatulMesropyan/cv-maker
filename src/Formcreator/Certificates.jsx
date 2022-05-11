@@ -1,5 +1,7 @@
-import React, { useState } from "react";
 import helper from "../Components/helper";
+import { useDispatch, useSelector } from "react-redux";
+import * as actions from "../redux/Actions/certificateActions";
+import certificateDataReducer from "../redux/Reducers/certificateDataReducer";
 import "../App.css";
 import {
   TextField,
@@ -10,42 +12,25 @@ import {
   Card,
   CardContent,
 } from "@mui/material";
+import { useCallback } from "react";
 
 const Certificates = () => {
-  const [certificate, setCertificate] = useState([
-    {
-      name: "",
-    },
-  ]);
-  const removeCertificateList = (index) => {
-    const list = [...certificate];
-    list.splice(index, 1);
-    setCertificate(list);
+  const dispatch = useDispatch();
+
+  const { certificates, inputValue } = useSelector(
+    (state) => state.certificateDataReducer
+  );
+
+  const handleCertificateChange = (e) => {
+    dispatch(actions.setCertificateInput(e.target.value));
   };
-  const certificatesHandler = (e, index) => {
-    const { name, value } = e.target;
-    const list = [...certificate];
-    list[index][name] = value;
-    setCertificate(list);
-  };
-  const addCertificateList = () => {
-    setCertificate([
-      ...certificate,
-      {
-        certificate: "",
-      },
-    ]);
-  };
-  const handleSubmit = () => {
-    console.log(certificate);
-  };
+
+  const handleAddClick = useCallback(() => {
+    dispatch(actions.certificateAdd());
+  }, [dispatch]);
+
   return (
-    <Box
-      component="form"
-      onSubmit={handleSubmit}
-      noValidate
-      sx={{ pt: 3, p3: 4 }}
-    >
+    <Box component="form" noValidate sx={{ pt: 3, p3: 4 }}>
       <Card sx={{ mt: 4 }} raised={true}>
         <CardContent>
           <Typography
@@ -56,36 +41,47 @@ const Certificates = () => {
           >
             {helper.certAndCourse}
           </Typography>
-          {certificate.map((singleCerteficate, index) => (
-            <div key={index}>
-              <Grid>
-                <TextField
-                  value={singleCerteficate.skillDiscription}
-                  label={helper.certAndCourse}
-                  name="certificate"
-                  onChange={(e) => certificatesHandler(e, index)}
-                />
-              </Grid>
-            </div>
-          ))}
+          <Grid>
+            <TextField
+              value={inputValue}
+              label={helper.certAndCourse}
+              name="certificate"
+              onChange={(e) => handleCertificateChange(e)}
+            />
+          </Grid>
           <Grid sx={{ p: 2 }}>
             <Button
               variant="contained"
-              color="warning"
-              onClick={addCertificateList}
+              color="success"
+              onClick={handleAddClick}
             >
               {helper.addButton}
             </Button>
-            {certificate.length > 1 && (
-              <Button
-                variant="contained"
-                color="error"
-                onClick={removeCertificateList}
-              >
-                {helper.removeButton}
-              </Button>
-            )}
           </Grid>
+          {certificates.map((certificate,index) =>(
+          <div key={index}>
+            <Grid>
+              <Grid sx={{p:2}}>
+            <TextField
+            sx={{p:0}}
+            value={certificate}
+            onChange={handleCertificateChange}
+            disabled
+            />
+            </Grid>
+            <Grid>
+          <Button
+              variant="contained"
+              color="error"
+              onClick={actions.certificateRemove}
+            >
+              {helper.removeButton}
+            </Button>
+            </Grid>
+            </Grid>
+          </div>
+          ))}  
+         
         </CardContent>
       </Card>
     </Box>
