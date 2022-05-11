@@ -37,10 +37,9 @@ const Personal = () => {
 
   const handleNameChange = (e) => {
     dispatch(actions.personalNameChange(e.target.value));
-  }
-  
+  };
   const handleSurnameChange = (e) => {
-     dispatch(actions.personalSurnameChange(e.target.value));
+    dispatch(actions.personalSurnameChange(e.target.value));
   };
   const handlePositionChange = (e) => {
     dispatch(actions.personalPositionChange(e.target.value));
@@ -58,6 +57,7 @@ const Personal = () => {
     dispatch(actions.personalCountryChange(e.target.value));
   };
   const handleCityChange = (e) => {
+    console.log(e.target.value)
     dispatch(actions.personalCityChange(e.target.value));
   };
   return (

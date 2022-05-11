@@ -12,26 +12,32 @@ import {
   CardContent,
 } from "@mui/material";
 import * as actions from "../redux/Actions/projectActions";
-
+import { useCallback } from "react";
+ 
 const Project = () => {
   const dispatch = useDispatch();
 
-  const nameInputValue = useSelector((state) => state.projectDataReducer.name);
-  const descriptionInputValue = useSelector(
-    (state) => state.projectDataReducer.description
+  const { names, nameInputValue } = useSelector(
+    (state) => state.projectDataReducer
   );
-  const responsInputValue = useSelector(
-    (state) => state.educationDataReducer.responsibilities
+  const { descriptions, descriptionInputValue } = useSelector(
+    (state) => state.projectDataReducer
+  );
+  const { responsibilities, responsibilitiesInputValue } = useSelector(
+    (state) => state.projectDataReducer
   );
   const handleNameChange = (e) => {
-    dispatch(actions.projectNameChange(e.target.value));
+    dispatch(actions.setProjectName(e.target.value));
   };
   const handleDescriptionChange = (e) => {
-    dispatch(actions.projectDescriptionChange(e.target.value));
+    dispatch(actions.setProjectDescription(e.target.value));
   };
   const handleResponseChange = (e) => {
-    dispatch(actions.projectResponseChange(e.target.value));
+    dispatch(actions.setProjectResponse(e.target.value));
   };
+  const handleAddClick = useCallback(() => {
+    dispatch(actions.projectAdd());
+  }, [dispatch]);
 
   return (
     <Box component="form" noValidate sx={{ pt: 3 }}>
@@ -47,17 +53,64 @@ const Project = () => {
               {helper.projects}
             </Typography>
           </Box>
-          {/* {projectData.map((singleProject, index) => ( */}
-          <div key={"index"} className="menuWrapper">
-            <Box sx={{ p: 4, border: 0.5, borderRadius: 10 }}>
+          <Box sx={{ p: 4, border: 0.5, borderRadius: 10 }}>
+            <Grid>
+              <TextField
+                value={nameInputValue}
+                label={helper.projectName}
+                name="name"
+                onChange={(e) => handleNameChange(e)}
+              />
+            </Grid>
+            <Grid>
+              <Typography
+                gutterBottom={true}
+                variant="h6"
+                align="center"
+                sx={{ fontStyle: "italic" }}
+              >
+                {helper.description}
+              </Typography>
+              <TextareaAutosize
+                value={descriptionInputValue}
+                label={helper.description}
+                name="description"
+                onChange={(e) => handleDescriptionChange(e)}
+              />
+            </Grid>
+            <Grid>
+              <Typography
+                gutterBottom={true}
+                variant="h6"
+                align="center"
+                sx={{ fontStyle: "italic" }}
+              >
+                {helper.responsibilities}
+              </Typography>
+              <TextareaAutosize
+                value={responsibilitiesInputValue}
+                label={helper.responsibilities}
+                name="responsibilities"
+                onChange={(e) => handleResponseChange(e)}
+              />
+            </Grid>
+          </Box>
+          {names.map((name, index) => (
+            <div key={index}>
               <Grid>
                 <TextField
-                  value={nameInputValue}
+                  value={name}
                   label={helper.projectName}
                   name="name"
+                  disabled
+                  variant="filled"
                   onChange={handleNameChange}
                 />
               </Grid>
+            </div>
+          ))}
+          {descriptions.map((description, index) => (
+            <div key={index}>
               <Grid>
                 <Typography
                   gutterBottom={true}
@@ -68,12 +121,18 @@ const Project = () => {
                   {helper.description}
                 </Typography>
                 <TextareaAutosize
-                  value={descriptionInputValue}
+                  value={description}
                   label={helper.description}
                   name="description"
+                  disabled
+                  variant="filled"
                   onChange={handleDescriptionChange}
                 />
               </Grid>
+            </div>
+          ))}
+          {responsibilities.map((respone, index) => (
+            <div key={index}>
               <Grid>
                 <Typography
                   gutterBottom={true}
@@ -84,32 +143,31 @@ const Project = () => {
                   {helper.responsibilities}
                 </Typography>
                 <TextareaAutosize
-                  value={responsInputValue}
+                  value={respone}
                   label={helper.responsibilities}
                   name="responsibilities"
+                  disabled
+                  variant="filled"
                   onChange={handleResponseChange}
                 />
               </Grid>
-            </Box>
-          </div>
-          {/* ))} */}
+              <Button
+                variant="contained"
+                color="error"
+                onClick={actions.projectRemove}
+              >
+                {helper.removeButton}
+              </Button>
+            </div>
+          ))}
           <Grid sx={{ p: 2 }}>
             <Button
               variant="contained"
               color="success"
-              onClick={actions.projectAdd}
+              onClick={handleAddClick}
             >
               {helper.addButton}
             </Button>
-            {/* {projectData.length > 1 && ( */}
-            <Button
-              variant="contained"
-              color="error"
-              onClick={actions.projectRemove}
-            >
-              {helper.removeButton}
-            </Button>
-            {/* )} */}
           </Grid>
         </CardContent>
       </Card>

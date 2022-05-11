@@ -1,69 +1,121 @@
-const workDataReducer = (state = [{
-    name: "",
-    position: "",
-    earlyYear: "",
-    lateYear: "",
-    description: "",
-    locationCity: "",
-    locationCountry: "",
-}], action) => {
+
+const initialState = {
+    nameInputValue: '',
+    descriptionInputValue: '',
+    positionInputValue: '',
+    earlyInputValue: '',
+    lateInputValue: '',
+    countryInputValue: '',
+    cityInputValue: '',
+    names: [],
+    positions: [],
+    descriptions: [],
+    earlyYears: [],
+    lateYears: [],
+    cities: [],
+    countries: [],
+}
+
+const workDataReducer = (state = initialState, action) => {
     switch (action.type) {
         case "CHANGE_WORK_NAME":
             {
-                return [{
+                return {
                     name: action.payload
-                }]
+                }
             }
         case "CHANGE_WORK_DESCRIPTION":
             {
-                return [{
+                return {
                     description: action.payload
-                }]
+                }
             }
         case "CHANGE_WORK_POSITION":
             {
-                return [{
+                return {
                     position: action.payload
-                }]
+                }
             }
         case "CHANGE_WORK_EARLY":
             {
-                return [{
+                return {
                     earlyYear: action.payload
-                }]
+                }
             }
         case "CHANGE_WORK_LATE":
             {
-                return [{
+                return {
                     lateYear: action.payload
-                }]
+                }
             }
         case "CHANGE_WORK_COUNTRY":
             {
-                return [{
-                    locationCountry: action.payload
-                }]
+                return {
+                    country: action.payload
+                }
             }
         case "CHANGE_WORK_CITY":
             {
-                return [{
-                    locationCity: action.payload
-                }]
+                return {
+                    city: action.payload
+                }
             }
-        case "ADD_PROJECT":
-            {
-                return [
-                    ...state, {
-                        name: action.payload,
-                        position: action.payload,
-                        earlyYear: action.payload,
-                        lateYear: action.payload,
-                        description: action.payload,
-                        locationCity: action.payload,
-                        locationCountry: action.payload
-                    }
-                ]
+        case 'SET_WORK_NAME':
+            return {
+                ...state,
+                nameInputValue: action.payload
             }
+        case 'SET_WORK_DESCRIPTION':
+            return {
+                ...state,
+                descriptionInputValue: action.payload
+            }
+        case 'SET_WORK_POSITION':
+            return {
+                ...state,
+                positionInputValue: action.payload
+            }
+        case 'SET_WORK_LATE':
+            return {
+                ...state,
+                lateInputValue: action.payload
+            }
+        case 'SET_WORK_EARLY':
+            return {
+                ...state,
+                earlyInputValue: action.payload
+            }
+        case 'SET_WORK_COUNTRY':
+            return {
+                ...state,
+                countryInputValue: action.payload
+            }
+        case 'SET_WORK_CITY':
+            return {
+                ...state,
+                cityInputValue: action.payload
+            }
+
+
+        case "ADD_WORK":{
+            return {
+                ...state,
+                nameInputValue: '',
+                descriptionInputValue: '',
+                positionInputValue: '',
+                earlyInputValue: '',
+                lateInputValue: '',
+                cityInputValue: '',
+                countryInputValue: '',
+                names: [...state.names, state.nameInputValue],
+                descriptions: [...state.descriptions, state.descriptionInputValue],
+                positions: [...state.positions, state.positionInputValue],
+                earlyYears: [...state.earlyYears, state.earlyInputValue],
+                lateYears: [...state.lateYears, state.lateInputValue],
+                cities: [...state.cities, state.cityInputValue],
+                countries: [...state.countries, state.countryInputValue]
+            }
+        }
         case "REMOVE_WORK":
             {
                 return state.slice(action.index).concat(

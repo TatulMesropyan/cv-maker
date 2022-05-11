@@ -66,7 +66,7 @@ const Certificates = () => {
             sx={{p:0}}
             value={certificate}
             onChange={handleCertificateChange}
-            disabled="true"
+            disabled
             />
             </Grid>
             <Grid>

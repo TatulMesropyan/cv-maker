@@ -11,7 +11,6 @@ import {
 } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import * as actions from "../redux/Actions/skillsActions";
-import skillsDataReducer from "../redux/Reducers/skillsDataReducer";
 import { useCallback } from "react";
 const Skills = () => {
   const dispatch = useDispatch();
@@ -48,25 +47,27 @@ const Skills = () => {
             <Button variant="contained" color="success" onClick={addSkillList}>
               {helper.addButton}
             </Button>
-            {/* {skillsData.length > 1 && ( */}
-            <Button
-              variant="contained"
-              color="error"
-              onClick={actions.skillsRemove}
-            >
-              {helper.removeButton}
-            </Button>
-            {/* )} */}
           </Grid>
           {skills.map((skill, index) => (
             <div key={index}>
-              <Grid>
-                <TextField
-                  value={skill}
-                  label={helper.skill}
-                  name="skill"
-                  onChange={handleSkillChange}
-                />
+              <Grid >
+                <Grid sx={{p:2}}>
+                  <TextField
+                    value={skill}
+                    label={helper.skill}
+                    name="skill"
+                    onChange={handleSkillChange}
+                  />
+                </Grid>
+                <Grid >
+                  <Button
+                    variant="contained"
+                    color="error"
+                    onClick={actions.skillsRemove}
+                  >
+                    {helper.removeButton}
+                  </Button>
+                </Grid>
               </Grid>
             </div>
           ))}

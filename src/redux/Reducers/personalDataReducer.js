@@ -1,15 +1,16 @@
 
-const personalDataReducer = (state = {
-    name: "",
-    surname: "",
-    email: "",
-    birthday: "",
-    position: "",
-    country: "",
-    city: "",
-
-}, action) => {
-
+const  initialState = {
+        name: "",
+        surname: "",
+        email: "",
+        birthday: "",
+        position: "",
+        phone:"",
+        country: "",
+        city: "",
+}
+const personalDataReducer = (state = initialState
+, action) => {
 
     switch (action.type) {
         case "CHANGE_PERSONAL_FIRSTNAME": {
@@ -34,7 +35,7 @@ const personalDataReducer = (state = {
             return { ...state, country: action.payload }
         }
         case "CHANGE_PERSONAL_CITY": {
-            return { ...state, city: action.payload }
+            return { ...state,city: action.payload }
         }
         default: {
             return state;

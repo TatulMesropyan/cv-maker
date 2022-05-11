@@ -59,23 +59,23 @@ const Languages = () => {
           </Grid>
           {languages.map((language, index) => (
             <div key={index}>
-              <Grid>
+              <Grid sx={{ p: 2 }}>
                 <TextField
                   value={language}
                   label={helper.language}
                   name="language"
-                  disabled='true'
+                  disabled
                   onChange={handleLanguageChange}
                 />
               </Grid>
               <Grid>
-              <Button
-              variant="contained"
-              color="error"
-              onClick={actions.languageRemove}
-            >
-              {helper.removeButton}
-            </Button>
+                <Button
+                  variant="contained"
+                  color="error"
+                  onClick={actions.languageRemove}
+                >
+                  {helper.removeButton}
+                </Button>
               </Grid>
             </div>
           ))}

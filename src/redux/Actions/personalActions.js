@@ -34,7 +34,7 @@ export const personalNameChange = (value) => ({
   })
   
   export const personalCityChange = value => ({
-    type: "CHANGE_PERSONAL_CITY`",
+    type: "CHANGE_PERSONAL_CITY",
     payload: value,
   })
   

@@ -1,10 +1,15 @@
 
-const educationDataReducer = (state = [{
-  name: "",
-  department: "",
-  earlyYear: "",
-  lateYear: "",
-}], action) => {
+const initialState = {
+  nameInputValue: '',
+  departmentInputValue: '',
+  earlyInputValue: '',
+  lateInputValue: '',
+  names: [],
+  departments: [],
+  earlyYears: [],
+  lateYears: [],
+}
+const educationDataReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'CHANGE_EDUCATION_NAME':
       return {
@@ -26,18 +31,39 @@ const educationDataReducer = (state = [{
         ...state,
         lateYear: action.payload
       }
+    case 'SET_EDUCATION_NAME':
+      return {
+        ...state,
+        nameInputValue: action.payload
+      }
+    case 'SET_EDUCATION_DEPARTMENT':
+      return {
+        ...state,
+        departmentInputValue: action.payload
+      }
+    case 'SET_EDUCATION_LATE':
+      return {
+        ...state,
+        lateInputValue: action.payload
+      }
+    case 'SET_EDUCATION_EARLY':
+      return {
+        ...state,
+        earlyInputValue: action.payload
+      }
 
     case 'ADD_EDUCATION':
-      console.log(state)
-      console.log(action.payload)
-      return [        ...state,
-        { 
-       name:action.payload,
-       department:action.payload,
-       earlyYear: action.payload,
-       lateYear: action.payload,
-      }]
-
+      return {
+        ...state,
+        nameInputValue: '',
+        departmentInputValue: '',
+        earlyInputValue: '',
+        lateInputValue: '',
+        names: [...state.names, state.nameInputValue],
+        departments: [...state.departments, state.departmentInputValue],
+        earlyYears: [...state.earlyYears, state.earlyInputValue],
+        lateYears: [...state.lateYears, state.lateInputValue],
+      }
 
     case 'REMOVE_EDUCATION':
       return state.slice(action.index).concat(
