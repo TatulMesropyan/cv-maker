@@ -148,8 +148,6 @@ const Work = () => {
     );
   }
 
-
-
   return (
     <Box component="form" noValidate sx={{ pt: 3, pb: 4 }}>
       <Card sx={{ mt: 4 }} raised={true}>
@@ -234,109 +232,8 @@ const Work = () => {
               onChange={(e) => handleDescriptionChange(e)}
             />
           </Box>
-
-          {/* <Box sx={{ p: 1, border: 0.5, borderRadius: 10 }}>
-            {names.map((name, index) => (
-              <div key={index}>
-                <TextField
-                  name="name"
-                  label={helper.workPlace}
-                  onChange={handleNameChange}
-                  value={name}
-                  disabled
-                  variant="filled"
-                />
-              </div>
-            ))}
-            {positions.map((position, index) => (
-              <div key={index}>
-                <TextField
-                  name="position"
-                  label={helper.position}
-                  onChange={handlePositionChange}
-                  value={position}
-                  disabled
-                  variant="filled"
-                />
-              </div>
-            ))}
-            <Grid>
-              {earlyYears.map((earlyYear, index) => (
-                <div key={index}>
-                  <Grid>
-                    <Typography
-                      gutterBottom={true}
-                      variant="h6"
-                      align="center"
-                      sx={{ fontStyle: "italic" }}
-                    >
-                      {helper.years}
-                    </Typography>
-                  </Grid>
-                  <TextField
-                    type="number"
-                    label={helper.labelEarly}
-                    name="earlyYear"
-                    onChange={handleEarlyChange}
-                    value={earlyYear}
-                    disabled
-                    variant="filled"
-                  />
-                </div>
-              ))}
-              {lateYears.map((lateYear, index) => (
-                <div key={index}>
-                  <TextField
-                    type="number"
-                    label={helper.labelLate}
-                    name="lateYear"
-                    onChange={handleLateChange}
-                    value={lateYear}
-                    disabled
-                    variant="filled"
-                  />
-                </div>
-              ))}
-            </Grid>
-            {cities.map((city, index) => (
-              <div key={index}>
-                <TextField
-                  name="locationCity"
-                  label={helper.workCity}
-                  onChange={handleCityChange}
-                  value={city}
-                  disabled
-                  variant="filled"
-                />
-              </div>
-            ))}
-            {countries.map((country, index) => (
-              <div key={index}>
-                <TextField
-                  name="locationCountry"
-                  label={helper.workCountry}
-                  onChange={handleCountryChange}
-                  value={country}
-                  variant="filled"
-                  disabled
-                />
-              </div>
-            ))}
-            {descriptions.map((description, index) => (
-              <div key={index}>
-                <Typography sx={{ fontStyle: "italic" }}>
-                  {helper.description}
-                </Typography>
-                <TextareaAutosize
-                  label={helper.description}
-                  name="description"
-                  value={description}
-                  onChange={handleDescriptionChange}
-                />
-              </div>
-            ))}
-          </Box> */}
           {content}
+
           <Grid sx={{ p: 2 }}>
             <Button
               variant="contained"

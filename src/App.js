@@ -1,13 +1,11 @@
-
+import Createform from './Formcreator/Createform';
 import './App.css';
-import {CvTemplate} from './Components/CvTemplate';
-import Createform from './Createform'
 
 
-function App() {
+function App(store) {
   return (
     <div>
-      <CvTemplate/>
+        <Createform store={store}/>
     </div>
   );
 }
