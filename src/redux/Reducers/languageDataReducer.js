@@ -1,6 +1,6 @@
 const initialState = {
   inputValue: '',
-  languages: []
+  languageRedux: []
 };
 
 const languagesDataReducer = (state = initialState, action) => {
@@ -10,17 +10,19 @@ const languagesDataReducer = (state = initialState, action) => {
         ...state,
         inputValue: action.payload
       }
+
     case 'ADD_LANGUAGE':
       return {
         ...state,
         inputValue: '',
-        languages: [...state.languages, state.inputValue]
+        languageRedux: [...state.languageRedux, state.inputValue]
       }
 
     case 'REMOVE_LANGUAGE':
-      return state.slice(action.index).concat(
-        state.slice(action.index + 1)
-      );
+      return {
+          ...state,
+          languageRedux:[state.languageRedux.filter((item,index) => index !== action.payload)]
+      }
 
     case 'CHANGE_LANGUAGE':
       return {...state,
