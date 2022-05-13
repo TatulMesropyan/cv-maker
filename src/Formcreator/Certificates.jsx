@@ -58,30 +58,31 @@ const Certificates = () => {
               {helper.addButton}
             </Button>
           </Grid>
-          {certificates.map((certificate,index) =>(
-          <div key={index}>
-            <Grid>
-              <Grid sx={{p:2}}>
-            <TextField
-            sx={{p:0}}
-            value={certificate}
-            onChange={handleCertificateChange}
-            disabled
-            />
-            </Grid>
-            <Grid>
-          <Button
-              variant="contained"
-              color="error"
-              onClick={actions.certificateRemove}
-            >
-              {helper.removeButton}
-            </Button>
-            </Grid>
-            </Grid>
-          </div>
-          ))}  
-         
+          {certificates.map((certificate, index) => (
+            <div key={index}>
+              <Grid>
+                <Grid sx={{ p: 2 }}>
+                  <TextField
+                    sx={{ p: 0 }}
+                    value={certificate}
+                    label={helper.certAndCourse}
+                    onChange={handleCertificateChange}
+                    disabled
+                    variant="filled"
+                  />
+                </Grid>
+                <Grid>
+                  <Button
+                    variant="contained"
+                    color="error"
+                    onClick={actions.certificateRemove}
+                  >
+                    {helper.removeButton}
+                  </Button>
+                </Grid>
+              </Grid>
+            </div>
+          ))}
         </CardContent>
       </Card>
     </Box>

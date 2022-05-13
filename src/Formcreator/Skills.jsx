@@ -54,8 +54,10 @@ const Skills = () => {
                 <Grid sx={{p:2}}>
                   <TextField
                     value={skill}
-                    label={helper.skill}
+                    label={helper.skills}
                     name="skill"
+                    variant="filled"
+                    disabled
                     onChange={handleSkillChange}
                   />
                 </Grid>

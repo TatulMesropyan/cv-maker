@@ -1,6 +1,8 @@
 import helper from "../Components/helper";
 import * as actions from "../redux/Actions/languageActions";
 import { useSelector, useDispatch } from "react-redux";
+import languageDropdown from "../Components/LangDropdown";
+import languagePacket from "../Assets/languages.json";
 import "../App.css";
 import {
   TextField,
@@ -16,18 +18,19 @@ import { useCallback } from "react";
 const Languages = () => {
   const dispatch = useDispatch();
 
-  const { languages, inputValue } = useSelector(
+  const { languageRedux } = useSelector(
     (state) => state.languageDataReducer
   );
-
-  const handleLanguageChange = (e) => {
-    dispatch(actions.setLanguageInput(e.target.value));
-  };
 
   const handleAddClick = useCallback(() => {
     dispatch(actions.languageAdd());
   }, [dispatch]);
 
+  const handleOnRemove = (e, index) => {
+    dispatch(actions.languageRemove(index));
+  };
+  const [language, LanguageDropdown] =
+    languageDropdown.useDropdown(languagePacket);
   return (
     <Box component="form" noValidate sx={{ pt: 3, p3: 4 }}>
       <Card sx={{ mt: 4 }} raised={true}>
@@ -40,14 +43,7 @@ const Languages = () => {
           >
             {helper.language}
           </Typography>
-          <Grid>
-            <TextField
-              value={inputValue}
-              label={helper.language}
-              name="language"
-              onChange={(e) => handleLanguageChange(e)}
-            />
-          </Grid>
+          <LanguageDropdown />
           <Grid sx={{ p: 2 }}>
             <Button
               variant="contained"
@@ -57,22 +53,19 @@ const Languages = () => {
               {helper.addButton}
             </Button>
           </Grid>
-          {languages.map((language, index) => (
+          {languageRedux.map((name, index) => (
             <div key={index}>
               <Grid sx={{ p: 2 }}>
                 <TextField
-                  value={language}
-                  label={helper.language}
-                  name="language"
                   disabled
-                  onChange={handleLanguageChange}
+                  value={language.emoji ? ` ${language.emoji}  ${name}` : name}
                 />
               </Grid>
               <Grid>
                 <Button
                   variant="contained"
                   color="error"
-                  onClick={actions.languageRemove}
+                  onClick={handleOnRemove}
                 >
                   {helper.removeButton}
                 </Button>
