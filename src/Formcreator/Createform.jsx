@@ -1,6 +1,6 @@
 import React from "react"
 import { AppBar, Typography, Button, Container } from "@mui/material";
-import helper from "../Components/helper";
+import labels from "../Components/labels";
 import Personal from "./Personal";
 import Education from "./Education";
 import Skills from "./Skills";
@@ -23,7 +23,7 @@ const Createform = () => {
           variant="h5"
           sx={{ fontWeight: "bold" }}
         >
-          {helper.profileForm}
+          {labels.profileForm}
         </Typography>
       </AppBar>
       <div style={{ paddingTop: "50px" }}>
@@ -35,7 +35,7 @@ const Createform = () => {
         <Project />
         <Work />
         <Button variant="contained" onClick={handleSubmit} color="success">
-          {helper.save}
+          {labels.save}
         </Button>
       </div>
     </Container>

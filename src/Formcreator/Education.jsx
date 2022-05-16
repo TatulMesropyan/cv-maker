@@ -1,5 +1,5 @@
 import * as actions from "../redux/Actions/educationActions";
-import helper from "../Components/helper";
+import labels from "../Components/labels";
 import "../App.css";
 import {
 	TextField,
@@ -61,7 +61,7 @@ const Education = () => {
 					>
 						<TextField
 							name="name"
-							label={helper.eduLabel}
+							label={labels.eduLabel}
 							onChange={handleNameChange}
 							disabled
 							value={names[i]}
@@ -72,7 +72,7 @@ const Education = () => {
 					<Grid item xs={6}>
 						<TextField
 							name="department"
-							label={helper.departmentLabel}
+							label={labels.departmentLabel}
 							onChange={handleDepartmentChange}
 							disabled
 							value={departments[i]}
@@ -87,12 +87,12 @@ const Education = () => {
 							align="center"
 							sx={{ fontStyle: "italic" }}
 						>
-							{helper.years}
+							{labels.years}
 						</Typography>
 					</Grid>
 					<Input
 						type="number"
-						label={helper.labelEarly}
+						label={labels.labelEarly}
 						placeholder="2014"
 						name="earlyYear"
 						margin="dense"
@@ -106,7 +106,7 @@ const Education = () => {
 					-
 					<Input
 						type="number"
-						label={helper.labelEarly}
+						label={labels.labelEarly}
 						name="lateYear"
 						min="1900"
 						placeholder="2022"
@@ -123,7 +123,7 @@ const Education = () => {
 							color="error"
 							onClick={actions.educationRemove}
 						>
-							{helper.removeButton}
+							{labels.removeButton}
 						</Button>
 					</Grid>
 				</div>
@@ -141,7 +141,7 @@ const Education = () => {
 						align="center"
 						sx={{ fontWeight: "bold" }}
 					>
-						{helper.eduInfo}
+						{labels.eduInfo}
 					</Typography>
 					<Box sx={{ p: 4, border: 0.5, borderRadius: 10 }}>
 						<Grid
@@ -152,7 +152,7 @@ const Education = () => {
 						>
 							<TextField
 								name="name"
-								label={helper.eduLabel}
+								label={labels.eduLabel}
 								onChange={(e) => handleNameChange(e)}
 								value={nameInputValue}
 							/>
@@ -160,7 +160,7 @@ const Education = () => {
 						<Grid item xs={6}>
 							<TextField
 								name="department"
-								label={helper.departmentLabel}
+								label={labels.departmentLabel}
 								onChange={(e) => handleDepartmentChange(e)}
 								value={departmentInputValue}
 							/>
@@ -173,12 +173,12 @@ const Education = () => {
 									align="center"
 									sx={{ fontStyle: "italic" }}
 								>
-									{helper.years}
+									{labels.years}
 								</Typography>
 							</Grid>
 							<Input
 								type="number"
-								label={helper.labelEarly}
+								label={labels.labelEarly}
 								placeholder="2014"
 								name="earlyYear"
 								margin="dense"
@@ -192,7 +192,7 @@ const Education = () => {
 							-
 							<Input
 								type="number"
-								label={helper.labelEarly}
+								label={labels.labelEarly}
 								name="lateYear"
 								min="1900"
 								placeholder="2022"
@@ -208,7 +208,7 @@ const Education = () => {
 								color="success"
 								onClick={handleAddClick}
 							>
-								{helper.addButton}
+								{labels.addButton}
 							</Button>
 						</Grid>
 					</Box>

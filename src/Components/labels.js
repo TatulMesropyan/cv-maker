@@ -1,4 +1,4 @@
-const helper = {
+const labels = {
     name: "Name",
     surname: "Surname",
     position: "Position",
@@ -37,4 +37,4 @@ const helper = {
 
   };
 
-export default helper;
+export default labels;

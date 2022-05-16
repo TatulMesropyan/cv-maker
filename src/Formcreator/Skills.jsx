@@ -1,4 +1,4 @@
-import helper from "../Components/helper";
+import labels from "../Components/labels";
 import "../App.css";
 import {
   TextField,
@@ -33,19 +33,19 @@ const Skills = () => {
             align="center"
             sx={{ fontWeight: "bold" }}
           >
-            {helper.skills}
+            {labels.skills}
           </Typography>
           <Grid>
             <TextField
               value={inputValue}
-              label={helper.skills}
+              label={labels.skills}
               name="skill"
               onChange={(e) => handleSkillChange(e)}
             />
           </Grid>
           <Grid sx={{ p: 2 }}>
             <Button variant="contained" color="success" onClick={addSkillList}>
-              {helper.addButton}
+              {labels.addButton}
             </Button>
           </Grid>
           {skills.map((skill, index) => (
@@ -54,7 +54,7 @@ const Skills = () => {
                 <Grid sx={{p:2}}>
                   <TextField
                     value={skill}
-                    label={helper.skills}
+                    label={labels.skills}
                     name="skill"
                     variant="filled"
                     disabled
@@ -67,7 +67,7 @@ const Skills = () => {
                     color="error"
                     onClick={actions.skillsRemove}
                   >
-                    {helper.removeButton}
+                    {labels.removeButton}
                   </Button>
                 </Grid>
               </Grid>

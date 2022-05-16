@@ -1,4 +1,4 @@
-import helper from "../Components/helper";
+import labels from "../Components/labels";
 import "../App.css";
 import {
   TextField,
@@ -85,11 +85,11 @@ const Personal = () => {
                     align="center"
                     sx={{ fontWeight: "bold" }}
                   >
-                    {helper.personalInfo}
+                    {labels.personalInfo}
                   </Typography>
                   <TextField
                     type="text"
-                    label={helper.name}
+                    label={labels.name}
                     name="name"
                     variant="outlined"
                     onChange={handleNameChange}
@@ -101,7 +101,7 @@ const Personal = () => {
                   <TextField
                     type="text"
                     name="surname"
-                    label={helper.surname}
+                    label={labels.surname}
                     variant="outlined"
                     value={surnameInputValue}
                     onChange={handleSurnameChange}
@@ -117,11 +117,11 @@ const Personal = () => {
                     align="center"
                     sx={{ fontWeight: "bold" }}
                   >
-                    {helper.birthday}
+                    {labels.birthday}
                   </Typography>
                   <Input
                     type="date"
-                    label={helper.position}
+                    label={labels.position}
                     variant="contained"
                     name="birthday"
                     value={birthdayInputValue}
@@ -136,12 +136,12 @@ const Personal = () => {
                 variant="h5"
                 sx={{ fontWeight: "bold", pt: 3 }}
               >
-                {helper.position}
+                {labels.position}
               </Typography>
               <Grid item xs={4}>
                 <TextField
                   type="text"
-                  label={helper.position}
+                  label={labels.position}
                   variant="outlined"
                   name="position"
                   value={positionInputValue}
@@ -168,13 +168,13 @@ const Personal = () => {
                   align="center"
                   sx={{ fontWeight: "bold" }}
                 >
-                  {helper.contactInfo}
+                  {labels.contactInfo}
                 </Typography>
                 <Grid sx={{}}>
                   <Grid item xs={4}>
                     <TextField
                       type="text"
-                      label={helper.email}
+                      label={labels.email}
                       name="email"
                       autoComplete="email"
                       variant="outlined"
@@ -185,7 +185,7 @@ const Personal = () => {
                   <Grid item xs={4}>
                     <TextField
                       name="phone"
-                      label={helper.phone}
+                      label={labels.phone}
                       variant="outlined"
                       value={phoneInputValue}
                       onChange={handlePhoneChange}
@@ -199,7 +199,7 @@ const Personal = () => {
                 <Grid>
                   <TextField
                     type="text"
-                    label={helper.city}
+                    label={labels.city}
                     name="city"
                     onChange={handleCityChange}
                     value={cityInputValue}
@@ -209,7 +209,7 @@ const Personal = () => {
                 <Grid>
                   <TextField
                     type="text"
-                    label={helper.country}
+                    label={labels.country}
                     name="country"
                     value={countryInputValue}
                     onChange={handleCountryChange}

@@ -1,4 +1,4 @@
-import helper from "../Components/helper";
+import labels from "../Components/labels";
 import "../App.css";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -48,7 +48,7 @@ const Project = () => {
 					<Grid>
 						<TextField
 							value={names[i]}
-							label={helper.projectName}
+							label={labels.projectName}
 							name="name"
 							onChange={handleNameChange}
 						/>
@@ -60,11 +60,11 @@ const Project = () => {
 							align="center"
 							sx={{ fontStyle: "italic" }}
 						>
-							{helper.description}
+							{labels.description}
 						</Typography>
 						<TextareaAutosize
 							value={descriptions[i]}
-							label={helper.description}
+							label={labels.description}
 							name="description"
 							onChange={(e) => handleDescriptionChange(e)}
 						/>
@@ -76,11 +76,11 @@ const Project = () => {
 							align="center"
 							sx={{ fontStyle: "italic" }}
 						>
-							{helper.responsibilities}
+							{labels.responsibilities}
 						</Typography>
 						<TextareaAutosize
 							value={responsibilities[i]}
-							label={helper.responsibilities}
+							label={labels.responsibilities}
 							name="responsibilities"
 							onChange={(e) => handleResponseChange(e)}
 						/>
@@ -91,7 +91,7 @@ const Project = () => {
 					color="error"
 					onClick={actions.projectRemove}
 				>
-					{helper.removeButton}
+					{labels.removeButton}
 				</Button>
 			</Box>
 		);
@@ -108,14 +108,14 @@ const Project = () => {
 							align="center"
 							sx={{ fontWeight: "bold" }}
 						>
-							{helper.projects}
+							{labels.projects}
 						</Typography>
 					</Box>
 					<Box sx={{ p: 4, border: 0.5, borderRadius: 10 }}>
 						<Grid>
 							<TextField
 								value={nameInputValue}
-								label={helper.projectName}
+								label={labels.projectName}
 								name="name"
 								onChange={(e) => handleNameChange(e)}
 							/>
@@ -127,11 +127,11 @@ const Project = () => {
 								align="center"
 								sx={{ fontStyle: "italic" }}
 							>
-								{helper.description}
+								{labels.description}
 							</Typography>
 							<TextareaAutosize
 								value={descriptionInputValue}
-								label={helper.description}
+								label={labels.description}
 								name="description"
 								onChange={(e) => handleDescriptionChange(e)}
 							/>
@@ -143,11 +143,11 @@ const Project = () => {
 								align="center"
 								sx={{ fontStyle: "italic" }}
 							>
-								{helper.responsibilities}
+								{labels.responsibilities}
 							</Typography>
 							<TextareaAutosize
 								value={responsibilitiesInputValue}
-								label={helper.responsibilities}
+								label={labels.responsibilities}
 								name="responsibilities"
 								onChange={(e) => handleResponseChange(e)}
 							/>
@@ -159,7 +159,7 @@ const Project = () => {
 							color="success"
 							onClick={handleAddClick}
 						>
-							{helper.addButton}
+							{labels.addButton}
 						</Button>
 					</Grid>
 

@@ -1,4 +1,4 @@
-import helper from "../Components/helper";
+import labels from "../Components/labels";
 import { useDispatch, useSelector } from "react-redux";
 import * as actions from "../redux/Actions/certificateActions";
 import certificateDataReducer from "../redux/Reducers/certificateDataReducer";
@@ -39,12 +39,12 @@ const Certificates = () => {
             align="center"
             sx={{ fontWeight: "bold" }}
           >
-            {helper.certAndCourse}
+            {labels.certAndCourse}
           </Typography>
           <Grid>
             <TextField
               value={inputValue}
-              label={helper.certAndCourse}
+              label={labels.certAndCourse}
               name="certificate"
               onChange={(e) => handleCertificateChange(e)}
             />
@@ -55,7 +55,7 @@ const Certificates = () => {
               color="success"
               onClick={handleAddClick}
             >
-              {helper.addButton}
+              {labels.addButton}
             </Button>
           </Grid>
           {certificates.map((certificate, index) => (
@@ -65,7 +65,7 @@ const Certificates = () => {
                   <TextField
                     sx={{ p: 0 }}
                     value={certificate}
-                    label={helper.certAndCourse}
+                    label={labels.certAndCourse}
                     onChange={handleCertificateChange}
                     disabled
                     variant="filled"
@@ -77,7 +77,7 @@ const Certificates = () => {
                     color="error"
                     onClick={actions.certificateRemove}
                   >
-                    {helper.removeButton}
+                    {labels.removeButton}
                   </Button>
                 </Grid>
               </Grid>

@@ -1,4 +1,4 @@
-import helper from "../Components/helper";
+import labels from "../Components/labels";
 import "../App.css";
 import { useDispatch, useSelector } from "react-redux";
 import * as actions from "../redux/Actions/workActions";
@@ -75,13 +75,13 @@ const Work = () => {
           <Box sx={{ p: 1, border: 0.5, borderRadius: 10 }}>
             <TextField
               name="name"
-              label={helper.workPlace}
+              label={labels.workPlace}
               onChange={(e) => handleNameChange(e)}
               value={names[i]}
             />
             <TextField
               name="position"
-              label={helper.position}
+              label={labels.position}
               onChange={(e) => handlePositionChange(e)}
               value={positions[i]}
             />
@@ -93,7 +93,7 @@ const Work = () => {
                   align="center"
                   sx={{ fontStyle: "italic" }}
                 >
-                  {helper.years}
+                  {labels.years}
                 </Typography>
               </Grid>
               <Input
@@ -123,22 +123,22 @@ const Work = () => {
             <Grid>
               <TextField
                 name="locationCity"
-                label={helper.workCity}
+                label={labels.workCity}
                 onChange={(e) => handleCityChange(e)}
                 value={cities[i]}
               />
               <TextField
                 name="locationCountry"
-                label={helper.workCountry}
+                label={labels.workCountry}
                 onChange={(e) => handleCountryChange(e)}
                 value={countries[i]}
               />
             </Grid>
             <Typography sx={{ fontStyle: "italic" }}>
-              {helper.description}
+              {labels.description}
             </Typography>
             <TextareaAutosize
-              label={helper.description}
+              label={labels.description}
               name="description"
               value={descriptions[i]}
               onChange={(e) => handleDescriptionChange(e)}
@@ -158,18 +158,18 @@ const Work = () => {
             align="center"
             sx={{ fontWeight: "bold" }}
           >
-            {helper.workPlace}
+            {labels.workPlace}
           </Typography>
           <Box sx={{ p: 1, border: 0.5, borderRadius: 10 }}>
             <TextField
               name="name"
-              label={helper.workPlace}
+              label={labels.workPlace}
               onChange={(e) => handleNameChange(e)}
               value={nameInputValue}
             />
             <TextField
               name="position"
-              label={helper.position}
+              label={labels.position}
               onChange={(e) => handlePositionChange(e)}
               value={positionInputValue}
             />
@@ -181,7 +181,7 @@ const Work = () => {
                   align="center"
                   sx={{ fontStyle: "italic" }}
                 >
-                  {helper.years}
+                  {labels.years}
                 </Typography>
               </Grid>
               <Input
@@ -211,22 +211,22 @@ const Work = () => {
             <Grid>
               <TextField
                 name="locationCity"
-                label={helper.workCity}
+                label={labels.workCity}
                 onChange={(e) => handleCityChange(e)}
                 value={cityInputValue}
               />
               <TextField
                 name="locationCountry"
-                label={helper.workCountry}
+                label={labels.workCountry}
                 onChange={(e) => handleCountryChange(e)}
                 value={countryInputValue}
               />
             </Grid>
             <Typography sx={{ fontStyle: "italic" }}>
-              {helper.description}
+              {labels.description}
             </Typography>
             <TextareaAutosize
-              label={helper.description}
+              label={labels.description}
               name="description"
               value={descriptionInputValue}
               onChange={(e) => handleDescriptionChange(e)}
@@ -240,14 +240,14 @@ const Work = () => {
               color="success"
               onClick={handleAddClick}
             >
-              {helper.addButton}
+              {labels.addButton}
             </Button>
             <Button
               variant="contained"
               color="error"
               onClick={actions.workRemove}
             >
-              {helper.removeButton}
+              {labels.removeButton}
             </Button>
           </Grid>
         </CardContent>
