@@ -14,31 +14,45 @@
         "emoji": "🇬🇧",
         "nativeName":"English"
     },
-    "sq":{
-        "name":"Albanian",
-        "emoji": "🇦🇱",
-        "nativeName":"Shqip"
+    "de":{
+        "name":"German",
+        "nativeName":"Deutsch",
+        "emoji": "🇩🇪"
+    },
+    "es":{
+        "name":"Spanish",
+        "emoji": "🇪🇸",
+        "nativeName":"español, castellano"
+    }, 
+    "fr":{
+        "name":"French",
+        "emoji": "🇫🇷",
+        "nativeName":"français, langue française"
+    },
+    "it":{
+        "name":"Italian",
+        "emoji": "🇮🇹",
+        "nativeName":"Italiano"
+    },
+    "ja":{
+        "name":"Japanese",
+        "emoji": "🇯🇵",
+        "nativeName":"日本語 (にほんご／にっぽんご)"
+    },
+    "zh":{
+        "name":"Chinese",
+        "emoji": "🇨🇳",
+        "nativeName":"中文 (Zhōngwén), 汉语, 漢語"
     },
     "ar":{
         "name":"Arabic",
         "emoji": "🇸🇦",
         "nativeName":"العربية"
     },
-    "bs":{
-        "name":"Bosnian",
-        "emoji": "🇧🇦",
-        "nativeName":"bosanski jezik"
-    },
-
     "bg":{
         "name":"Bulgarian",
         "emoji": "🇧🇬",
         "nativeName":"български език"
-    },
-    "zh":{
-        "name":"Chinese",
-        "emoji": "🇨🇳",
-        "nativeName":"中文 (Zhōngwén), 汉语, 漢語"
     },
     "hr":{
         "name":"Croatian",
@@ -65,35 +79,15 @@
         "emoji": "🇪🇪",
         "nativeName":"eesti, eesti keel"
     },
-    "fo":{
-        "name":"Faroese",
-        "emoji": "🇫🇴",
-        "nativeName":"føroyskt"
-    },
-    "fj":{
-        "name":"Fijian",
-        "emoji": "🇫🇯",
-        "nativeName":"vosa Vakaviti"
-    },
     "fi":{
         "name":"Finnish",
         "emoji": "🇫🇮",
         "nativeName":"suomi, suomen kieli"
     },
-    "fr":{
-        "name":"French",
-        "emoji": "🇫🇷",
-        "nativeName":"français, langue française"
-    },
     "ka":{
         "name":"Georgian",
         "emoji": "🇬🇪",
         "nativeName":"ქართული"
-    },
-    "de":{
-        "name":"German",
-        "nativeName":"Deutsch",
-        "emoji": "🇩🇪"
     },
     "el":{
         "name":"Greek, Modern",
@@ -120,121 +114,6 @@
         "emoji": "🇮🇩",
         "nativeName":"Bahasa Indonesia"
     },
-    "ga":{
-        "name":"Irish",
-        "emoji": "🇮🇪",
-        "nativeName":"Gaeilge"
-    },
-    "is":{
-        "name":"Icelandic",
-        "emoji": "🇮🇸",
-        "nativeName":"Íslenska"
-    },
-    "it":{
-        "name":"Italian",
-        "emoji": "🇮🇹",
-        "nativeName":"Italiano"
-    },
-    "ja":{
-        "name":"Japanese",
-        "emoji": "🇯🇵",
-        "nativeName":"日本語 (にほんご／にっぽんご)"
-    },
-    "kl":{
-        "name":"Kalaallisut, Greenlandic",
-        "emoji": "🇬🇱",
-        "nativeName":"kalaallisut, kalaallit oqaasii"
-    },
-    "kk":{
-        "name":"Kazakh",
-        "emoji": "🇰🇿",
-        "nativeName":"Қазақ тілі"
-    },
-    "km":{
-        "name":"Khmer", 
-        "emoji": "🇰🇭",
-        "nativeName":"ភាសាខ្មែរ"
-    },
-    "kg":{
-        "name":"Kongo",
-        "emoji": "🇨🇩",
-        "nativeName":"KiKongo"
-    },
-    "ko":{
-        "name":"Korean",
-        "emoji": "🇰🇷",
-        "nativeName":"한국어 (韓國語), 조선말 (朝鮮語)"
-    },
-    "la":{
-        "name":"Latin",
-        "emoji": "🇻🇦",
-        "nativeName":"latine, lingua latina"
-    },
-    "lb":{
-        "name":"Luxembourgish, Letzeburgesch",
-        "emoji": "🇱🇺",
-        "nativeName":"Lëtzebuergesch"
-    },
-    "lo":{
-        "name":"Lao",
-        "emoji": "🇱🇦",
-        "nativeName":"ພາສາລາວ"
-    },
-    "lt":{
-        "name":"Lithuanian",
-        "emoji": "🇱🇹",
-        "nativeName":"lietuvių kalba"
-    },
-    "lv":{
-        "name":"Latvian",
-        "emoji": "🇱🇻",
-        "nativeName":"latviešu valoda"
-    },
-    "mk":{
-        "name":"Macedonian",
-        "emoji": "🇲🇰",
-        "nativeName":"македонски јазик"
-    },
-    "ms":{
-        "name":"Malay",
-        "emoji": "🇲🇾",
-        "nativeName":"bahasa Melayu, بهاس ملايو‎"
-    },
-    "mt":{
-        "name":"Maltese",
-        "emoji": "🇲🇹",
-        "nativeName":"Malti"
-    },
-    "mi":{
-        "name":"Māori",
-        "emoji": "🇳🇿",
-        "nativeName":"te reo Māori"
-    },
-    "mn":{
-        "name":"Mongolian",
-        "emoji": "🇲🇳",
-        "nativeName":"монгол"
-    },
-    "na":{
-        "name":"Nauru",
-        "emoji": "🇳🇷",
-        "nativeName":"Ekakairũ Naoero"
-    },
-    "nb":{
-        "name":"Norwegian Bokmål",
-        "emoji": "🇳🇴",
-        "nativeName":"Norsk bokmål"
-    },
-    "ne":{
-        "name":"Nepali",
-        "emoji": "🇳🇵",
-        "nativeName":"नेपाली"
-    },
-    "nn":{
-        "name":"Norwegian Nynorsk",
-        "emoji": "🇳🇴",
-        "nativeName":"Norsk nynorsk"
-    },
     "fa":{
         "name":"Persian",
         "emoji": "🇮🇷",
@@ -255,11 +134,6 @@
         "name":"Romanian, Moldavian, Moldovan",
         "nativeName":"română"
     },
-    "sm":{
-        "name":"Samoan",
-        "emoji": "🇼🇸",
-        "nativeName":"gagana faa Samoa"
-    },
     "sr":{
         "name":"Serbian",
         "emoji": "🇷🇸",
@@ -275,49 +149,14 @@
         "emoji": "🇸🇮",
         "nativeName":"slovenščina"
     },
-    "so":{
-        "name":"Somali",
-        "emoji": "🇸🇴",
-        "nativeName":"Soomaaliga, af Soomaali"
-    },
-    "es":{
-        "name":"Spanish; Castilian",
-        "emoji": "🇪🇸",
-        "nativeName":"español, castellano"
-    },
     "sv":{
         "name":"Swedish",
         "emoji": "🇸🇪",
         "nativeName":"svenska"
     },
-    "th":{
-        "name":"Thai",
-        "emoji": "🇹🇭",
-        "nativeName":"ไทย"
-    },
-    "tl":{
-        "name":"Tagalog",
-        "emoji": "🇵🇭",
-        "nativeName":"Wikang Tagalog, ᜏᜒᜃᜅ᜔ ᜆᜄᜎᜓᜄ᜔"
-    },
-    "to":{
-        "name":"Tonga (Tonga Islands)",
-        "emoji": "🇹🇴",
-        "nativeName":"faka Tonga"
-    },
-    "tr":{
-        "name":"Turkish",
-        "emoji": "🇹🇷",
-        "nativeName":"Türkçe"
-    },
     "uk":{
         "name":"Ukrainian",
         "emoji": "🇺🇦",
         "nativeName":"українська"
-    },
-    "uz":{
-        "name":"Uzbek",
-        "emoji": "🇺🇿",
-        "nativeName":"zbek, Ўзбек, أۇزبېك‎"
     }
 }
