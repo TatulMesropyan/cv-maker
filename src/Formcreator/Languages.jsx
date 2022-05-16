@@ -1,4 +1,4 @@
-import helper from "../Components/helper";
+import labels from "../Components/labels";
 import * as actions from "../redux/Actions/languageActions";
 import { useSelector, useDispatch } from "react-redux";
 import languageDropdown from "../Components/LangDropdown";
@@ -18,9 +18,7 @@ import { useCallback } from "react";
 const Languages = () => {
   const dispatch = useDispatch();
 
-  const { languageRedux } = useSelector(
-    (state) => state.languageDataReducer
-  );
+  const { languageRedux } = useSelector((state) => state.languageDataReducer);
 
   const handleAddClick = useCallback(() => {
     dispatch(actions.languageAdd());
@@ -41,7 +39,7 @@ const Languages = () => {
             align="center"
             sx={{ fontWeight: "bold" }}
           >
-            {helper.language}
+            {labels.language}
           </Typography>
           <LanguageDropdown />
           <Grid sx={{ p: 2 }}>
@@ -50,7 +48,7 @@ const Languages = () => {
               color="success"
               onClick={handleAddClick}
             >
-              {helper.addButton}
+              {labels.addButton}
             </Button>
           </Grid>
           {languageRedux.map((name, index) => (
@@ -58,7 +56,9 @@ const Languages = () => {
               <Grid sx={{ p: 2 }}>
                 <TextField
                   disabled
-                  value={language.emoji ? ` ${language.emoji}  ${name}` : name}
+                  variant="filled"
+                  // value={language.emoji ? ` ${language.emoji}  ${name}` : name}
+                  value={name}
                 />
               </Grid>
               <Grid>
@@ -67,7 +67,7 @@ const Languages = () => {
                   color="error"
                   onClick={handleOnRemove}
                 >
-                  {helper.removeButton}
+                  {labels.removeButton}
                 </Button>
               </Grid>
             </div>
