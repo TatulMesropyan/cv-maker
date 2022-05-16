@@ -14,6 +14,8 @@ import {
   CardContent,
 } from "@mui/material";
 import { useCallback } from "react";
+import Checkbox from '@mui/material/Checkbox';
+
 
 const Languages = () => {
   const dispatch = useDispatch();
@@ -27,8 +29,17 @@ const Languages = () => {
   const handleOnRemove = (e, index) => {
     dispatch(actions.languageRemove(index));
   };
+
   const [language, LanguageDropdown] =
     languageDropdown.useDropdown(languagePacket);
+
+  const checkBoxLabel = {
+    one:"Low",
+    two:"Elementary ",
+    three:"Limited ",
+    four:"Professional",
+    five:"Native",
+  }
   return (
     <Box component="form" noValidate sx={{ pt: 3, p3: 4 }}>
       <Card sx={{ mt: 4 }} raised={true}>
@@ -50,6 +61,79 @@ const Languages = () => {
             >
               {labels.addButton}
             </Button>
+            <Typography
+              gutterBottom={true}
+              variant="h5"
+              align="center"
+              sx={{ fontStyle: "italic" }}
+            >
+              Proficiency level
+            </Typography>
+            <Grid>
+            <Typography
+              gutterBottom={true}
+              variant="h7"
+              align="center"
+              sx={{ fontStyle: "italic" }}
+            >
+              Low Proficiency
+            </Typography>
+            </Grid>
+            <Grid>
+            <Checkbox/>
+            </Grid>
+            <Grid>
+            <Typography
+              gutterBottom={true}
+              variant="h7"
+              align="center"
+              sx={{ fontStyle: "italic" }}
+            >
+              Elementary Proficiency
+            </Typography>
+            </Grid>
+            <Grid>
+            <Checkbox/>
+            </Grid>
+            <Grid>
+            <Typography
+              gutterBottom={true}
+              variant="h7"
+              align="center"
+              sx={{ fontStyle: "italic" }}
+            >
+              Limited Working Proficiency.
+            </Typography>
+            </Grid>
+            <Grid>
+            <Checkbox/>
+            </Grid>
+            <Grid>
+            <Typography
+              gutterBottom={true}
+              variant="h7"
+              align="center"
+              sx={{ fontStyle: "italic" }}
+            >
+              Professional Working Proficiency
+            </Typography>
+            </Grid>
+            <Grid>
+            <Checkbox/>
+            </Grid>
+            <Grid>
+            <Typography
+              gutterBottom={true}
+              variant="h7"
+              align="center"
+              sx={{ fontStyle: "italic" }}
+            >
+              Native Proficiency
+            </Typography>
+            </Grid>
+            <Grid>
+            <Checkbox/>
+            </Grid>
           </Grid>
           {languageRedux.map((name, index) => (
             <div key={index}>
@@ -60,6 +144,7 @@ const Languages = () => {
                   // value={language.emoji ? ` ${language.emoji}  ${name}` : name}
                   value={name}
                 />
+                <Grid></Grid>
               </Grid>
               <Grid>
                 <Button
