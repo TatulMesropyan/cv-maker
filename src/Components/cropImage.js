@@ -4,7 +4,7 @@
  * @param {Object} pixelCrop - pixelCrop Object provided by react-easy-crop
  * @param {number} rotation - optional rotation parameter
  */
-
+import { useSelector,useDispatch } from "react-redux";
 
 const createImage = (url) =>
 	new Promise((resolve, reject) => {
@@ -59,6 +59,5 @@ export default async function getCroppedImg(imageSrc, pixelCrop, rotation = 0) {
 
 	// As Base64 string
 	const croppedBase = canvas.toDataURL("image/jpeg")
-	console.log(croppedBase)
 	return croppedBase;
 	}

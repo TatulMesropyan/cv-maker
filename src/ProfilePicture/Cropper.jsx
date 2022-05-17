@@ -1,35 +1,13 @@
-import React, { useState, useRef ,useContext } from "react";
+import React, { useState, useRef, useContext } from "react";
 import Cropper from "react-easy-crop";
-import { Slider, Button } from "@mui/material";
-import getCroppedImg, { generateDownload } from "../Components/cropImage";
-import { IconButton, makeStyles } from "@material-ui/core";
-import { SnackbarContext } from "../ProfilePicture/Snackbar";
-import { dataURLtoFile } from "../Components/dataURLtoFile";
+import { Slider, Button, Grid, Box } from "@mui/material";
+import getCroppedImg from "../Components/cropImage";
 import "../ProfilePicture/Cropper.css";
 
-const useStyles = makeStyles({
-  iconButton: {
-    position: "absolute",
-    top: "20px",
-    right: "20px",
-  },
-  cancelIcon: {
-    color: "#00a3c8",
-    fontSize: "50px",
-    "&:hover": {
-      color: "red",
-    },
-  },
-});
-
 export default function RenderCropper({ handleCropper }) {
-  const classes = useStyles();
-
   const inputRef = useRef();
 
   const triggerFileSelectPopup = () => inputRef.current.click();
-
-  const setStateSnackbarContext = useContext(SnackbarContext);
 
   const [image, setImage] = useState(null);
   const [croppedArea, setCroppedArea] = useState(null);
@@ -50,37 +28,20 @@ export default function RenderCropper({ handleCropper }) {
     }
   };
   const onClear = () => {
-    if (!image)
-      return setStateSnackbarContext(
-        true,
-        "Please select an image!",
-        "warning"
-      );
-
-    setImage(null);
+    if (!image) setImage(null);
   };
 
   const onUpload = async () => {
-    if (!image)
-      return alert("No selected")
-    const canvas = await getCroppedImg(image, croppedArea);
-    const canvasDataUrl = canvas.toDataURL("image/jpeg");
-    const convertedUrlToFile = dataURLtoFile(
-      canvasDataUrl,
-      "cropped-image.jpeg"
-    );
+    if (!image) return alert("No selected");
+    const pictureOnBase64 = await getCroppedImg(image, croppedArea);
   };
 
   return (
-    <div className="container">
-      <IconButton className={classes.iconButton} onClick={handleCropper}>
-        {<img src={croppedArea} alt='cropped'/>}
-      </IconButton>
-
-      <div className="container-cropper">
+    <Box sx={{ width: "80vh", position: "relative", paddingBottom: "5px" }}>
+      <Grid sx={{ height: "60vh", padding: "10px" }}>
         {image ? (
-          <>
-            <div className="cropper">
+          <Grid>
+            <Grid sx={{ height: "10px" }}>
               <Cropper
                 cropShape="round"
                 image={image}
@@ -92,23 +53,69 @@ export default function RenderCropper({ handleCropper }) {
                 onZoomChange={setZoom}
                 onCropComplete={onCropComplete}
               />
-            </div>
-
-            <div className="slider">
+            </Grid>
+            <Grid
+              sx={{
+                height: "110vh",
+                display: "flex",
+                alignItems: "center",
+                margin: "auto",
+                width: "60%",
+              }}
+            >
               <Slider
                 min={1}
                 max={3}
                 step={0.1}
                 value={zoom}
                 onChange={(e, zoom) => setZoom(zoom)}
-                color="secondary"
+                color="success"
               />
-            </div>
-          </>
-        ) : null}
-      </div>
+            </Grid>
+            <Button
+              onClick={() => onClear()}
+              variant="contained"
+              color="error"
+              style={{ marginRight: "10px" }}
+            >
+              Clear
+            </Button>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={triggerFileSelectPopup}
+              style={{ marginRight: "10px" }}
+            >
+              Choose
+            </Button>
+            <Button variant="contained" color="success" onClick={onUpload}>
+              Upload
+            </Button>
+          </Grid>
+        ) : (
+          <div>
+            <Button
+              onClick={() => onClear()}
+              variant="contained"
+              color="error"
+              style={{ marginRight: "10px" }}
+            >
+              Clear
+            </Button>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={triggerFileSelectPopup}
+              style={{ marginRight: "10px" }}
+            >
+              Choose
+            </Button>
+            <Button variant="contained" color="success" onClick={onUpload}>
+              Upload
+            </Button>
+          </div>
+        )}
 
-      <div className="container-buttons">
         <input
           type="file"
           accept="image/*"
@@ -116,27 +123,7 @@ export default function RenderCropper({ handleCropper }) {
           onChange={onSelectFile}
           style={{ display: "none" }}
         />
-
-        <Button
-          onClick={() => onClear()}
-          variant="contained"
-          color="primary"
-          style={{ marginRight: "10px" }}
-        >
-          Clear
-        </Button>
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={triggerFileSelectPopup}
-          style={{ marginRight: "10px" }}
-        >
-          Choose
-        </Button>
-        <Button variant="contained" color="secondary" onClick={onUpload}>
-          Upload
-        </Button>
-      </div>
-    </div>
+      </Grid>
+    </Box>
   );
 }
