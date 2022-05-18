@@ -1,5 +1,5 @@
 
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Select } from '@mui/material';
 import { MenuItem } from '@mui/material';
 import * as actions from "../redux/Actions/languageActions"
@@ -9,9 +9,7 @@ import { useDispatch } from 'react-redux';
 const multiLang = {
   useDropdown: (languages) => {
     const [state, setState] = useState(languages.en);
-    useEffect(() => {
-      console.log(state)
-    })
+
     const id = 'use-dropdown' + Math.random();
 
     const dispatch = useDispatch()
