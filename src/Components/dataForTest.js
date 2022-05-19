@@ -13,8 +13,7 @@ export let dataTest = {
         },
 
     main:
-        {
-            content: [
+        [
                 {
                     topic: "Experience",
                     body: [
@@ -207,6 +206,5 @@ export let dataTest = {
                         }
                     ]
                 }
-            ]
-        }
+        ]
 };

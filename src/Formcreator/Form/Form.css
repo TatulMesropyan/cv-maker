@@ -1,0 +1,33 @@
+.mainContent {
+    width: 100%;
+    padding-bottom: 100px;
+}
+
+.mainContent::after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 500px;
+    background-color: rgb(77, 200, 109);
+    clip-path: polygon(0 0, 100% 0%, 100% 70%, 0% 100%);
+}
+
+.formContent {
+    padding: 2rem 3rem;
+    /* height: 500px; */
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.5);
+}
+
+.sectionName {
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
+}
+
+.line{
+    border-bottom: 1px solid lightgrey;
+}
