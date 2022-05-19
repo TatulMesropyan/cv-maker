@@ -1,19 +1,20 @@
 import React from "react";
 import { Grid, Typography, Box } from "@mui/material";
+import Section from "./SectionGenerator";
 import "material-icons/iconfont/material-icons.css";
 import "./Form.css";
-import Section from "./Section";
 
 const content = [
   {
     grid: 12,
     name: "languages",
     label: "language",
-    inputType: "input",
+    inputType: "select",
   },
 ];
 
 export default function Languages({ getData }) {
+
   const topic = "Languages";
 
   const handleData = (data) => {
