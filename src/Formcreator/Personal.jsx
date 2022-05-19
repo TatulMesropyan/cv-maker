@@ -8,10 +8,13 @@ import {
   Box,
   Card,
   CardContent,
+  Button
 } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import * as actions from "../redux/Actions/personalActions";
 import store from "../redux/store";
+import { useState } from "react";
+import RenderAvatar from "../ProfilePicture/Avatar";
 const Personal = () => {
   const dispatch = useDispatch();
   const nameInputValue = useSelector((state) => state.personalDataReducer.name);
@@ -149,6 +152,7 @@ const Personal = () => {
                   fullWidth
                 />
               </Grid>
+              <RenderAvatar/>
             </Box>
           </CardContent>
         </Card>
