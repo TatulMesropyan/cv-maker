@@ -14,16 +14,16 @@ import { SectionColumn } from "./SectionColumn";
 import { SectionRow } from "./SectionRow";
 
 export default function CvTemplate() {
-	// const data = store.getState();
-	// let header = data.formDataReducer.header;
-	// let main = data.formDataReducer.main;
-	// header.image = dataTest.header.image;
+	 const data = store.getState();
+	 let header = data.formDataReducer.header;
+	 let main = Object.values(data.formDataReducer.main);
+	 //header.image = dataTest.header.image;
 	const pdfRef = useRef();
 
-	const header = dataTest.header;
-	const main = dataTest.main;
+	// const header = dataTest.header;
+	// const main = dataTest.main;
 
-	const imagePerson = 'url("data:image/png;base64,' + header.image + '")';
+	const imagePerson = 'url("' + header.image + '")';
 
 	let contentRow = [];
 	let contentSection = [];

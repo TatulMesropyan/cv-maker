@@ -15,11 +15,12 @@ import {
   Card,
   CardContent,
   MenuItem,
+  getAccordionDetailsUtilityClass,
 } from "@mui/material";
-import getCroppedImg from "../Components/cropImage";
+import getCroppedImg from "../../Helpers/cropImage";
 import { CameraAlt } from "@material-ui/icons";
 
-const RenderAvatar = () => {
+const RenderAvatar = ({ getData, topic, currentImage }) => {
   const inputRef = useRef();
   const triggerFileSelectPopup = () => inputRef.current.click();
 
@@ -29,10 +30,15 @@ const RenderAvatar = () => {
   const [zoom, setZoom] = useState(1);
   const [open, setOpen] = useState(false);
   const [openWindow, setOpenWindow] = useState(false);
-  const [error, setError] = useState(false);
-
   const onCropComplete = (croppedAreaPercentage, croppedAreaPixels) => {
     setCroppedArea(croppedAreaPixels);
+  };
+  const [changeColor, setChangeColor] = useState("primary");
+  const handleChangeColor = () => {
+    setChangeColor("success");
+  };
+  const handleLeaveColor = () => {
+    setChangeColor("primary");
   };
 
   const onSelectFile = (event) => {
@@ -51,8 +57,10 @@ const RenderAvatar = () => {
   const onUpload = async () => {
     if (image) {
       const pictureOnBase64 = await getCroppedImg(image, croppedArea);
-      console.log(pictureOnBase64);
-      return pictureOnBase64;
+      currentImage.current.src = pictureOnBase64;
+      getData([{ image: pictureOnBase64 }], topic);
+      alert("Picture Uploaded Succesfully");
+      setOpenWindow(false);
     }
     if (!image) {
       setOpenWindow(false);
@@ -75,7 +83,6 @@ const RenderAvatar = () => {
 
   return (
     <Box>
-      {error && <Dialog>Karobkics siktir</Dialog>}
       <Grid>
         <IconButton
           aria-haspopup="true"
@@ -83,8 +90,12 @@ const RenderAvatar = () => {
             handleCropper();
             handleWindowOpen();
           }}
+          color={changeColor}
+          onMouseEnter={handleChangeColor}
+          onMouseLeave={handleLeaveColor}
+          sx={{ padding: 10 }}
         >
-          <CameraAlt />
+          <CameraAlt fontSize="large" />
         </IconButton>
         <Popper open={open} role={undefined} transition disablePortal>
           <Paper>
