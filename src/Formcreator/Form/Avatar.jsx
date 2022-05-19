@@ -51,7 +51,7 @@ const RenderAvatar = () => {
   const onUpload = async () => {
     if (image) {
       const pictureOnBase64 = await getCroppedImg(image, croppedArea);
-      console.log(pictureOnBase64)
+      console.log(pictureOnBase64);
       return pictureOnBase64;
     }
     if (!image) {

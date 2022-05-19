@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Form from './Formcreator/Form/Form';
-import CvTemplate from "./Components/CvTemplate"
+import CvTemplate from "./Helpers/CvTemplate"
 import './App.css';
 function App(store) {
   return (
