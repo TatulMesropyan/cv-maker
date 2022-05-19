@@ -43,8 +43,8 @@ h1, h2, h3, p, li{
     width: 185px;
     height: 185px;
     border-radius: 50%;
-    background-size: 80%;
-    background-position-x: 20px;
+    background-size: 100%;
+    /* background-position-x: 20px; */
     background-repeat: no-repeat;
     background-color: #f6f6f6;
 }

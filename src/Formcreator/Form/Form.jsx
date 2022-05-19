@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Grid, Typography, Box, Container, Button } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
 import { useDispatch } from "react-redux";
@@ -44,6 +44,9 @@ export default function Form() {
     navigate("/cv");
   };
 
+  useEffect(() => {
+    console.log(data)
+  },[data])
   return (
     <Box className="mainContent">
       <Container>
