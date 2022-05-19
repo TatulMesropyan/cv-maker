@@ -1,13 +1,5 @@
-import React, { useEffect, useState } from "react";
-import {
-	Grid,
-	Typography,
-	Box,
-	Container,
-	TextField,
-	Button,
-	Input,
-} from "@mui/material";
+import React, { useState } from "react";
+import { Grid, Typography, Box, Container, Button } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -23,82 +15,81 @@ import "./Form.css";
 import Personal from "./Personal";
 
 export default function Form() {
-	const navigate = useNavigate();
-	const dispatch = useDispatch();
-	const [data, setData] = useState({ header: {}, main: {} });
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [data, setData] = useState({ header: {}, main: {} });
 
-	const getData = (data, _topic) => {
-		if (data.length === 0) return;
+  const getData = (data, _topic) => {
+    if (data.length === 0) return;
 
-		switch (_topic)
-		{
-			case "Personal":{
-				const val = data[0];
-				setData((v) => ({ ...v, header: { ...v.header, ...val } }));
-				break;
-			}
+    switch (_topic) {
+      case "Personal": {
+        const val = data[0];
+        setData((v) => ({ ...v, header: { ...v.header, ...val } }));
+        break;
+      }
 
-			default : {
-				setData((v) => ({ ...v, main: { ...v.main, [_topic]: data } }));
-				break;
-			}
-		}
-	};
+      default: {
+        setData((v) => ({ ...v, main: { ...v.main, [_topic]: data } }));
+        break;
+      }
+    }
+  };
 
-	const HandleOnSubmit = (e) => {
-		e.preventDefault();
+  const HandleOnSubmit = (e) => {
+    e.preventDefault();
 
-		dispatch(actions.updateFormData(data));
+    dispatch(actions.updateFormData(data));
 
-		navigate("/cv");
-	};
+    navigate("/cv");
+  };
 
-	return (
-		<Box className="mainContent">
-			<Container>
-				<Grid pt="3rem" pb="5rem" container justifyContent="center">
-					<Box item>
-						<Typography fontSize="30px" fontWeight="Bold" color="white">
-							CV Maker
-						</Typography>
-					</Box>
-				</Grid>
-			</Container>
-			<Container>
-				<form onSubmit={HandleOnSubmit} name="main">
-					<Grid container justifyContent="center">
-						<Grid item xs={10}>
-							<Box className="formContent">
-								<Box className="sectionName line">
-									<Typography fontSize="20px">Personal Details</Typography>
-								</Box>
-								<Grid container>
-									<Personal getData={getData} />
-									<Education getData={getData} />
-									<Workplace getData={getData} />
-									<Projects getData={getData} />
-									<Certifications getData={getData} />
-									<Skills getData={getData} />
-									<Languages getData={getData} />
-								</Grid>
-							</Box>
-						</Grid>
-						<Grid item xs={3} textAlign="center">
-							<Box pt={6}>
-								<Button
-									type="submit"
-									size="large"
-									variant="contained"
-									endIcon={<SendIcon />}
-									fullWidth
-								>
-									Submit
-								</Button>
-							</Box>
-						</Grid>
-					</Grid>
-				</form>
-			</Container>
-		</Box>
-	);
+  return (
+    <Box className="mainContent">
+      <Container>
+        <Grid pt="3rem" pb="5rem" container justifyContent="center">
+          <Box item>
+            <Typography fontSize="30px" fontWeight="Bold" color="white">
+              CV Maker
+            </Typography>
+          </Box>
+        </Grid>
+      </Container>
+      <Container>
+        <form onSubmit={HandleOnSubmit} name="main">
+          <Grid container justifyContent="center">
+            <Grid item xs={10}>
+              <Box className="formContent">
+                <Box className="sectionName line">
+                  <Typography fontSize="20px">Personal Details</Typography>
+                </Box>
+                <Grid container>
+                  <Personal getData={getData} />
+                  <Education getData={getData} />
+                  <Workplace getData={getData} />
+                  <Projects getData={getData} />
+                  <Certifications getData={getData} />
+                  <Skills getData={getData} />
+                  <Languages getData={getData} />
+                </Grid>
+              </Box>
+            </Grid>
+            <Grid item xs={3} textAlign="center">
+              <Box pt={6}>
+                <Button
+                  type="submit"
+                  size="large"
+                  variant="contained"
+                  endIcon={<SendIcon />}
+                  fullWidth
+                >
+                  Submit
+                </Button>
+              </Box>
+            </Grid>
+          </Grid>
+        </form>
+      </Container>
+    </Box>
+  );
 }
