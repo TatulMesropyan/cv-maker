@@ -2,31 +2,24 @@
 import React, { useState } from 'react';
 import { Select } from '@mui/material';
 import { MenuItem } from '@mui/material';
-import * as actions from "../redux/Actions/languageActions"
-import { useDispatch } from 'react-redux';
-
+import { getDate } from 'date-fns';
 
 const multiLang = {
   useDropdown: (languages) => {
     const [state, setState] = useState(languages.en);
 
-    const id = 'use-dropdown' + Math.random();
-
-    const dispatch = useDispatch()
-
     const handleSelectedLanguage = (e) => {
-      setState(languages[e.target.value])
-      dispatch(actions.setLanguageInput(languages[e.target.value].name))
+      console.log(languages);
+      setState(languages[e.target.value]);
     }
 
     Object.keys(languages).map(function (key) {
       languages[key] = { ...languages[key], "bcp47": key };
     })
-    const Dropdown = () => {
+    const Dropdown = ({getDATA}) => {
       return (
         <div className='languageDropdown'>
           <Select
-            id={id}
             disabled={languages.length === 0}
             value={state.bcp47}
             onChange={(e) => handleSelectedLanguage(e)}

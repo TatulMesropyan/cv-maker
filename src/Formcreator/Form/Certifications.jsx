@@ -6,7 +6,7 @@ import {
 } from "@mui/material";
 import "material-icons/iconfont/material-icons.css";
 import "./Form.css";
-import Section from "./Section";
+import Section from "./SectionGenerator";
 
 const content = [
 	{
