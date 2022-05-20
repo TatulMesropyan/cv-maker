@@ -47,7 +47,7 @@ export default function GenerateInputs({ content, index, inputHandler }) {
 				case "select": {
 					value = (
 						<Box pt={2} textAlign="center">
-							<LanguageDropdown getData={inputHandler} />
+							<LanguageDropdown getData={(e) => inputHandler(e, itm.name, index)} />
 						</Box>
 					);
 					break;
