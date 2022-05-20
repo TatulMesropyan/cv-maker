@@ -20,7 +20,7 @@ export default function Languages({ getData }) {
   const handleData = (data) => {
     let val = {
       topic: topic,
-      body: [{ secondaryText: data.map((_v) => _v.languages) }],
+      body: [{ languages: data.map((_v) => _v.languages) }],
     };
     getData(val, topic);
   };
