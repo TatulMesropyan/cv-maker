@@ -3,7 +3,6 @@ import { Grid, Typography, Box } from "@mui/material";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
 import store from "../redux/store";
-import { dataTest } from "./dataForTest";
 import { Article } from "./Article";
 import { SectionColumn } from "./SectionColumn";
 import { SectionRow } from "./SectionRow";

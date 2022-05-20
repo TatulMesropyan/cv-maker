@@ -1,5 +1,6 @@
 import React, { useState, useRef } from "react";
 import Cropper from "react-easy-crop";
+import Picture from "../../images/profileimg.webp";
 import {
   Dialog,
   MenuList,
@@ -15,12 +16,11 @@ import {
   Card,
   CardContent,
   MenuItem,
-  getAccordionDetailsUtilityClass,
 } from "@mui/material";
 import getCroppedImg from "../../Helpers/cropImage";
 import { CameraAlt } from "@material-ui/icons";
 
-const RenderAvatar = ({ getData, topic, currentImage }) => {
+const RenderAvatar = ({ getData, topic }) => {
   const inputRef = useRef();
   const triggerFileSelectPopup = () => inputRef.current.click();
 
@@ -53,13 +53,13 @@ const RenderAvatar = ({ getData, topic, currentImage }) => {
   const onClear = () => {
     image && setImage(null);
   };
+  const [croppedImage, setCroppedImage] = useState("");
 
   const onUpload = async () => {
     if (image) {
       const pictureOnBase64 = await getCroppedImg(image, croppedArea);
-      currentImage.current.src = pictureOnBase64;
+      setCroppedImage(pictureOnBase64);
       getData([{ image: pictureOnBase64 }], topic);
-      alert("Picture Uploaded Succesfully");
       setOpenWindow(false);
     }
     if (!image) {
@@ -67,6 +67,7 @@ const RenderAvatar = ({ getData, topic, currentImage }) => {
       return alert("No picture selected");
     }
   };
+  console.log(croppedImage);
 
   const handleWindowOpen = () => {
     setOpenWindow(true);
@@ -80,31 +81,28 @@ const RenderAvatar = ({ getData, topic, currentImage }) => {
 
   const [showCropper, setShowCropper] = useState(false);
   const handleCropper = () => setShowCropper((prevValue) => !prevValue);
-
   return (
-    <Box>
-      <Grid>
-        <IconButton
-          aria-haspopup="true"
-          onClick={(event) => {
-            handleCropper();
-            handleWindowOpen();
-          }}
-          color={changeColor}
-          onMouseEnter={handleChangeColor}
-          onMouseLeave={handleLeaveColor}
-          sx={{ padding: 10 }}
-        >
-          <CameraAlt fontSize="large" />
-        </IconButton>
-        <Popper open={open} role={undefined} transition disablePortal>
-          <Paper>
-            <ClickAwayListener onClickAway={handleClose}>
-              <MenuItem onClick={handleClose}>Remove</MenuItem>
-            </ClickAwayListener>
-          </Paper>
-        </Popper>
-      </Grid>
+    <Box sx={{paddingRight:'10%'}}>
+      <IconButton
+        aria-haspopup="true"
+        onClick={(event) => {
+          handleCropper();
+          handleWindowOpen();
+        }}
+      >
+        <img
+          src={croppedImage ? croppedImage : Picture}
+          alt="Profile"
+          style={{ width: "200px", height: "200px", borderRadius: "50%" }}
+        />
+      </IconButton>
+      <Popper open={open} role={undefined} transition disablePortal>
+        <Paper>
+          <ClickAwayListener onClickAway={handleClose}>
+            <MenuItem onClick={handleClose}>Remove</MenuItem>
+          </ClickAwayListener>
+        </Paper>
+      </Popper>
       <Dialog open={openWindow} maxWidth="lg" onClose={handleWindowClose}>
         <Grid>
           <Box
