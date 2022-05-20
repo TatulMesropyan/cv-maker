@@ -7,18 +7,18 @@ import * as actions from "../../redux/Actions/formAction";
 import Education from "./Education";
 import Skills from "./Skills";
 import Certifications from "./Certifications";
-import Languages from "./Languages";
 import Projects from "./Projects";
 import Workplace from "./Workplace";
 import Personal from "./Personal";
 import "material-icons/iconfont/material-icons.css";
 import "./Form.css";
+import Personal from "./Personal";
+import Languages  from "../Languages";
 
 export default function Form() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [data, setData] = useState({ header: {}, main: {} });
-
   const getData = (data, _topic) => {
     if (data.length === 0) return;
 
@@ -73,7 +73,7 @@ export default function Form() {
                   <Projects getData={getData} />
                   <Certifications getData={getData} />
                   <Skills getData={getData} />
-                  <Languages getData={getData} />
+                  <Languages getData={getData}/>
                 </Grid>
               </Box>
             </Grid>

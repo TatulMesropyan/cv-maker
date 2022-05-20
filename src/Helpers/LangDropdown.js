@@ -2,29 +2,30 @@
 import React, { useState } from 'react';
 import { Select } from '@mui/material';
 import { MenuItem } from '@mui/material';
-import { getDate } from 'date-fns';
+
 
 const multiLang = {
   useDropdown: (languages) => {
     const [state, setState] = useState(languages.en);
 
-    const handleSelectedLanguage = (e) => {
-      console.log(languages);
+    const handleSelectedLanguage = (e, getData) => {
       setState(languages[e.target.value]);
+      getData([languages[e.target.value]])
     }
-
+ 
     Object.keys(languages).map(function (key) {
       languages[key] = { ...languages[key], "bcp47": key };
     })
-    const Dropdown = ({getDATA}) => {
+    const Dropdown = ({ getData }) => {
       return (
         <div className='languageDropdown'>
           <Select
             disabled={languages.length === 0}
             value={state.bcp47}
-            onChange={(e) => handleSelectedLanguage(e)}
-            onBlur={e => handleSelectedLanguage(e)}
-          >
+            // onChange={(e) =>getData(languages[e.target.value])}
+            // onBlur={(e) =>getData(languages[e.target.value])}
+            onChange={(e) => handleSelectedLanguage(e, getData)}
+          >=
             {Object.keys(languages).map(key => (
               <MenuItem value={languages[key].bcp47} key={languages[key].bcp47} >
                 {languages[key]?.emoji} {languages[key].name}
