@@ -1,17 +1,17 @@
 import React, { useEffect, useRef } from "react";
 import { Grid, Typography, Box } from "@mui/material";
-import "material-icons/iconfont/material-icons.css";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
 import store from "../redux/store";
 import { dataTest } from "./dataForTest";
-import "../CV.css";
 import { Article } from "./Article";
-import logoPng from "../images/img.png";
-import textPng from "../images/img_1.png";
-import leftSectionPng from "../images/img_2.png";
 import { SectionColumn } from "./SectionColumn";
 import { SectionRow } from "./SectionRow";
+import leftSectionPng from "../images/img_2.png";
+import logoPng from "../images/img.png";
+import textPng from "../images/img_1.png";
+import "material-icons/iconfont/material-icons.css";
+import "../CV.css";
 
 export default function CvTemplate() {
 	 const data = store.getState();
@@ -44,7 +44,7 @@ export default function CvTemplate() {
 	main.forEach((itm, index) => {
 		let content = [];
 		const body = [].concat(itm.body);
-		const contentType = itm.body.length > 2;
+		const contentType = ["Projects" , "Experience"].includes(itm.topic);
 
 		body.forEach((it, ind) => {
 			content.push(
@@ -130,7 +130,7 @@ export default function CvTemplate() {
 						</Box>
 						<Box pt="30px">
 							<Box>
-								<Typography className="header-text textAlignRight">
+								<Typography fontSize="16px" className="header-text textAlignRight">
 									<span style={{ fontSize: "18px" }} className="material-icons">
 										location_on
 									</span>
@@ -139,6 +139,7 @@ export default function CvTemplate() {
 							</Box>
 							<Box mt="10px">
 								<Typography
+									fontSize="16px"
 									className="header-text textAlignRight"
 									fontWeight="500"
 								>

@@ -37,7 +37,6 @@ export default function Certifications({ getData }) {
 				</Grid>
 			</Grid>
 			<Section
-				topic="Certifications & Courses"
 				getData={handleData}
 				content={content}
 			/>

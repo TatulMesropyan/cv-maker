@@ -73,7 +73,6 @@ export default function Workplace({ getData }) {
         </Grid>
       </Grid>
       <Section
-        topic="Experience"
         getData={handleData}
         content={content}
         divisionLine={true}

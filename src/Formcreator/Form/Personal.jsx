@@ -30,8 +30,8 @@ const Bodycontent = [
   },
   {
     grid: 6,
-    name: "phone",
-    label: "Phone Number",
+    name: "location",
+    label: "Location",
     inputType: "input",
   },
   {
@@ -61,6 +61,7 @@ const Bodycontent = [
 ];
 
 export default function Personal({ getData }) {
+  const topic = "Personal";
   const currentImage = useRef();
   return (
     <>
@@ -96,8 +97,7 @@ export default function Personal({ getData }) {
         </Grid>
         <Grid item xs={9} alignContent="space-around">
           <Section
-            getData={getData}
-            topic="Personal"
+            getData={(e) => getData(e, topic)}
             content={Headercontent}
             dynamic={false}
           />
@@ -105,8 +105,7 @@ export default function Personal({ getData }) {
       </Grid>
       <Box pt={3}>
         <Section
-          getData={getData}
-          topic="Personal"
+          getData={(e) => getData(e, topic)}
           content={Bodycontent}
           dynamic={false}
         />

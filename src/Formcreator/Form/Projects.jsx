@@ -3,10 +3,6 @@ import {
 	Grid,
 	Typography,
 	Box,
-	Container,
-	TextField,
-	Button,
-	Input,
 } from "@mui/material";
 import "material-icons/iconfont/material-icons.css";
 import "./Form.css";
@@ -59,7 +55,6 @@ export default function Projects({ getData }) {
 				</Grid>
 			</Grid>
 			<Section
-				topic="Projects"
 				getData={handleData}
 				content={content}
 				divisionLine={true}
