@@ -1,12 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import {
 	Grid,
 	Typography,
 	Box,
-	Container,
-	TextField,
-	Button,
-	Input,
 } from "@mui/material";
 import "material-icons/iconfont/material-icons.css";
 import "./Form.css";
@@ -40,7 +36,7 @@ export default function Skills({ getData }) {
 					</Box>
 				</Grid>
 			</Grid>
-			<Section getData={handleData} topic="Skills" content={content} />
+			<Section getData={handleData} content={content} />
 		</>
 	);
 }

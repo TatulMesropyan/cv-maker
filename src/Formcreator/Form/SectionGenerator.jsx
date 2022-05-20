@@ -1,10 +1,10 @@
 import React, { useEffect, useState, useMemo } from "react";
-import { Grid, Box, Typography, TextField } from "@mui/material";
+import { Grid, Box } from "@mui/material";
 import "./Form.css";
 import Buttons from "./Buttons";
 import GenerateInputs from "./GenerateInputs";
 
-export default function Section({ getData, topic, content, divisionLine = false, dynamic = true }) {
+export default function Section({ getData, content, divisionLine = false, dynamic = true }) {
 	const inputs = useMemo(() => Object.fromEntries(content.map((itm) => [itm.name, ""])), [content]);
 
 	const [contents, setContents] = useState([]);
@@ -45,7 +45,7 @@ export default function Section({ getData, topic, content, divisionLine = false,
 	};
 
 	useEffect(() => {
-		getData(inputValues, topic);
+		getData(inputValues);
 	}, [inputValues]);
 
 	useEffect(() => {

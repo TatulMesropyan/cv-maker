@@ -63,7 +63,6 @@ export default function Education({ getData }) {
 				</Grid>
 			</Grid>
 			<Section
-				topic="Education"
 				getData={handleData}
 				content={content}
 				divisionLine={true}
