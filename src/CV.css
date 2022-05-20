@@ -133,23 +133,11 @@ h1, h2, h3, p, li{
     color: #0C0C0C80;
 }
 
-/*.header-logo-section{*/
-/*    float: right;*/
-/*    margin-right: 50px;*/
-/*    margin-top: 30px;*/
-/*}*/
-
-/*.imgWrapper{*/
-/*    display: flex;*/
-/*    align-content: center;*/
-/*    justify-content: right;*/
-/*}*/
-
-/*.header-text{*/
-/*    text-align: right;*/
-/*    padding: 0;*/
-/*    margin: 10px 0;*/
-/*    color: white;*/
-/*    font-size: 16px;*/
-/*    font-family: "Montserrat";*/
-/*}*/
+.Languages{
+    display: inline-block;
+    background-color: rgb(240, 240, 240);
+    border-radius: 4px;
+    padding: 10px 15px;
+    text-align: center;
+    margin-right: 10px;
+}
