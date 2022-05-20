@@ -33,7 +33,7 @@ export default function Languages({ getData }) {
           </Box>
         </Grid>
       </Grid>
-      <Section getData={handleData} topic="Languages" content={content} />
+      <Section getData={handleData} content={content} />
     </>
   );
 }

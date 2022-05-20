@@ -10,9 +10,9 @@ import Certifications from "./Certifications";
 import Languages from "./Languages";
 import Projects from "./Projects";
 import Workplace from "./Workplace";
+import Personal from "./Personal";
 import "material-icons/iconfont/material-icons.css";
 import "./Form.css";
-import Personal from "./Personal";
 
 export default function Form() {
   const navigate = useNavigate();
