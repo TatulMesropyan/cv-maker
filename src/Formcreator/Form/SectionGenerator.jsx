@@ -51,7 +51,7 @@ export default function Section({ getData, content, divisionLine = false, dynami
 	useEffect(() => {
 		if (!dynamic && contents.length === 0) AddContent();
 	}, []);
-
+	
 	return (
 		<>
 			{contents}

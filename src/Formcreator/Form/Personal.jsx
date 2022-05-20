@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useRef } from "react";
-import { Grid, Box } from "@mui/material";
+import React, { useRef, useState } from "react";
+import { Grid, Box, IconButton } from "@mui/material";
 import "material-icons/iconfont/material-icons.css";
 import "./Form.css";
 import Section from "./SectionGenerator";
 import RenderAvatar from "./Avatar";
-import Picture from "../../images/img.png";
+import Picture from "../../images/profileimg.webp";
 
 const Headercontent = [
   {
@@ -62,38 +62,19 @@ const Bodycontent = [
 
 export default function Personal({ getData }) {
   const topic = "Personal";
+  const [open, setOpen] = useState(false);
   const currentImage = useRef();
+
   return (
     <>
-      <Grid container columnSpacing={3}>
-        <Grid item xs={3}>
-          <Box
-            sx={{
-              boxShadow: 1,
-              backgroundColor: "gray",
-              alignContent: "center",
-              borderRadius: "50%",
-              width: "200px",
-              height: "200px",
-            }}
-          >
-              <img
-                src={Picture}
-                ref={currentImage}
-                alt="pox"
-                width="200px"
-                height="200px"
-              />
-            {/* {currentImage.current ? (
-              <img src={currentImage} alt="blyat" />
-            ) : ( */}
-              <RenderAvatar
-                getData={getData}
-                currentImage={currentImage}
-                topic="Personal"
-              />
-            {/* )} */}
-          </Box>
+      <Grid container alignItems="center" columnSpacing={3}>
+        <Grid item  xs={3}>
+          <Box>
+               <RenderAvatar
+              getData={getData}
+              topic="Personal"
+            />
+            </Box>
         </Grid>
         <Grid item xs={9} alignContent="space-around">
           <Section

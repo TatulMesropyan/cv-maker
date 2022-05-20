@@ -1,11 +1,10 @@
 import labels from "../Helpers/labels"
 import * as actions from "../redux/Actions/languageActions";
-import { useSelector, useDispatch } from "react-redux";
+import {  useDispatch } from "react-redux";
 import languageDropdown from "../Helpers/LangDropdown";
 import languagePacket from "../Helpers/languages.json";
 import "../App.css";
 import {
-  TextField,
   Button,
   Typography,
   Grid,
@@ -13,7 +12,6 @@ import {
   Card,
   CardContent,
 } from "@mui/material";
-import { useCallback } from "react";
 
 
 const Languages = ({getData,topic}) => {
@@ -27,13 +25,6 @@ const Languages = ({getData,topic}) => {
   const [language, LanguageDropdown] =
     languageDropdown.useDropdown(languagePacket);
 
-  const checkBoxLabel = {
-    one:"Low",
-    two:"Elementary ",
-    three:"Limited ",
-    four:"Professional",
-    five:"Native",
-  }
   return (
     <Box component="form" noValidate sx={{ pt: 3, p3: 4 }}>
       <Card sx={{ mt: 4 }} raised={true}>
