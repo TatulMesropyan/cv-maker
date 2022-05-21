@@ -21,7 +21,7 @@ const Languages = ({getData,topic}) => {
   const handleOnRemove = (e, index) => {
     dispatch(actions.languageRemove(index));
   };
-
+  /* eslint-disable no-unused-vars */
   const [language, LanguageDropdown] =
     languageDropdown.useDropdown(languagePacket);
 

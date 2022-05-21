@@ -10,7 +10,7 @@ import Certifications from "./Certifications";
 import Projects from "./Projects";
 import Workplace from "./Workplace";
 import Personal from "./Personal";
-import Languages  from "./Languages";
+import Languages from "./Languages";
 import "material-icons/iconfont/material-icons.css";
 import "./Form.css";
 
@@ -37,9 +37,8 @@ export default function Form() {
 
   const HandleOnSubmit = (e) => {
     e.preventDefault();
-
     dispatch(actions.updateFormData(data));
-
+    console.log(JSON.stringify(data));
     navigate("/cv");
   };
 
@@ -69,7 +68,7 @@ export default function Form() {
                   <Projects getData={getData} />
                   <Certifications getData={getData} />
                   <Skills getData={getData} />
-                  <Languages getData={getData}/>
+                  <Languages getData={getData} />
                 </Grid>
               </Box>
             </Grid>

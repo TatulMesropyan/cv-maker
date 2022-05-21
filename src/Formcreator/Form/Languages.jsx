@@ -14,7 +14,6 @@ const content = [
 ];
 
 export default function Languages({ getData }) {
-
   const topic = "Languages";
 
   const handleData = (data) => {
