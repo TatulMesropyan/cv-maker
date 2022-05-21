@@ -1,10 +1,9 @@
-import React, { useRef, useState } from "react";
-import { Grid, Box, IconButton } from "@mui/material";
+import React from "react";
+import { Grid, Box } from "@mui/material";
 import "material-icons/iconfont/material-icons.css";
 import "./Form.css";
 import Section from "./SectionGenerator";
 import RenderAvatar from "./Avatar";
-import Picture from "../../images/profileimg.webp";
 
 const Headercontent = [
   {
@@ -62,8 +61,6 @@ const Bodycontent = [
 
 export default function Personal({ getData }) {
   const topic = "Personal";
-  const [open, setOpen] = useState(false);
-  const currentImage = useRef();
 
   return (
     <>
