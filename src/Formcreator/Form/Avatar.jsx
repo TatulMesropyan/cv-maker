@@ -17,7 +17,6 @@ import {
   Avatar,
 } from "@mui/material";
 import getCroppedImg from "../../Helpers/cropImage";
-// import { CameraAlt } from "@material-ui/icons";
 
 const RenderAvatar = ({ getData, topic }) => {
   /* eslint-disable no-unused-vars */
@@ -31,6 +30,7 @@ const RenderAvatar = ({ getData, topic }) => {
   const [zoom, setZoom] = useState(1);
   const [open, setOpen] = useState(false);
   const [openWindow, setOpenWindow] = useState(false);
+
   const onCropComplete = (croppedAreaPercentage, croppedAreaPixels) => {
     setCroppedArea(croppedAreaPixels);
   };
@@ -47,8 +47,6 @@ const RenderAvatar = ({ getData, topic }) => {
   const onClear = () => {
     image && setImage(null);
   };
-
-  const [mouseEnter, setMouseEnter] = useState(false);
 
   const [croppedImage, setCroppedImage] = useState("");
   const onUpload = async () => {
@@ -76,13 +74,7 @@ const RenderAvatar = ({ getData, topic }) => {
           handleCropper();
           setOpenWindow(true);
         }}
-        onMouseEnter={() => setMouseEnter(true)}
-        onMouseLeave={() => setMouseEnter(false)}
       >
-        {/* {mouseEnter && (
-            <CameraAlt />
-        )} */}
-
         <Avatar
           src={croppedImage ? croppedImage : Picture}
           sx={{ width: "200px", height: "200px" }}
@@ -95,7 +87,11 @@ const RenderAvatar = ({ getData, topic }) => {
           </ClickAwayListener>
         </Paper>
       </Popper>
-      <Dialog open={openWindow} maxWidth="lg" onClose={() => setOpenWindow(true)}>
+      <Dialog
+        open={openWindow}
+        maxWidth="lg"
+        onClose={() => setOpenWindow(false)}
+      >
         <Grid>
           <Box
             sx={{
