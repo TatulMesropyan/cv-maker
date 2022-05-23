@@ -6,7 +6,7 @@ function App(store) {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Form />}/>
+        <Route path="/" exact element={<Form />}/>
         <Route path="/cv" exact element={<CvTemplate />}/>
       </Routes>
     </BrowserRouter>

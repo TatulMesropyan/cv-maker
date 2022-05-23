@@ -1,22 +1,25 @@
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Select } from '@mui/material';
 import { MenuItem } from '@mui/material';
 
 
 const multiLang = {
   useDropdown: (languages) => {
-    const [state, setState] = useState(languages.en);
+    const [state, setState] = useState(languages.hy);
 
-    const handleSelectedLanguage = (e, getData) => {
+    const handleSelectedLanguage = (e) => {
       setState(languages[e.target.value]);
-      getData(e);
     }
  
     Object.keys(languages).map(function (key) {
       languages[key] = { ...languages[key], "bcp47": key };
     })
     const Dropdown = ({getData}) => {
+      useEffect(() => {
+        getData(state.bcp47);
+      }, [state]);
+
       return (
         <div className='languageDropdown'>
           <Select
@@ -24,7 +27,7 @@ const multiLang = {
             value={state.bcp47}
             // onChange={(e) =>getData(languages[e.target.value])}
             // onBlur={(e) =>getData(languages[e.target.value])}
-            onChange={(e) => handleSelectedLanguage(e, getData)}
+            onChange={(e) => handleSelectedLanguage(e)}
           >
             {Object.keys(languages).map(key => (
               <MenuItem value={languages[key].bcp47} key={languages[key].bcp47} >

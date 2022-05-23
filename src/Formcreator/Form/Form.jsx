@@ -8,6 +8,7 @@ import Education from "./Education";
 import Skills from "./Skills";
 import Certifications from "./Certifications";
 import Projects from "./Projects";
+import Summary from "./Summary";
 import Workplace from "./Workplace";
 import Personal from "./Personal";
 import Languages from "./Languages";
@@ -37,8 +38,8 @@ export default function Form() {
 
   const HandleOnSubmit = (e) => {
     e.preventDefault();
+    console.log(data);
     dispatch(actions.updateFormData(data));
-    console.log(JSON.stringify(data));
     navigate("/cv");
   };
 
@@ -63,6 +64,7 @@ export default function Form() {
                 </Box>
                 <Grid container>
                   <Personal getData={getData} />
+                  <Summary getData={getData} />
                   <Education getData={getData} />
                   <Workplace getData={getData} />
                   <Projects getData={getData} />

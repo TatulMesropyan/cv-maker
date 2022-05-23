@@ -6,6 +6,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 export default function Buttons({
 	removeClbck,
 	addClbck,
+	addButton = true,
 	removeButton = false,
 }) {
 	return (
@@ -23,7 +24,8 @@ export default function Buttons({
 								Del
 							</Button>
 						</Box>
-						<Box display="inline-block" p={1}>
+
+						{addButton && <Box display="inline-block" p={1}>
 							<Button
 								onClick={addClbck}
 								variant="contained"
@@ -32,7 +34,7 @@ export default function Buttons({
 							>
 								Add
 							</Button>
-						</Box>
+						</Box>}
 					</>
 				)}
 
