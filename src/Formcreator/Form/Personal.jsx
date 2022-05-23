@@ -54,8 +54,12 @@ export default function Personal({ getData }) {
     <>
       <Grid container alignItems="center" columnSpacing={3}>
         <Grid item xs={12} lg={3} textAlign="center">
-        <Grid item xs={3}>
-          <RenderAvatar getData={getData} topic="Personal" />
+          <Box>
+               <RenderAvatar
+              getData={getData}
+              topic="Personal"
+            />
+            </Box>
         </Grid>
         <Grid item sm={12} lg={9} alignContent="space-around">
           <Section
@@ -72,7 +76,6 @@ export default function Personal({ getData }) {
           dynamic={false}
         />
       </Box>
-      </Grid>
     </>
   );
 }
