@@ -14,6 +14,7 @@ import Personal from "./Personal";
 import Languages from "./Languages";
 import "material-icons/iconfont/material-icons.css";
 import "./Form.css";
+//import * as fs from 'fs/promises';
 
 export default function Form() {
   const navigate = useNavigate();
@@ -38,8 +39,8 @@ export default function Form() {
 
   const HandleOnSubmit = (e) => {
     e.preventDefault();
-    console.log(data);
     dispatch(actions.updateFormData(data));
+    // fs.writeFileSync("data.json", JSON.stringify(data));
     navigate("/cv");
   };
 
