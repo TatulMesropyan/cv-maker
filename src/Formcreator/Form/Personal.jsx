@@ -35,18 +35,6 @@ const Bodycontent = [
   },
   {
     grid: 6,
-    name: "country",
-    label: "Country",
-    inputType: "input",
-  },
-  {
-    grid: 6,
-    name: "city",
-    label: "City",
-    inputType: "input",
-  },
-  {
-    grid: 6,
     name: "position",
     label: "Position",
     inputType: "input",
@@ -65,7 +53,7 @@ export default function Personal({ getData }) {
   return (
     <>
       <Grid container alignItems="center" columnSpacing={3}>
-        <Grid item  xs={3}>
+        <Grid item xs={12} lg={3} textAlign="center">
           <Box>
                <RenderAvatar
               getData={getData}
@@ -73,7 +61,7 @@ export default function Personal({ getData }) {
             />
             </Box>
         </Grid>
-        <Grid item xs={9} alignContent="space-around">
+        <Grid item sm={12} lg={9} alignContent="space-around">
           <Section
             getData={(e) => getData(e, topic)}
             content={Headercontent}

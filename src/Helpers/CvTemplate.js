@@ -13,12 +13,12 @@ import "material-icons/iconfont/material-icons.css";
 import "../CV.css";
 
 export default function CvTemplate() {
-	 const data = store.getState();
-	 let header = data.formDataReducer.header;
-	 let main = Object.values(data.formDataReducer.main);
-	 //header.image = dataTest.header.image;
+	const data = store.getState();
+	let header = data.formDataReducer.header;
+	let main = Object.values(data.formDataReducer.main);
 	const pdfRef = useRef();
-
+	
+	//header.image = dataTest.header.image;
 	// const header = dataTest.header;
 	// const main = dataTest.main;
 
@@ -26,6 +26,46 @@ export default function CvTemplate() {
 
 	let contentRow = [];
 	let contentSection = [];
+
+	main.forEach((itm, index) => {
+		let content = [];
+		const body = [].concat(itm.body);
+		const contentType = ["Projects", "Experience"].includes(itm.topic);
+
+		body.forEach((it, ind) => {
+			if (it && Object.values(it).some((v) => v.length !== 0)) {
+				content.push(
+					contentType ? (
+						<Grid item xs={6} key={ind}>
+							<Article {...it} />
+						</Grid>
+					) : (
+						<Article {...it} key={ind} />
+					)
+				);
+			}
+		});
+
+		if (content.length !== 0) {
+			if (contentType) {
+				contentSection.push(
+					<SectionColumn
+						article={<Article topic={itm.topic} />}
+						content={content}
+						key={index}
+					/>
+				);
+			} else {
+				contentRow.push(
+					<SectionRow
+						article={<Article topic={itm.topic} />}
+						content={content}
+						key={index}
+					/>
+				);
+			}
+		}
+	});
 
 	function generateHtml() {
 		html2canvas(pdfRef.current, { scale: 2 }).then((canvas) => {
@@ -39,42 +79,6 @@ export default function CvTemplate() {
 
 		return true;
 	}
-
-	main.forEach((itm, index) => {
-		let content = [];
-		const body = [].concat(itm.body);
-		const contentType = ["Projects" , "Experience"].includes(itm.topic);
-
-		body.forEach((it, ind) => {
-			content.push(
-				contentType ? (
-					<Grid item xs={6} key={ind}>
-						<Article {...it} />
-					</Grid>
-				) : (
-					<Article {...it} key={ind} />
-				)
-			);
-		});
-
-		if (contentType) {
-			contentSection.push(
-				<SectionColumn
-					article={<Article topic={itm.topic} />}
-					content={content}
-					key={index}
-				/>
-			);
-		} else {
-			contentRow.push(
-				<SectionRow
-					article={<Article topic={itm.topic} />}
-					content={content}
-					key={index}
-				/>
-			);
-		}
-	});
 
 	useEffect(() => {
 		// generateHtml();
@@ -129,7 +133,10 @@ export default function CvTemplate() {
 						</Box>
 						<Box pt="30px">
 							<Box>
-								<Typography fontSize="16px" className="header-text textAlignRight">
+								<Typography
+									fontSize="16px"
+									className="header-text textAlignRight"
+								>
 									<span style={{ fontSize: "18px" }} className="material-icons">
 										location_on
 									</span>

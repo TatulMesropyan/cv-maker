@@ -7,7 +7,7 @@ import '../CV.css';
 export function Article({topic, subtopic, secondarySubtopic, date, languages, secondaryText, location}) {
     let secText;
 
-		if (secondaryText)
+		if (secondaryText){
 			if (Array.isArray(secondaryText)) {
 				secText = secondaryText.map((itm, index) => {
 					return (
@@ -19,6 +19,7 @@ export function Article({topic, subtopic, secondarySubtopic, date, languages, se
 			} else {
 				secText = <p className="text-secondary">{secondaryText}</p>;
 			}
+		}
 
 		return (
 			<>

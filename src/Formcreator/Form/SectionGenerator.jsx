@@ -7,6 +7,7 @@ import GenerateInputs from "./GenerateInputs";
 export default function Section({
   getData,
   content,
+  sizeLimit,
   divisionLine = false,
   dynamic = true,
 }) {
@@ -21,7 +22,7 @@ export default function Section({
   const handleInputs = (e, name, index) => {
     setInputValues((v) => {
       let value = [...v];
-      value[index][name] = e.target.value;
+      value[index][name] = e;
       return value;
     });
   };
@@ -69,6 +70,7 @@ export default function Section({
         <Buttons
           removeClbck={RemoveContent}
           addClbck={AddContent}
+          addButton={sizeLimit ? contents.length < sizeLimit : true}
           removeButton={contents.length > 0}
         />
       )}

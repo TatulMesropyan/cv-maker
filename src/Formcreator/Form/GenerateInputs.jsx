@@ -24,7 +24,7 @@ export default function GenerateInputs({ content, index, inputHandler }) {
               InputLabelProps={{ shrink: true }}
               type="date"
               onChange={(e) => {
-                inputHandler(e, itm.name, index);
+                inputHandler(e.target.value, itm.name, index);
               }}
             />
           );
@@ -35,11 +35,12 @@ export default function GenerateInputs({ content, index, inputHandler }) {
             <TextField
               name={itm.name}
               label={itm.label}
+              multiline
               margin="normal"
               variant="outlined"
               fullWidth
               onChange={(e) => {
-                inputHandler(e, itm.name, index);
+                inputHandler(e.target.value, itm.name, index);
               }}
             />
           );
