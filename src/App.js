@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Form from './Formcreator/Form/Form';
 import CvTemplate from "./Helpers/CvTemplate"
+import React from "react";
 import './App.css';
 function App(store) {
   return (
