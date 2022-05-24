@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useMemo } from "react";
 import { Grid, Typography, Box } from "@mui/material";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
@@ -13,10 +13,13 @@ import "material-icons/iconfont/material-icons.css";
 import "../CV.css";
 
 export default function CvTemplate() {
+	// let contentRow = [];
+	// let contentSection = [];
+
 	const data = store.getState();
+	const pdfRef = useRef();
 	let header = data.formDataReducer.header;
 	let main = Object.values(data.formDataReducer.main);
-	const pdfRef = useRef();
 	
 	//header.image = dataTest.header.image;
 	// const header = dataTest.header;
@@ -24,48 +27,52 @@ export default function CvTemplate() {
 
 	const imagePerson = 'url("' + header.image + '")';
 
-	let contentRow = [];
-	let contentSection = [];
+	const [contentRow, contentSection] = useMemo(() => {
+		let row = [];
+		let section = [];
 
-	main.forEach((itm, index) => {
-		let content = [];
-		const body = [].concat(itm.body);
-		const contentType = ["Projects", "Experience"].includes(itm.topic);
-
-		body.forEach((it, ind) => {
-			if (it && Object.values(it).some((v) => v.length !== 0)) {
-				content.push(
-					contentType ? (
-						<Grid item xs={6} key={ind}>
-							<Article {...it} />
-						</Grid>
-					) : (
-						<Article {...it} key={ind} />
-					)
-				);
+		main.forEach((itm, index) => {
+			let content = [];
+			const body = [].concat(itm.body);
+			const contentType = ["Projects", "Experience"].includes(itm.topic);
+	
+			body.forEach((it, ind) => {
+				if (it && Object.values(it).some((v) => v.length !== 0)) {
+					content.push(
+						contentType ? (
+							<Grid item xs={6} key={ind}>
+								<Article {...it} />
+							</Grid>
+						) : (
+							<Article {...it} key={ind} />
+						)
+					);
+				}
+			});
+	
+			if (content.length !== 0) {
+				if (contentType) {
+					section.push(
+						<SectionColumn
+							article={<Article topic={itm.topic} />}
+							content={content}
+							key={index}
+						/>
+					);
+				} else {
+					row.push(
+						<SectionRow
+							article={<Article topic={itm.topic} />}
+							content={content}
+							key={index}
+						/>
+					);
+				}
 			}
 		});
 
-		if (content.length !== 0) {
-			if (contentType) {
-				contentSection.push(
-					<SectionColumn
-						article={<Article topic={itm.topic} />}
-						content={content}
-						key={index}
-					/>
-				);
-			} else {
-				contentRow.push(
-					<SectionRow
-						article={<Article topic={itm.topic} />}
-						content={content}
-						key={index}
-					/>
-				);
-			}
-		}
-	});
+		return [row, section];
+	}, [data]);
 
 	function generateHtml() {
 		html2canvas(pdfRef.current, { scale: 2 }).then((canvas) => {
