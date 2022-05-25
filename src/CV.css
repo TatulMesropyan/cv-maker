@@ -8,7 +8,7 @@ h1, h2, h3, p, li{
     background-color: rgb(233, 233, 233);
 }
 
-.mainContainer{
+#mainContainer{
     position: relative;
     width: 1792px;
     padding-bottom: 120px;
