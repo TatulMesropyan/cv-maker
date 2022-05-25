@@ -9,7 +9,7 @@ h1, h2, h3, p, li{
 }
 
 #mainContainer{
-    position: relative;
+    position: fixed;
     width: 1792px;
     padding-bottom: 120px;
     background-color: white;
