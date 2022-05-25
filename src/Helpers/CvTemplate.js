@@ -70,8 +70,10 @@ export default function CvTemplate() {
 	}, [data]);
 
 	const generateHtml = () => {
+		document.getElementById("mainContainer").style.boxShadow = "none"
 		html2canvas(pdfRef.current, { scale: 1 }).then((canvas) => {
 			const width = canvas.width;
+			console.log(canvas.width)
 			const height = canvas.height;
 			const orientation = width > height ? "l" : "p";
 			let doc = new jsPDF(orientation, "px", [width, height]);
@@ -79,10 +81,11 @@ export default function CvTemplate() {
 			doc.addImage(img, "JPEG", 0, 0, width, height);
 			doc.save("CV");
 		});
+		document.getElementById("mainContainer").style.boxShadow = "0 0 20px 0 rgba(0, 0, 0, 0.5)";
 	};
 
 	return (
-		<Box className="CvBackground">
+		<Box id="CvBackground">
 			<Box className="downloadButton">
 				<Button
 					onClick={() => generateHtml()}
@@ -92,7 +95,7 @@ export default function CvTemplate() {
 					<DownloadIcon />
 				</Button>
 			</Box>
-			<Box className="mainContainer" ref={pdfRef}>
+			<Box id="mainContainer" ref={pdfRef}>
 				<img src={leftSectionPng} className="header-background" alt="#" />
 				<Grid
 					container
