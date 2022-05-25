@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useMemo } from "react";
-import { Grid, Typography, Box } from "@mui/material";
+import { Grid, Typography, Box, Button } from "@mui/material";
+import DownloadIcon from '@mui/icons-material/Download';
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
 import store from "../redux/store";
@@ -13,17 +14,11 @@ import "material-icons/iconfont/material-icons.css";
 import "../CV.css";
 
 export default function CvTemplate() {
-	// let contentRow = [];
-	// let contentSection = [];
-
 	const data = store.getState();
 	const pdfRef = useRef();
+
 	let header = data.formDataReducer.header;
 	let main = Object.values(data.formDataReducer.main);
-	
-	//header.image = dataTest.header.image;
-	// const header = dataTest.header;
-	// const main = dataTest.main;
 
 	const imagePerson = 'url("' + header.image + '")';
 
@@ -37,7 +32,7 @@ export default function CvTemplate() {
 			const contentType = ["Projects", "Experience"].includes(itm.topic);
 	
 			body.forEach((it, ind) => {
-				if (it && Object.values(it).some((v) => v.length !== 0)) {
+				if (it && Object.values(it).some((v) => v.length)) {
 					content.push(
 						contentType ? (
 							<Grid item xs={6} key={ind}>
@@ -50,7 +45,7 @@ export default function CvTemplate() {
 				}
 			});
 	
-			if (content.length !== 0) {
+			if (content.length) {
 				if (contentType) {
 					section.push(
 						<SectionColumn
@@ -74,27 +69,30 @@ export default function CvTemplate() {
 		return [row, section];
 	}, [data]);
 
-	function generateHtml() {
-		html2canvas(pdfRef.current, { scale: 2 }).then((canvas) => {
+	const generateHtml = () => {
+		html2canvas(pdfRef.current, { scale: 1 }).then((canvas) => {
 			const width = canvas.width;
 			const height = canvas.height;
-			let doc = new jsPDF("p", "px", [width, height]);
+			const orientation = width > height ? "l" : "p";
+			let doc = new jsPDF(orientation, "px", [width, height]);
 			const img = canvas.toDataURL("image/jpeg");
 			doc.addImage(img, "JPEG", 0, 0, width, height);
 			doc.save("CV");
 		});
-
-		return true;
-	}
-
-	useEffect(() => {
-		// generateHtml();
-	}, []);
+	};
 
 	return (
 		<Box className="CvBackground">
+			<Box className="downloadButton">
+				<Button
+					onClick={() => generateHtml()}
+					variant="contained"
+					color="primary"
+				>
+					<DownloadIcon />
+				</Button>
+			</Box>
 			<Box className="mainContainer" ref={pdfRef}>
-				{/* <Box> */}
 				<img src={leftSectionPng} className="header-background" alt="#" />
 				<Grid
 					container
@@ -168,7 +166,6 @@ export default function CvTemplate() {
 						</Box>
 					</Grid>
 				</Grid>
-				{/* </Box> */}
 
 				<Grid
 					container

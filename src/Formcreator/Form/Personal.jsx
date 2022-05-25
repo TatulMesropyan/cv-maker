@@ -34,16 +34,10 @@ const Bodycontent = [
 		inputType: "input",
 	},
 	{
-		grid: 6,
+		grid: 12,
 		name: "position",
 		label: "Position",
 		inputType: "input",
-	},
-	{
-		grid: 6,
-		name: "birthday",
-		label: "Birthday",
-		inputType: "date",
 	},
 ];
 
@@ -66,7 +60,7 @@ export default function Personal({ getData }) {
 					/>
 				</Grid>
 			</Grid>
-      
+
 			<Grid container alignContent="space-around">
 				<Grid item xs={12}>
 					<Section
