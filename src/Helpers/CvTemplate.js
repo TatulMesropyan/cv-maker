@@ -12,11 +12,12 @@ import logoPng from "../images/img.png";
 import textPng from "../images/img_1.png";
 import "material-icons/iconfont/material-icons.css";
 import "../CV.css";
+import { useNavigate } from "react-router-dom";
 
 export default function CvTemplate() {
 	const data = store.getState();
 	const pdfRef = useRef();
-
+	const navigate = useNavigate()
 	let header = data.formDataReducer.header;
 	let main = Object.values(data.formDataReducer.main);
 
@@ -79,7 +80,8 @@ export default function CvTemplate() {
 			let doc = new jsPDF(orientation, "px", [width, height]);
 			const img = canvas.toDataURL("image/jpeg");
 			doc.addImage(img, "JPEG", 0, 0, width, height);
-			doc.save("CV");
+			doc.save( header.fname? `${header.fname}'s CV`: "CV");
+			// navigate("/");
 		});
 		document.getElementById("mainContainer").style.boxShadow = "0 0 20px 0 rgba(0, 0, 0, 0.5)";
 	};
