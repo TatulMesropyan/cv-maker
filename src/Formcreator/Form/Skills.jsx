@@ -36,7 +36,7 @@ export default function Skills({ getData }) {
 					</Box>
 				</Grid>
 			</Grid>
-			<Section getData={handleData} content={content} />
+			<Section getData={handleData} sizeLimit={40} content={content} />
 		</>
 	);
 }

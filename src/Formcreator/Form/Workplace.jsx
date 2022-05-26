@@ -41,6 +41,7 @@ const content = [
     name: "workplace_description",
     label: "Description",
     inputType: "input",
+		multiline : true,
   },
 ];
 
@@ -75,6 +76,7 @@ export default function Workplace({ getData }) {
       <Section
         getData={handleData}
         content={content}
+        sizeLimit={50}
         divisionLine={true}
       />
     </>

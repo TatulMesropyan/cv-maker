@@ -32,7 +32,7 @@ export default function Languages({ getData }) {
 					</Box>
 				</Grid>
 			</Grid>
-			<Section getData={handleData} content={content} />
+			<Section getData={handleData} sizeLimit={5} content={content} />
 		</>
 	);
 }

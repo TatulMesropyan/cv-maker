@@ -38,6 +38,7 @@ export default function Certifications({ getData }) {
 			</Grid>
 			<Section
 				getData={handleData}
+				sizeLimit={10}
 				content={content}
 			/>
 		</>

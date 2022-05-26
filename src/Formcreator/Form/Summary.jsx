@@ -14,6 +14,7 @@ const content = [
 		name: "summary",
 		label: "Summary",
 		inputType: "input",
+		multiline : true,
 	},
 ];
 

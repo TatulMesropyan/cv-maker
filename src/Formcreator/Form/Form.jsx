@@ -39,6 +39,7 @@ export default function Form() {
   const HandleOnSubmit = (e) => {
     e.preventDefault();
     dispatch(actions.updateFormData(data));
+    console.log(data);
     localStorage.setItem("LOCAL_STORAGE_DATA", JSON.stringify(data));
     navigate("/cv");
   };
