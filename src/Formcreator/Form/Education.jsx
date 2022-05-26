@@ -27,12 +27,14 @@ const content = [
 		name: "education_from",
 		label: "From",
 		inputType: "date",
+		textType : "date",
 	},
 	{
 		grid: 6,
 		name: "education_to",
 		label: "To",
 		inputType: "date",
+		textType : "date",
 	},
 ];
 
@@ -65,6 +67,7 @@ export default function Education({ getData }) {
 			<Section
 				getData={handleData}
 				content={content}
+				sizeLimit={10}
 				divisionLine={true}
 			/>
 		</>

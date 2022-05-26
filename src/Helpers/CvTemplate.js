@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useMemo } from "react";
 import { Grid, Typography, Box, Button } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import DownloadIcon from '@mui/icons-material/Download';
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
@@ -12,12 +13,16 @@ import logoPng from "../images/img.png";
 import textPng from "../images/img_1.png";
 import "material-icons/iconfont/material-icons.css";
 import "../CV.css";
+
 export default function CvTemplate() {
+    const navigate = useNavigate();
     const data = store.getState();
     const pdfRef = useRef();
+
     let header = data.formDataReducer.header;
     let main = Object.values(data.formDataReducer.main);
     const imagePerson = 'url("' + header.image + '")';
+
     const [contentRow, contentSection] = useMemo(() => {
         let row = [];
         let section = [];
@@ -60,7 +65,9 @@ export default function CvTemplate() {
         });
         return [row, section];
     }, [data]);
+
     const generateHtml = () => {
+        let shadowEffect = pdfRef.current.style.boxShadow;
         pdfRef.current.style.boxShadow = "none";
         html2canvas(pdfRef.current, { scale: 1 }).then((canvas) => {
             const width = canvas.width;
@@ -71,7 +78,13 @@ export default function CvTemplate() {
             doc.addImage(img, "JPEG", 0, 0, width, height);
             doc.save(header.name?`${header.name}'s CV`:"CV");
         });
+        pdfRef.current.style.boxShadow = shadowEffect;
     };
+
+    useEffect(() => {
+        if (!data.formDataReducer)
+            navigate("/");
+    })
     return (
         <Box className="CvBackground">
             <Box className="downloadButton">
@@ -136,7 +149,7 @@ export default function CvTemplate() {
                                     <span style={{ fontSize: "18px" }} className="material-icons">
                                         location_on
                                     </span>
-                                    {header.location}
+                                    {header.country + ", " + header.city}
                                 </Typography>
                             </Box>
                             <Box mt="10px">

@@ -11,16 +11,32 @@ const Headercontent = [
     name: "fname",
     label: "First Name",
     inputType: "input",
+    textType : "fname",
   },
   {
     grid: 12,
     name: "lname",
     label: "Last Name",
     inputType: "input",
+    textType : "lname",
   },
 ];
 
 const Bodycontent = [
+  {
+    grid: 6,
+    name: "country",
+    label: "Counrty",
+    inputType: "input",
+    textType : "noNumber",
+  },
+  {
+    grid: 6,
+    name: "city",
+    label: "City",
+    inputType: "input",
+    textType : "noNumber",
+  },
   {
     grid: 6,
     name: "email",
@@ -29,15 +45,10 @@ const Bodycontent = [
   },
   {
     grid: 6,
-    name: "location",
-    label: "Location",
-    inputType: "input",
-  },
-  {
-    grid: 12,
     name: "position",
     label: "Position",
     inputType: "input",
+    textType : "noNumber",
   },
 ];
 

@@ -26,6 +26,7 @@ const content = [
 		name: "project_description",
 		label: "Description",
 		inputType: "input",
+		multiline : true,
 	},
 ];
 
@@ -57,6 +58,7 @@ export default function Projects({ getData }) {
 			<Section
 				getData={handleData}
 				content={content}
+				sizeLimit={30}
 				divisionLine={true}
 			/>
 		</>
