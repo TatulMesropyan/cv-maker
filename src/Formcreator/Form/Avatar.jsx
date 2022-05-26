@@ -15,13 +15,17 @@ import {
   CardContent,
   MenuItem,
   Avatar,
+  Badge,
 } from "@mui/material";
 import getCroppedImg from "../../Helpers/cropImage";
+import { CameraAlt } from "@mui/icons-material";
+
 
 const RenderAvatar = ({ getData, topic }) => {
   /* eslint-disable no-unused-vars */
 
   const inputRef = useRef();
+
   const triggerFileSelectPopup = () => inputRef.current.click();
 
   const [image, setImage] = useState(null);
@@ -47,7 +51,12 @@ const RenderAvatar = ({ getData, topic }) => {
   const onClear = () => {
     image && setImage(null);
   };
-
+  const handleMouseEnter = () => {
+    iconRef.current.style.color = "grey";
+  };
+  const handleMouseLeave = () => {
+    iconRef.current.style.color = "green";
+  };
   const [croppedImage, setCroppedImage] = useState("");
   const onUpload = async () => {
     if (image) {
@@ -61,24 +70,29 @@ const RenderAvatar = ({ getData, topic }) => {
       return alert("No picture selected");
     }
   };
-
+  const iconRef = useRef();
   const [showCropper, setShowCropper] = useState(false);
 
   const handleCropper = () => setShowCropper((prevValue) => !prevValue);
-
   return (
     <Box sx={{ paddingRight: "10%" }}>
+      <Button
+        disabled
+        startIcon={<CameraAlt ref={iconRef} style={{ color: "green" }} />}
+        sx={{ marginLeft: "30%", height: "2px" }}
+      />
       <IconButton
-        aria-haspopup="true"
         onClick={(event) => {
           handleCropper();
           setOpenWindow(true);
         }}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
       >
         <Avatar
           src={croppedImage ? croppedImage : Picture}
           sx={{ width: "200px", height: "200px" }}
-        />
+        ></Avatar>
       </IconButton>
       <Popper open={open} role={undefined} transition disablePortal>
         <Paper>
