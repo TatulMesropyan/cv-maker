@@ -1,14 +1,12 @@
 h1, h2, h3, p, li{
     font-family : "Montserrat", sans-serif !important;
 }
-
 .CvBackground{
     width: 100%;
-    height: 100%;
+    min-height:100vh;
     background-color: rgb(233, 233, 233);
 }
-
-#mainContainer{
+.mainContainer{
     position: relative;
     width: 1792px;
     padding-bottom: 120px;
@@ -22,7 +20,6 @@ h1, h2, h3, p, li{
     margin: 0 auto;
     z-index: 10;
 }
-
 .header-background{
     position: absolute;
     top: 0;
@@ -31,13 +28,11 @@ h1, h2, h3, p, li{
     height: 312px;
     z-index: -1;
 }
-
 .header-text{
     padding : 0;
     margin : 0;
     color : white;
 }
-
 .image-container{
     width: 185px;
     height: 185px;
@@ -45,17 +40,14 @@ h1, h2, h3, p, li{
     background-size: 100%;
     /* background-position-x: 20px; */
     background-repeat: no-repeat;
-    /* background-color: #f6f6f6; */
+    /* background-color: #F6F6F6; */
 }
-
 .textAlignRight {
     text-align: right;
 }
-
 .textAlignLeft{
     text-align: left;
 }
-
 .topic{
     padding: 0 0 32px 0;
     margin: 0;
@@ -63,7 +55,6 @@ h1, h2, h3, p, li{
     font-size: 24px;
     font-weight: 900;
 }
-
 .sub-topic{
     padding: 0 0 9px 0;
     margin: 0;
@@ -71,7 +62,6 @@ h1, h2, h3, p, li{
     font-size: 18px;
     font-weight: 900;
 }
-
 .text-secondary{
     padding: 0 0 16px 0;
     margin: 0;
@@ -79,13 +69,11 @@ h1, h2, h3, p, li{
     font-size: 16px;
     word-wrap:break-word;
 }
-
 .sub-topic-secondary{
     display: flex;
     align-items: center;
     margin-bottom: 16px;
 }
-
 .sub-topic-secondary > h2{
     padding: 0 12px 0 0;
     margin: 0;
@@ -94,7 +82,6 @@ h1, h2, h3, p, li{
     font-style: italic;
     font-size: 16px;
 }
-
 .sub-topic-secondary > h3{
     padding: 4px 8px;
     margin: 0;
@@ -103,28 +90,23 @@ h1, h2, h3, p, li{
     color: #08A202;
     font-weight: 400;
     font-size: 12px;
-
 }
-
 .text-list{
     padding: 0 0 16px 20px;
     margin: 0;
     color: black;
     font-size: 16px;
 }
-
 .location{
     padding-bottom: 32px;
     display: flex;
     align-items: center;
 }
-
 .location > span{
     margin-right: 7px;
     font-size: 16px;
     color: #08A202;
 }
-
 .location > h3{
     padding: 0;
     margin: 0;
@@ -132,7 +114,6 @@ h1, h2, h3, p, li{
     font-weight: 300;
     color: #0C0C0C80;
 }
-
 .Languages{
     display: inline-block;
     background-color: rgb(240, 240, 240);
@@ -140,8 +121,8 @@ h1, h2, h3, p, li{
     padding: 10px 15px;
     text-align: center;
     margin-right: 10px;
+    margin-top: 10px;
 }
-
 .downloadButton {
     z-index: 100;
     position: fixed;

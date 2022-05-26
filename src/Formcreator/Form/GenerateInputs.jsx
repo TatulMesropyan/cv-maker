@@ -5,8 +5,9 @@ import languagePacket from "../../Helpers/languages.json";
 
 export default function GenerateInputs({ content, index, inputHandler }) {
   /* eslint-disable no-unused-vars */
-  const [language, LanguageDropdown] =
-    languageDropdown.useDropdown(languagePacket);
+  const [language, LanguageDropdown] = languageDropdown.useDropdown(
+    languagePacket
+  );
 
   const processContent = (val, index) => {
     return val.map((itm, i) => {
@@ -38,6 +39,7 @@ export default function GenerateInputs({ content, index, inputHandler }) {
               multiline
               margin="normal"
               variant="outlined"
+              required
               fullWidth
               onChange={(e) => {
                 inputHandler(e.target.value, itm.name, index);
