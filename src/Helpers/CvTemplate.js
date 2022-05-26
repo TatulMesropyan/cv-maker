@@ -12,183 +12,168 @@ import logoPng from "../images/img.png";
 import textPng from "../images/img_1.png";
 import "material-icons/iconfont/material-icons.css";
 import "../CV.css";
-import { useNavigate } from "react-router-dom";
-
 export default function CvTemplate() {
-	const data = store.getState();
-	const pdfRef = useRef();
-	const navigate = useNavigate()
-	let header = data.formDataReducer.header;
-	let main = Object.values(data.formDataReducer.main);
-
-	const imagePerson = 'url("' + header.image + '")';
-
-	const [contentRow, contentSection] = useMemo(() => {
-		let row = [];
-		let section = [];
-
-		main.forEach((itm, index) => {
-			let content = [];
-			const body = [].concat(itm.body);
-			const contentType = ["Projects", "Experience"].includes(itm.topic);
-	
-			body.forEach((it, ind) => {
-				if (it && Object.values(it).some((v) => v.length)) {
-					content.push(
-						contentType ? (
-							<Grid item xs={6} key={ind}>
-								<Article {...it} />
-							</Grid>
-						) : (
-							<Article {...it} key={ind} />
-						)
-					);
-				}
-			});
-	
-			if (content.length) {
-				if (contentType) {
-					section.push(
-						<SectionColumn
-							article={<Article topic={itm.topic} />}
-							content={content}
-							key={index}
-						/>
-					);
-				} else {
-					row.push(
-						<SectionRow
-							article={<Article topic={itm.topic} />}
-							content={content}
-							key={index}
-						/>
-					);
-				}
-			}
-		});
-
-		return [row, section];
-	}, [data]);
-
-	const generateHtml = () => {
-		document.getElementById("mainContainer").style.boxShadow = "none"
-		html2canvas(pdfRef.current, { scale: 1 }).then((canvas) => {
-			const width = canvas.width;
-			console.log(canvas.width)
-			const height = canvas.height;
-			const orientation = width > height ? "l" : "p";
-			let doc = new jsPDF(orientation, "px", [width, height]);
-			const img = canvas.toDataURL("image/jpeg");
-			doc.addImage(img, "JPEG", 0, 0, width, height);
-			doc.save( header.fname? `${header.fname}'s CV`: "CV");
-			// navigate("/");
-		});
-		document.getElementById("mainContainer").style.boxShadow = "0 0 20px 0 rgba(0, 0, 0, 0.5)";
-	};
-
-	return (
-		<Box id="CvBackground">
-			<Box className="downloadButton">
-				<Button
-					onClick={() => generateHtml()}
-					variant="contained"
-					color="primary"
-				>
-					<DownloadIcon />
-				</Button>
-			</Box>
-			<Box id="mainContainer" ref={pdfRef}>
-				<img src={leftSectionPng} className="header-background" alt="#" />
-				<Grid
-					container
-					pt="50px"
-					direction="row"
-					alignItems="top"
-					justifyContent="space-between"
-				>
-					<Grid item display="flex" alignItems="center" ml="182px" mt="62px">
-						<Box
-							className="image-container"
-							style={{ backgroundImage: imagePerson }}
-						></Box>
-						<Box pl="25px" mb="35px">
-							<Box>
-								<Typography
-									fontSize="36px"
-									fontWeight="900"
-									className="header-text textAlignLeft"
-								>
-									{header.fname + " " + header.lname}
-								</Typography>
-							</Box>
-							<Box>
-								<Typography
-									fontSize="16px"
-									fontWeight="300"
-									className="header-text textAlignLeft"
-								>
-									{header.position}
-								</Typography>
-							</Box>
-						</Box>
-					</Grid>
-					<Grid item mr="50px">
-						<Box display="flex" justifyContent="right" alignItems="center">
-							<Box height="68px" mr="15px">
-								<img src={logoPng} alt="#" height="100%" />
-							</Box>
-							<Box height="30px">
-								<img src={textPng} alt="#" height="100%" />
-							</Box>
-						</Box>
-						<Box pt="30px">
-							<Box>
-								<Typography
-									fontSize="16px"
-									className="header-text textAlignRight"
-								>
-									<span style={{ fontSize: "18px" }} className="material-icons">
-										location_on
-									</span>
-									{header.location}
-								</Typography>
-							</Box>
-							<Box mt="10px">
-								<Typography
-									fontSize="16px"
-									className="header-text textAlignRight"
-									fontWeight="500"
-								>
-									<span
-										style={{ fontSize: "18px", transform: "rotate(-45deg)" }}
-										className="material-icons"
-									>
-										send
-									</span>{" "}
-									<b>Email:</b> {header.email}
-								</Typography>
-							</Box>
-						</Box>
-					</Grid>
-				</Grid>
-
-				<Grid
-					container
-					mt="38px"
-					p="0 100px"
-					columnSpacing={{ xs: 6 }}
-					justifyContent="space-between"
-					direction="row"
-					alignItems="top"
-				>
-					<Grid item container xs={4} direction="column" rowSpacing={{ xs: 8 }}>
-						{contentRow}
-					</Grid>
-					<Grid item container xs={8} direction="column" rowSpacing={{ xs: 8 }}>
-						{contentSection}
-					</Grid>
-				</Grid>
-			</Box>
-		</Box>
-	);
+    const data = store.getState();
+    const pdfRef = useRef();
+    let header = data.formDataReducer.header;
+    let main = Object.values(data.formDataReducer.main);
+    const imagePerson = 'url("' + header.image + '")';
+    const [contentRow, contentSection] = useMemo(() => {
+        let row = [];
+        let section = [];
+        main.forEach((itm, index) => {
+            let content = [];
+            const body = [].concat(itm.body);
+            const contentType = ["Projects", "Experience"].includes(itm.topic);
+            body.forEach((it, ind) => {
+                if (it && Object.values(it).some((v) => v.length)) {
+                    content.push(
+                        contentType ? (
+                            <Grid item xs={6} key={ind}>
+                                <Article {...it} />
+                            </Grid>
+                        ) : (
+                            <Article {...it} key={ind} />
+                        )
+                    );
+                }
+            });
+            if (content.length) {
+                if (contentType) {
+                    section.push(
+                        <SectionColumn
+                            article={<Article topic={itm.topic} />}
+                            content={content}
+                            key={index}
+                        />
+                    );
+                } else {
+                    row.push(
+                        <SectionRow
+                            article={<Article topic={itm.topic} />}
+                            content={content}
+                            key={index}
+                        />
+                    );
+                }
+            }
+        });
+        return [row, section];
+    }, [data]);
+    const generateHtml = () => {
+        pdfRef.current.style.boxShadow = "none";
+        html2canvas(pdfRef.current, { scale: 1 }).then((canvas) => {
+            const width = canvas.width;
+            const height = canvas.height;
+            const orientation = width > height ? "l" : "p";
+            let doc = new jsPDF(orientation, "px", [width, height]);
+            const img = canvas.toDataURL("image/jpeg");
+            doc.addImage(img, "JPEG", 0, 0, width, height);
+            doc.save(header.name?`${header.name}'s CV`:"CV");
+        });
+    };
+    return (
+        <Box className="CvBackground">
+            <Box className="downloadButton">
+                <Button
+                    onClick={() => generateHtml()}
+                    variant="contained"
+                    color="primary"
+                >
+                    <DownloadIcon />
+                </Button>
+            </Box>
+            <Box className="mainContainer" ref={pdfRef}>
+                <img src={leftSectionPng} className="header-background" alt="#" />
+                <Grid
+                    container
+                    pt="50px"
+                    direction="row"
+                    alignItems="top"
+                    justifyContent="space-between"
+                >
+                    <Grid item display="flex" alignItems="center" ml="182px" mt="62px">
+                        <Box
+                            className="image-container"
+                            style={{ backgroundImage: imagePerson }}
+                        ></Box>
+                        <Box pl="25px" mb="35px">
+                            <Box>
+                                <Typography
+                                    fontSize="36px"
+                                    fontWeight="900"
+                                    className="header-text textAlignLeft"
+                                >
+                                    {header.fname + " " + header.lname}
+                                </Typography>
+                            </Box>
+                            <Box>
+                                <Typography
+                                    fontSize="16px"
+                                    fontWeight="300"
+                                    className="header-text textAlignLeft"
+                                >
+                                    {header.position}
+                                </Typography>
+                            </Box>
+                        </Box>
+                    </Grid>
+                    <Grid item mr="50px">
+                        <Box display="flex" justifyContent="right" alignItems="center">
+                            <Box height="68px" mr="15px">
+                                <img src={logoPng} alt="#" height="100%" />
+                            </Box>
+                            <Box height="30px">
+                                <img src={textPng} alt="#" height="100%" />
+                            </Box>
+                        </Box>
+                        <Box pt="30px">
+                            <Box>
+                                <Typography
+                                    fontSize="16px"
+                                    className="header-text textAlignRight"
+                                >
+                                    <span style={{ fontSize: "18px" }} className="material-icons">
+                                        location_on
+                                    </span>
+                                    {header.location}
+                                </Typography>
+                            </Box>
+                            <Box mt="10px">
+                                <Typography
+                                    fontSize="16px"
+                                    className="header-text textAlignRight"
+                                    fontWeight="500"
+                                >
+                                    <span
+                                        style={{ fontSize: "18px", transform: "rotate(-45deg)" }}
+                                        className="material-icons"
+                                    >
+                                        send
+                                    </span>{" "}
+                                    <b>Email:</b> {header.email}
+                                </Typography>
+                            </Box>
+                        </Box>
+                    </Grid>
+                </Grid>
+                <Grid
+                    container
+                    mt="38px"
+                    p="0 100px"
+                    columnSpacing={{ xs: 6 }}
+                    justifyContent="space-between"
+                    direction="row"
+                    alignItems="top"
+                >
+                    <Grid item container xs={4} direction="column" rowSpacing={{ xs: 8 }}>
+                        {contentRow}
+                    </Grid>
+                    <Grid item container xs={8} direction="column" rowSpacing={{ xs: 8 }}>
+                        {contentSection}
+                    </Grid>
+                </Grid>
+            </Box>
+        </Box>
+    );
 }
