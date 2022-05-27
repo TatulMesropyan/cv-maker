@@ -12,17 +12,21 @@ export default function GenerateInputs({ content, index, inputHandler }) {
   const [inputValue, setInputValue] = useState({});
 
   const inputValidatior = (e, index, itmName, type) => {
+    let value = e.target.value;
+
 		switch (type) {
 			case "fname": {
-				if (/[^a-z]/i.test(e.target.value)) return;
+				if (/(^\W|[0-9])/i.test(value)) return;
+        value = value.charAt(0).toUpperCase() + value.slice(1);
 				break;
 			}
       case "lname": {
-				if (/[^a-z-]/i.test(e.target.value)) return;
+        if (/(^\W|[0-9])/i.test(value)) return;
+        value = value.charAt(0).toUpperCase() + value.slice(1);
 				break;
 			}
 			case "noNumber": {
-				if (/(^\W|[0-9])/i.test(e.target.value)) return;
+				if (/(^\W|[0-9])/i.test(value)) return;
 				break;
 			}
 			default: {
@@ -30,8 +34,8 @@ export default function GenerateInputs({ content, index, inputHandler }) {
 			}
 		}
 
-    setInputValue((v) => ({ ...v, [itmName]: e.target.value }));
-    inputHandler(e.target.value, itmName, index);
+    setInputValue((v) => ({ ...v, [itmName]: value }));
+    inputHandler(value, itmName, index);
 	};
 
   useEffect(() => {
