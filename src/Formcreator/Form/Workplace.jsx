@@ -21,7 +21,7 @@ const content = [
   {
     grid: 6,
     name: "workplace_country",
-    label: "Counrty",
+    label: "Country",
     inputType: "input",
     textType : "noNumber",
   },

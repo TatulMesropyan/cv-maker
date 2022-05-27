@@ -26,7 +26,7 @@ const Bodycontent = [
   {
     grid: 6,
     name: "country",
-    label: "Counrty",
+    label: "Country",
     inputType: "input",
     textType : "noNumber",
   },
