@@ -19,10 +19,18 @@ const content = [
     inputType: "input",
   },
   {
-    grid: 12,
-    name: "workplace_location",
-    label: "Location",
+    grid: 6,
+    name: "workplace_country",
+    label: "Counrty",
     inputType: "input",
+    textType : "noNumber",
+  },
+  {
+    grid: 6,
+    name: "workplace_city",
+    label: "City",
+    inputType: "input",
+    textType : "noNumber",
   },
   {
     grid: 6,
@@ -57,7 +65,7 @@ export default function Workplace({ getData }) {
           secondarySubtopic: _v.workplace_position,
           date: formatDate(_v.wrokplace_from, _v.workplace_to),
           secondaryText: _v.workplace_description,
-          location: _v.workplace_location,
+          location: _v.workplace_country + ", " + _v.workplace_city,
         };
       }),
     };

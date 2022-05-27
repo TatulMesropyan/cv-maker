@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Grid, Typography, Box, Container, Button } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
 import { useDispatch } from "react-redux";
@@ -39,7 +39,6 @@ export default function Form() {
   const HandleOnSubmit = (e) => {
     e.preventDefault();
     dispatch(actions.updateFormData(data));
-    console.log(data);
     localStorage.setItem("LOCAL_STORAGE_DATA", JSON.stringify(data));
     navigate("/cv");
   };

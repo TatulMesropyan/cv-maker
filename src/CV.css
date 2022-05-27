@@ -2,7 +2,7 @@ h1, h2, h3, p, li{
     font-family : "Montserrat", sans-serif !important;
 }
 .CvBackground{
-    min-height:100vh;
+    min-height: 100vh;
 }
 .mainContainer{
     position: relative;
