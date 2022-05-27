@@ -1,9 +1,9 @@
 import React from "react";
 import { Grid, Box } from "@mui/material";
-import "material-icons/iconfont/material-icons.css";
-import "./Form.css";
 import Section from "./SectionGenerator";
 import RenderAvatar from "./Avatar";
+import "material-icons/iconfont/material-icons.css";
+import "./Form.css";
 
 const Headercontent = [
   {
@@ -41,7 +41,7 @@ const Bodycontent = [
     grid: 6,
     name: "email",
     label: "Email Address",
-    inputType: "input",
+    inputType: "email",
   },
   {
     grid: 6,
