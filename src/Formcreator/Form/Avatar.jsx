@@ -16,7 +16,6 @@ import {
   CardContent,
   MenuItem,
   Avatar,
-  Badge,
 } from "@mui/material";
 import getCroppedImg from "../../Helpers/cropImage";
 
@@ -80,15 +79,26 @@ const RenderAvatar = ({ getData, topic }) => {
   const handleCropper = () => setShowCropper((prevValue) => !prevValue);
   const spanRef = useRef();
   const handleMouseEnter = () => {
-    spanRef.current.style.display = "block";
+    spanRef.current.style.color = "grey";
   };
   const handleMouseLeave = () => {
-    spanRef.current.style.display = "none";
+    spanRef.current.style.color = "white";
   };
   return (
     <>
       <Box sx={{ paddingRight: "10%" }}>
-     
+      <Grid alignContent="center">
+      <span
+          ref={spanRef}
+          style={{
+            fontStyle: "italic",
+            color:"white",
+            fontSize: "12px",
+            height:"1vh",
+            paddingLeft:"25px"
+          }}
+        >          Upload an Image
+                </span>
         <IconButton
           onClick={(event) => {
             handleCropper();
@@ -97,25 +107,16 @@ const RenderAvatar = ({ getData, topic }) => {
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
 
-          ><Grid>
+          >
+            <Grid>
           <Avatar
             src={croppedImage ? croppedImage : Picture}
             alt="Enter"
             sx={{ width: "200px", height: "200px" }}
           />
-           <span
-          ref={spanRef}
-          style={{
-            fontStyle: "italic",
-            display: "none",
-            fontSize: "12px",
-            height:"1vh",
-            paddingLeft: "8px",
-          }}
-        >          Upload an Image
-        </span>
-        </Grid>
+                </Grid>
         </IconButton>       
+        </Grid>
         <Popper open={open} role={undefined} transition disablePortal>
           <Paper>
             <ClickAwayListener onClickAway={() => setOpen(false)}>

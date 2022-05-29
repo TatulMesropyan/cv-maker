@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Box } from "@mui/material";
+import { Grid } from "@mui/material";
 import Section from "./SectionGenerator";
 import RenderAvatar from "./Avatar";
 import "material-icons/iconfont/material-icons.css";
