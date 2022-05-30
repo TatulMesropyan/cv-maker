@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useCallback } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Cropper from "react-easy-crop";
 import Picture from "../../images/profileimg.webp";
 import { defaultPic } from "../../Helpers/defaultPic";
@@ -42,6 +42,8 @@ const RenderAvatar = ({ getData, topic }) => {
   const [open, setOpen] = useState(false);
   const [openWindow, setOpenWindow] = useState(false);
   const [openWebcam, setWebcamOpen] = useState(false);
+  const [showCropper, setShowCropper] = useState(false);
+
 
   const onCropComplete = (croppedAreaPercentage, croppedAreaPixels) => {
     setCroppedArea(croppedAreaPixels);
@@ -68,12 +70,7 @@ const RenderAvatar = ({ getData, topic }) => {
       getData([{ image: pictureOnBase64 }], topic);
       setOpenWindow(false);
     }
-    if (!image) {
-      setOpenWindow(false);
-      return alert("No picture selected");
-    }
   };
-  const [showCropper, setShowCropper] = useState(false);
   const handleWebcam = () => {
   setWebcamOpen(true)
    setImage(null);
@@ -90,7 +87,7 @@ const RenderAvatar = ({ getData, topic }) => {
     );
   }, []);
   const webcamRef = useRef(null);
-
+  
   const WebcamCapture = () => {
     const imageSrc = webcamRef.current.getScreenshot();
     console.log(imageSrc);
@@ -140,8 +137,15 @@ const RenderAvatar = ({ getData, topic }) => {
         </Grid>
         <Popper open={open} role={undefined} transition disablePortal>
           <Paper>
-            <ClickAwayListener onClickAway={() => setOpen(false)}>
-              <MenuItem onClick={() => setOpen(false)}>Remove</MenuItem>
+            <ClickAwayListener onClickAway={() => {
+              setWebcamOpen(false)
+              setOpen(false)
+              }}>
+              <MenuItem onClick={() => {
+              setWebcamOpen(false)
+              setOpen(false)}}>
+                Remove
+                </MenuItem>
             </ClickAwayListener>
           </Paper>
         </Popper>
@@ -213,9 +217,9 @@ const RenderAvatar = ({ getData, topic }) => {
                           variant="contained"
                           color="error"
                           style={{ marginRight: "10px" }}
-                        >
-                          <DeleteIcon />
-                        </Button>
+                         >
+                          <DeleteIcon/>
+                          </Button>
                       ) : (
                         <Button
                           onClick={() => onClear()}
@@ -223,8 +227,8 @@ const RenderAvatar = ({ getData, topic }) => {
                           color="error"
                           style={{ marginRight: "10px" }}
                           disabled
-                        >
-                          <DeleteIcon />
+                          >
+                          <DeleteIcon/>
                         </Button>
                       )}
                       <Button
@@ -232,8 +236,9 @@ const RenderAvatar = ({ getData, topic }) => {
                         color="primary"
                         onClick={triggerFileSelectPopup}
                         style={{ marginRight: "10px" }}
+                        endIcon={<AttachFileIcon />}
                       >
-                        Choose <AttachFileIcon />
+                        Choose 
                       </Button>
                       <Button
                         variant="contained"
@@ -288,9 +293,10 @@ const RenderAvatar = ({ getData, topic }) => {
                       <Button
                         varitant="contained"
                         color="success"
+                        endIcon={<CameraIcon/>}
                         onClick={WebcamCapture}
                       >
-                        Capture <CameraIcon />
+                        Capture
                       </Button>
                       <Button
                         variant="contained"
