@@ -6,6 +6,7 @@ import Webcam from "react-webcam";
 import CameraIcon from "@mui/icons-material/Camera";
 import AttachFileIcon from "@mui/icons-material/AttachFile";
 import DeleteIcon from "@mui/icons-material/Delete";
+import useSessionData from "../../Helpers/useSessionData";
 import CancelIcon from "@mui/icons-material/Cancel";
 import {
   Dialog,
@@ -35,6 +36,7 @@ const RenderAvatar = ({ getData, topic }) => {
     setWebcamOpen(false);
   };
 
+  const [defaultValues, setDefaultValues, getValue] = useSessionData();
   const [image, setImage] = useState(null);
   const [croppedArea, setCroppedArea] = useState(null);
   const [crop, setCrop] = useState({ x: 0, y: 0 });
@@ -67,7 +69,7 @@ const RenderAvatar = ({ getData, topic }) => {
     if (image) {
       const pictureOnBase64 = await getCroppedImg(image, croppedArea);
       setCroppedImage(pictureOnBase64);
-      getData([{ image: pictureOnBase64 }], topic);
+      getData([{ image: pictureOnBase64 }], topic,[{ image: pictureOnBase64 }]);
       setOpenWindow(false);
     }
   };
@@ -87,7 +89,7 @@ const RenderAvatar = ({ getData, topic }) => {
     );
   }, []);
   const webcamRef = useRef(null);
-  
+  let localImage = getValue('header')? getValue('header').image:null
   const WebcamCapture = () => {
     const imageSrc = webcamRef.current.getScreenshot();
     console.log(imageSrc);
@@ -128,7 +130,7 @@ const RenderAvatar = ({ getData, topic }) => {
           >
             <Grid>
               <Avatar
-                src={croppedImage ? croppedImage : Picture}
+                src={croppedImage ? croppedImage : localImage}
                 alt="Enter"
                 sx={{ width: "200px", height: "200px" }}
               />
