@@ -2,6 +2,11 @@ import React, { useState, useRef, useEffect } from "react";
 import Cropper from "react-easy-crop";
 import Picture from "../../images/profileimg.webp";
 import { defaultPic } from "../../Helpers/defaultPic";
+import Webcam from "react-webcam";
+import CameraIcon from "@mui/icons-material/Camera";
+import AttachFileIcon from "@mui/icons-material/AttachFile";
+import DeleteIcon from "@mui/icons-material/Delete";
+import CancelIcon from "@mui/icons-material/Cancel";
 import {
   Dialog,
   ClickAwayListener,
@@ -18,13 +23,17 @@ import {
   Avatar,
 } from "@mui/material";
 import getCroppedImg from "../../Helpers/cropImage";
+import { CameraAlt } from "@mui/icons-material";
 
 const RenderAvatar = ({ getData, topic }) => {
   /* eslint-disable no-unused-vars */
 
   const inputRef = useRef();
 
-  const triggerFileSelectPopup = () => inputRef.current.click();
+  const triggerFileSelectPopup = () => {
+    inputRef.current.click();
+    setWebcamOpen(false);
+  };
 
   const [image, setImage] = useState(null);
   const [croppedArea, setCroppedArea] = useState(null);
@@ -32,6 +41,9 @@ const RenderAvatar = ({ getData, topic }) => {
   const [zoom, setZoom] = useState(1);
   const [open, setOpen] = useState(false);
   const [openWindow, setOpenWindow] = useState(false);
+  const [openWebcam, setWebcamOpen] = useState(false);
+  const [showCropper, setShowCropper] = useState(false);
+
 
   const onCropComplete = (croppedAreaPercentage, croppedAreaPixels) => {
     setCroppedArea(croppedAreaPixels);
@@ -48,6 +60,7 @@ const RenderAvatar = ({ getData, topic }) => {
   };
   const onClear = () => {
     image && setImage(null);
+    setWebcamOpen(false);
   };
   const [croppedImage, setCroppedImage] = useState("");
   const onUpload = async () => {
@@ -57,25 +70,30 @@ const RenderAvatar = ({ getData, topic }) => {
       getData([{ image: pictureOnBase64 }], topic);
       setOpenWindow(false);
     }
-    if (!image) {
-      setOpenWindow(false);
-      return alert("No picture selected");
-    }
   };
-  const iconRef = useRef();
-  const [showCropper, setShowCropper] = useState(false);
+  const handleWebcam = () => {
+  setWebcamOpen(true)
+   setImage(null);
+  };
 
   useEffect(() => {
     getData(
       [
         {
-          image:defaultPic.avatarPic
+          image: defaultPic.avatarPic,
         },
       ],
       topic
     );
   }, []);
-
+  const webcamRef = useRef(null);
+  
+  const WebcamCapture = () => {
+    const imageSrc = webcamRef.current.getScreenshot();
+    console.log(imageSrc);
+    setWebcamOpen(false);
+    setImage(imageSrc);
+  };
   const handleCropper = () => setShowCropper((prevValue) => !prevValue);
   const spanRef = useRef();
   const handleMouseEnter = () => {
@@ -87,40 +105,47 @@ const RenderAvatar = ({ getData, topic }) => {
   return (
     <>
       <Box sx={{ paddingRight: "10%" }}>
-      <Grid alignContent="center">
-      <span
-          ref={spanRef}
-          style={{
-            fontStyle: "italic",
-            color:"white",
-            fontSize: "12px",
-            height:"1vh",
-            paddingLeft:"25px"
-          }}
-        >          Upload an Image
-                </span>
-        <IconButton
-          onClick={(event) => {
-            handleCropper();
-            setOpenWindow(true);
-          }}
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-
+        <Grid alignContent="center">
+          <span
+            ref={spanRef}
+            style={{
+              fontStyle: "italic",
+              color: "white",
+              fontSize: "12px",
+              height: "1vh",
+              paddingLeft: "25px",
+            }}
+          >
+            Upload an Image
+          </span>
+          <IconButton
+            onClick={(event) => {
+              handleCropper();
+              setOpenWindow(true);
+            }}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
           >
             <Grid>
-          <Avatar
-            src={croppedImage ? croppedImage : Picture}
-            alt="Enter"
-            sx={{ width: "200px", height: "200px" }}
-          />
-                </Grid>
-        </IconButton>       
+              <Avatar
+                src={croppedImage ? croppedImage : Picture}
+                alt="Enter"
+                sx={{ width: "200px", height: "200px" }}
+              />
+            </Grid>
+          </IconButton>
         </Grid>
         <Popper open={open} role={undefined} transition disablePortal>
           <Paper>
-            <ClickAwayListener onClickAway={() => setOpen(false)}>
-              <MenuItem onClick={() => setOpen(false)}>Remove</MenuItem>
+            <ClickAwayListener onClickAway={() => {
+              setWebcamOpen(false)
+              setOpen(false)
+              }}>
+              <MenuItem onClick={() => {
+              setWebcamOpen(false)
+              setOpen(false)}}>
+                Remove
+                </MenuItem>
             </ClickAwayListener>
           </Paper>
         </Popper>
@@ -192,9 +217,9 @@ const RenderAvatar = ({ getData, topic }) => {
                           variant="contained"
                           color="error"
                           style={{ marginRight: "10px" }}
-                        >
-                          Clear
-                        </Button>
+                         >
+                          <DeleteIcon/>
+                          </Button>
                       ) : (
                         <Button
                           onClick={() => onClear()}
@@ -202,8 +227,8 @@ const RenderAvatar = ({ getData, topic }) => {
                           color="error"
                           style={{ marginRight: "10px" }}
                           disabled
-                        >
-                          Clear
+                          >
+                          <DeleteIcon/>
                         </Button>
                       )}
                       <Button
@@ -211,8 +236,17 @@ const RenderAvatar = ({ getData, topic }) => {
                         color="primary"
                         onClick={triggerFileSelectPopup}
                         style={{ marginRight: "10px" }}
+                        endIcon={<AttachFileIcon />}
                       >
-                        Choose
+                        Choose 
+                      </Button>
+                      <Button
+                        variant="contained"
+                        color="primary"
+                        onClick={handleWebcam}
+                        style={{ marginRight: "10px" }}
+                      >
+                        <CameraAlt />
                       </Button>
                       {image ? (
                         <Button
@@ -235,6 +269,45 @@ const RenderAvatar = ({ getData, topic }) => {
                     </Grid>
                   </CardContent>
                 </Card>
+                {openWebcam && (
+                  <Grid
+                    sx={{
+                      padding: "10px",
+                      width: "720px",
+                      height: "480px",
+                      alignContent: "center",
+                      textAlign:"center",
+                    }}
+                  >
+                    <Grid sx={{paddingLeft:'25px',paddingTop:'10px'}}>
+                    <Webcam
+                      ref={webcamRef}
+                      audio={false}
+                      height={540}
+                      screenshotFormat="image/jpeg"
+                      width={720}
+                      screenshotQuality={1}
+                    />
+                    </Grid>
+                    <Grid >
+                      <Button
+                        varitant="contained"
+                        color="success"
+                        endIcon={<CameraIcon/>}
+                        onClick={WebcamCapture}
+                      >
+                        Capture
+                      </Button>
+                      <Button
+                        variant="contained"
+                        color="error"
+                        onClick={() => setWebcamOpen(false)}
+                      >
+                        <CancelIcon />
+                      </Button>
+                    </Grid>
+                  </Grid>
+                )}
               </Grid>
               <Box sx={{ zIndex: 1 }}>
                 {image ? (
