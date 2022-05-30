@@ -1,31 +1,54 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { Grid, TextField, Box } from "@mui/material";
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import Dropdown from "../../Helpers/LangDropdown";
 import languagePacket from "../../Helpers/languages.json";
 
-export default function GenerateInputs({ content, index, inputHandler, values }) {
-  /* eslint-disable no-unused-vars */
-  const [inputValue, setInputValue] = useState({});
+export default function GenerateInputs({
+	content,
+	index,
+	inputHandler,
+	values,
+}) {
+	/* eslint-disable no-unused-vars */
+	const [inputValue, setInputValue] = useState({});
 
-  const inputValidatior = (e, index, itmName, type) => {
-    let value = e.target.value;
+	const inputValidatior = (e, index, itmName, type) => {
+		let value = e.target.value;
 
 		switch (type) {
 			case "fname": {
 				if (/(^\W|[0-9])/i.test(value)) return;
-        value = value.charAt(0).toUpperCase() + value.slice(1);
+				value = value.charAt(0).toUpperCase() + value.slice(1);
 				break;
 			}
-      case "lname": {
-        if (/(^\W|[0-9])/i.test(value)) return;
-        value = value.charAt(0).toUpperCase() + value.slice(1);
+			case "lname": {
+				if (/(^\W|[0-9])/i.test(value)) return;
+				value = value.charAt(0).toUpperCase() + value.slice(1);
 				break;
 			}
 			case "noNumber": {
 				if (/(^\W|[0-9])/i.test(value)) return;
+				break;
+			}
+			case "date_from": {
+				const to_name = itmName.split("_")[0] + "_to";
+				let d1 = new Date(value);
+				let d2 = new Date(inputValue[to_name]);
+				if (d1 > d2)
+					value = d2;
+				break;
+			}
+			case "date_to": {
+				const from_name = itmName.split("_")[0] + "_from";
+				let d1 = new Date(value);
+				let d2 = new Date(inputValue[from_name]);
+				if (d2 > d1)
+				setInputValue((v) => {
+					return {...v, [from_name] : d1};
+				});
 				break;
 			}
 			default: {
@@ -33,29 +56,29 @@ export default function GenerateInputs({ content, index, inputHandler, values })
 			}
 		}
 
-    setInputValue((v) => ({ ...v, [itmName]: value }));
-    inputHandler(value, itmName, index);
+		setInputValue((v) => ({ ...v, [itmName]: value }));
+		inputHandler(value, itmName, index);
 	};
 
-  useEffect(() => {
+	useEffect(() => {
 		Object.keys(inputValue).map((v) => {
 			inputHandler(inputValue[v], v, index);
 		});
 	}, []);
 
-  const processContent = useCallback((val, index) => {
-    return val.map((itm, i) => {
-      let value = null;
+	const processContent = useCallback((val, index) => {
+		return val.map((itm, i) => {
+			let value = null;
 
-      let inputProps = {
-        label : itm.label,
-        fullWidth : true,
-        multiline : itm.multiline,
-        type : itm.inputType,
-        margin : "normal",
-      }
+			let inputProps = {
+				label: itm.label,
+				fullWidth: true,
+				multiline: itm.multiline,
+				type: itm.inputType,
+				margin: "normal",
+			};
 
-      switch (itm.inputType) {
+			switch (itm.inputType) {
 				case "date": {
 					if (inputValue[itm.name] === undefined) {
 						let val = new Date();
@@ -126,12 +149,12 @@ export default function GenerateInputs({ content, index, inputHandler, values })
 					break;
 				}
 			}
-      return (
-        <Grid item xs={itm.grid} key={i}>
-          {value}
-        </Grid>
-      );
-    });
-  });
-  return <>{processContent(content, index)}</>;
+			return (
+				<Grid item xs={itm.grid} key={i}>
+					{value}
+				</Grid>
+			);
+		});
+	});
+	return <>{processContent(content, index)}</>;
 }

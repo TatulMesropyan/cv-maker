@@ -38,12 +38,14 @@ const content = [
     name: "workplace_from",
     label: "From",
     inputType: "date",
+		textType : "date_from",
   },
   {
     grid: 6,
     name: "workplace_to",
     label: "To",
     inputType: "date",
+		textType : "date_to",
   },
   {
     grid: 12,
