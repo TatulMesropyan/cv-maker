@@ -4,9 +4,10 @@ import {
 	Typography,
 	Box,
 } from "@mui/material";
+import Section from "./SectionGenerator";
+import useSessionData from "../../Helpers/useSessionData";
 import "material-icons/iconfont/material-icons.css";
 import "./Form.css";
-import Section from "./SectionGenerator";
 
 const content = [
 	{
@@ -31,6 +32,7 @@ const content = [
 ];
 
 export default function Projects({ getData }) {
+	const [defaultValues, setDefaultValues, getValue] = useSessionData();
 	const topic = "Projects";
 
 	const handleData = (data) => {
@@ -44,20 +46,21 @@ export default function Projects({ getData }) {
 				};
 			}),
 		};
-		getData(val, topic);
+		getData(val, topic, data);
 	};
 	return (
 		<>
 			<Grid container columnSpacing={2} pt={4}>
 				<Grid item xs={12}>
 					<Box className="line" pb={2}>
-						<Typography fontSize="20px">Projects</Typography>
+						<Typography fontSize="20px">{topic}</Typography>
 					</Box>
 				</Grid>
 			</Grid>
 			<Section
 				getData={handleData}
 				content={content}
+				defaultValues={getValue(["main", topic])}
 				sizeLimit={30}
 				divisionLine={true}
 			/>

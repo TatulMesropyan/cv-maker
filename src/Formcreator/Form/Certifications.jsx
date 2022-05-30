@@ -4,9 +4,10 @@ import {
 	Typography,
 	Box,
 } from "@mui/material";
+import Section from "./SectionGenerator";
+import useSessionData from "../../Helpers/useSessionData";
 import "material-icons/iconfont/material-icons.css";
 import "./Form.css";
-import Section from "./SectionGenerator";
 
 const content = [
 	{
@@ -18,6 +19,7 @@ const content = [
 ];
 
 export default function Certifications({ getData }) {
+	const [defaultValues, setDefaultValues, getValue] = useSessionData();
 	const topic = "Certifications & Courses";
 
 	const handleData = (data) => {
@@ -25,19 +27,20 @@ export default function Certifications({ getData }) {
 			topic: topic,
 			body: [{ secondaryText: data.map((_v) => _v.certifications) }],
 		};
-		getData(val, topic);
+		getData(val, topic, data);
 	};
 	return (
 		<>
 			<Grid container columnSpacing={2} pt={4}>
 				<Grid item xs={12}>
 					<Box className="line" pb={2}>
-						<Typography fontSize="20px">Certifications & Courses</Typography>
+						<Typography fontSize="20px">{topic}</Typography>
 					</Box>
 				</Grid>
 			</Grid>
 			<Section
 				getData={handleData}
+				defaultValues={getValue(["main", topic])}
 				sizeLimit={10}
 				content={content}
 			/>

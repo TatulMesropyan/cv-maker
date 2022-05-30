@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { Grid, Typography, Box, Container, Button } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
 import { useDispatch } from "react-redux";
@@ -16,88 +16,88 @@ import "material-icons/iconfont/material-icons.css";
 import "./Form.css";
 
 export default function Form() {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const [data, setData] = useState({ header: {}, main: {} });
-  const getData = (data, _topic) => {
-    if (data.length === 0) return;
+	const navigate = useNavigate();
+	const dispatch = useDispatch();
+	const [data, setData] = useState({ header: {}, main: {} });
+	const [localData, setLocalData] = useState({ header: {}, main: {} });
 
-    switch (_topic) {
-      case "Personal": {
-        const val = data[0];
-        setData((v) => ({ ...v, header: { ...v.header, ...val } }));
-        break;
-      }
+	const getData = (data, _topic, local = null) => {
+		if (data.length === 0) return;
 
-      default: {
-        setData((v) => ({ ...v, main: { ...v.main, [_topic]: data } }));
-        break;
-      }
-    }
-  };
+		switch (_topic) {
+			case "Personal": {
+				let val = data[0];
+				setData((v) => ({ ...v, header: { ...v.header, ...val } }));
+				if (local) {
+					let localVal = local[0];
+					setLocalData((v) => ({ ...v, header: { ...v.header, ...localVal } }));
+				}
+				break;
+			}
 
-  const HandleOnSubmit = (e) => {
-    e.preventDefault();
-    dispatch(actions.updateFormData(data));
-    localStorage.setItem("LOCAL_STORAGE_DATA", JSON.stringify(data));
-    navigate("/cv");
-  };
+			default: {
+				setData((v) => ({ ...v, main: { ...v.main, [_topic]: data } }));
+				if (local)
+					setLocalData((v) => ({ ...v, main: { ...v.main, [_topic]: local } }));
+				break;
+			}
+		}
+	};
 
-  /* useEffect(() => {
-    const localData = localStorage.getItem("LOCAL_STORAGE_DATA");
-    if (localData) {
-      setData(JSON.parse(localData));
-      console.log(localData);
-    }
-  }, []);
-*/
-  return (
-    <Box className="mainContent">
-      <Container>
-        <Grid pt="3rem" pb="5rem" container justifyContent="center">
-          <Box item>
-            <Typography fontSize="30px" fontWeight="Bold" color="white">
-              CV Maker
-            </Typography>
-          </Box>
-        </Grid>
-      </Container>
-      <Container>
-        <form onSubmit={HandleOnSubmit} name="main">
-          <Grid container justifyContent="center">
-            <Grid item xs={10}>
-              <Box className="formContent">
-                <Box className="sectionName line">
-                  <Typography fontSize="20px">Personal Details</Typography>
-                </Box>
-                <Grid container>
-                  <Personal getData={getData} />
-                  <Summary getData={getData} />
-                  <Education getData={getData} />
-                  <Workplace getData={getData} />
-                  <Projects getData={getData} />
-                  <Certifications getData={getData} />
-                  <Skills getData={getData} />
-                  <Languages getData={getData} />
-                </Grid>
-              </Box>
-            </Grid>
-            <Grid item xs={3} textAlign="center">
-              <Box pt={6}>
-                <Button
-                  type="submit"
-                  size="large"
-                  variant="contained"
-                  endIcon={<SendIcon />}
-                  fullWidth
-                >
-                  Submit
-                </Button>
-              </Box>
-            </Grid>
-          </Grid>
-        </form>
-      </Container>
-    </Box>
-  );
+	const HandleOnSubmit = (e) => {
+		e.preventDefault();
+		dispatch(actions.updateFormData(data));
+		sessionStorage.setItem("SESSION_STORAGE_DATA", JSON.stringify(localData));
+		navigate("/cv");
+	};
+
+	return (
+		<Box className="mainContent">
+			<Container>
+				<Grid pt="3rem" pb="5rem" container justifyContent="center">
+					<Box item>
+						<Typography fontSize="30px" fontWeight="Bold" color="white">
+							CV Maker
+						</Typography>
+					</Box>
+				</Grid>
+			</Container>
+			<Container>
+				<form onSubmit={HandleOnSubmit} name="main">
+					<Grid container justifyContent="center">
+						<Grid item xs={10}>
+							<Box className="formContent">
+								<Box className="sectionName line">
+									<Typography fontSize="20px">Personal Details</Typography>
+								</Box>
+								<Grid container>
+									<Personal getData={getData} />
+									<Summary getData={getData} />
+									<Education getData={getData} />
+									<Workplace getData={getData} />
+									<Projects getData={getData} />
+									<Certifications getData={getData} />
+									<Skills getData={getData} />
+									<Languages getData={getData} />
+								</Grid>
+							</Box>
+						</Grid>
+						<Grid item xs={3} textAlign="center">
+							<Box pt={6}>
+								<Button
+									type="submit"
+									size="large"
+									variant="contained"
+									endIcon={<SendIcon />}
+									fullWidth
+								>
+									Submit
+								</Button>
+							</Box>
+						</Grid>
+					</Grid>
+				</form>
+			</Container>
+		</Box>
+	);
 }

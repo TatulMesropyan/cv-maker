@@ -40,6 +40,12 @@ h1, h2, h3, p, li{
     background-repeat: no-repeat;
     /* background-color: #F6F6F6; */
 }
+
+.sectionName{
+    display: flex;
+    justify-content: space-between;
+}
+
 .textAlignRight {
     text-align: right;
 }

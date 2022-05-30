@@ -3,12 +3,11 @@ import { Grid, TextField, Box } from "@mui/material";
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import languageDropdown from "../../Helpers/LangDropdown";
+import Dropdown from "../../Helpers/LangDropdown";
 import languagePacket from "../../Helpers/languages.json";
 
-export default function GenerateInputs({ content, index, inputHandler }) {
+export default function GenerateInputs({ content, index, inputHandler, values }) {
   /* eslint-disable no-unused-vars */
-  const [language, LanguageDropdown] = languageDropdown.useDropdown(languagePacket);
   const [inputValue, setInputValue] = useState({});
 
   const inputValidatior = (e, index, itmName, type) => {
@@ -57,10 +56,15 @@ export default function GenerateInputs({ content, index, inputHandler }) {
       }
 
       switch (itm.inputType) {
-        case "date": {
-          if (inputValue[itm.name] === undefined)
-            setInputValue((v) => ({...v, [itm.name] : new Date()}));
-          value = (
+				case "date": {
+					if (inputValue[itm.name] === undefined) {
+						let val = new Date();
+						if (values && values[itm.name]) {
+							val = new Date(values[itm.name]);
+						}
+						setInputValue((v) => ({ ...v, [itm.name]: val }));
+					}
+					value = (
 						<LocalizationProvider dateAdapter={AdapterDateFns}>
 							<DatePicker
 								value={inputValue[itm.name]}
@@ -81,34 +85,47 @@ export default function GenerateInputs({ content, index, inputHandler }) {
 							/>
 						</LocalizationProvider>
 					);
-          break;
-        }
-        case "select": {
-          value = (
-            <Box pt={2} textAlign="center">
-              <LanguageDropdown
-                getData={(e) => inputHandler(e, itm.name, index)}
-              />
-            </Box>
-          );
-          break;
-        }
-        default:{
-          if (inputValue[itm.name] === undefined)
-            setInputValue((v) => ({...v, [itm.name] : ""}));
+					break;
+				}
+				case "select": {
+					let props = {};
+					if (values && values[itm.name])
+						props = { defaultValue: values[itm.name] };
 
-          value = (
-            <TextField
-              {...inputProps}
-              value={inputValue[itm.name]}
-              variant="outlined"
-              required
-              onChange={(e) => inputValidatior(e, index, itm.name, itm.textType)}
-            />
-          );
-          break;
-        }
-      }
+					value = (
+						<Box pt={2} textAlign="center">
+							<Dropdown
+								{...props}
+								languages={languagePacket}
+								getData={(e) => inputHandler(e, itm.name, index)}
+							/>
+						</Box>
+					);
+					break;
+				}
+				default: {
+					if (inputValue[itm.name] === undefined) {
+						let val = "";
+						if (values && values[itm.name]) {
+							val = values[itm.name];
+						}
+						setInputValue((v) => ({ ...v, [itm.name]: val }));
+					}
+
+					value = (
+						<TextField
+							{...inputProps}
+							value={inputValue[itm.name]}
+							variant="outlined"
+							required
+							onChange={(e) =>
+								inputValidatior(e, index, itm.name, itm.textType)
+							}
+						/>
+					);
+					break;
+				}
+			}
       return (
         <Grid item xs={itm.grid} key={i}>
           {value}
