@@ -1,12 +1,9 @@
 import React from "react";
-import {
-	Grid,
-	Typography,
-	Box,
-} from "@mui/material";
+import { Grid, Typography, Box } from "@mui/material";
+import Section from "./SectionGenerator";
+import useSessionData from "../../Helpers/useSessionData";
 import "material-icons/iconfont/material-icons.css";
 import "./Form.css";
-import Section from "./SectionGenerator";
 
 const content = [
 	{
@@ -14,11 +11,12 @@ const content = [
 		name: "summary",
 		label: "Summary",
 		inputType: "input",
-		multiline : true,
+		multiline: true,
 	},
 ];
 
 export default function Summary({ getData }) {
+	const [defaultValues, setDefaultValues, getValue] = useSessionData();
 	const topic = "Summary";
 
 	const handleData = (data) => {
@@ -30,7 +28,7 @@ export default function Summary({ getData }) {
 				};
 			}),
 		};
-		getData(val, topic);
+		getData(val, topic, data);
 	};
 	return (
 		<>
@@ -44,7 +42,8 @@ export default function Summary({ getData }) {
 			<Section
 				getData={handleData}
 				content={content}
-                sizeLimit={1}
+				defaultValues={getValue(["main", topic])}
+				sizeLimit={1}
 				divisionLine={false}
 			/>
 		</>

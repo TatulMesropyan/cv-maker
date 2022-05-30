@@ -8,6 +8,7 @@ export default function Section({
   getData,
   content,
   sizeLimit,
+  defaultValues,
   divisionLine = false,
   dynamic = true,
 }) {
@@ -27,7 +28,7 @@ export default function Section({
     });
   };
 
-  const AddContent = (e) => {
+  const AddContent = (defVals=null) => {
     setInputValues((v) => [...v, { ...inputs }]);
     setContents((v) => {
       return [
@@ -37,6 +38,7 @@ export default function Section({
             content={content}
             index={v.length}
             inputHandler={handleInputs}
+            values={defVals}
           />
           {divisionLine && (
             <Grid item xs={12}>
@@ -53,13 +55,35 @@ export default function Section({
     setContents((v) => v.filter((vl, i) => i !== v.length - 1));
   };
 
+  // useEffect(() => {
+  //   setInputValues([]);
+  //   setContents([]);
+	// 	if (!dynamic) {
+	// 		AddContent(defaultValues);
+	// 	}
+	// 	if (dynamic && defaultValues) {
+	// 		defaultValues.forEach((v) => {
+	// 			AddContent(v);
+	// 		});
+	// 	}
+	// }, [defaultValues]);
+
   useEffect(() => {
     getData(inputValues);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inputValues]);
 
   useEffect(() => {
-    if (!dynamic && contents.length === 0) AddContent();
+    // console.log(defaultValues);
+    if (!dynamic && contents.length === 0) {
+      AddContent(defaultValues);
+      return;
+    }
+    if (dynamic && defaultValues){
+      defaultValues.forEach((v) => {
+        AddContent(v);
+      });
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

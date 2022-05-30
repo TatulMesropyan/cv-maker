@@ -1,162 +1,194 @@
 {
     "hy":{
-        "name":"Armenian",
-        "emoji": "🇦🇲",
-        "nativeName":"Հայերեն"
+    "name":"Armenian",
+    "emoji":"🇦🇲",
+    "nativeName":"Հայերեն",
+    "bcp47":"hy"
     },
     "ru":{
-        "name":"Russian",
-        "emoji": "🇷🇺",
-        "nativeName":"русский язык"
+    "name":"Russian",
+    "emoji":"🇷🇺",
+    "nativeName":"русский язык",
+    "bcp47":"ru"
     },
     "en":{
-        "name":"English",
-        "emoji": "🇬🇧",
-        "nativeName":"English"
+    "name":"English",
+    "emoji":"🇬🇧",
+    "nativeName":"English",
+    "bcp47":"en"
     },
     "de":{
-        "name":"German",
-        "nativeName":"Deutsch",
-        "emoji": "🇩🇪"
+    "name":"German",
+    "nativeName":"Deutsch",
+    "emoji":"🇩🇪",
+    "bcp47":"de"
     },
     "es":{
-        "name":"Spanish",
-        "emoji": "🇪🇸",
-        "nativeName":"español, castellano"
-    }, 
+    "name":"Spanish",
+    "emoji":"🇪🇸",
+    "nativeName":"español, castellano",
+    "bcp47":"es"
+    },
     "fr":{
-        "name":"French",
-        "emoji": "🇫🇷",
-        "nativeName":"français, langue française"
+    "name":"French",
+    "emoji":"🇫🇷",
+    "nativeName":"français, langue française",
+    "bcp47":"fr"
     },
     "it":{
-        "name":"Italian",
-        "emoji": "🇮🇹",
-        "nativeName":"Italiano"
+    "name":"Italian",
+    "emoji":"🇮🇹",
+    "nativeName":"Italiano",
+    "bcp47":"it"
     },
     "ja":{
-        "name":"Japanese",
-        "emoji": "🇯🇵",
-        "nativeName":"日本語 (にほんご／にっぽんご)"
+    "name":"Japanese",
+    "emoji":"🇯🇵",
+    "nativeName":"日本語 (にほんご／にっぽんご)",
+    "bcp47":"ja"
     },
     "zh":{
-        "name":"Chinese",
-        "emoji": "🇨🇳",
-        "nativeName":"中文 (Zhōngwén), 汉语, 漢語"
+    "name":"Chinese",
+    "emoji":"🇨🇳",
+    "nativeName":"中文 (Zhōngwén), 汉语, 漢語",
+    "bcp47":"zh"
     },
     "ar":{
-        "name":"Arabic",
-        "emoji": "🇸🇦",
-        "nativeName":"العربية"
+    "name":"Arabic",
+    "emoji":"🇸🇦",
+    "nativeName":"العربية",
+    "bcp47":"ar"
     },
     "bg":{
-        "name":"Bulgarian",
-        "emoji": "🇧🇬",
-        "nativeName":"български език"
+    "name":"Bulgarian",
+    "emoji":"🇧🇬",
+    "nativeName":"български език",
+    "bcp47":"bg"
     },
     "hr":{
-        "name":"Croatian",
-        "emoji": "🇭🇷",
-        "nativeName":"hrvatski"
+    "name":"Croatian",
+    "emoji":"🇭🇷",
+    "nativeName":"hrvatski",
+    "bcp47":"hr"
     },
     "cs":{
-        "name":"Czech",
-        "nativeName":"česky, čeština",
-        "emoji": "🇨🇿"
+    "name":"Czech",
+    "nativeName":"česky, čeština",
+    "emoji":"🇨🇿",
+    "bcp47":"cs"
     },
     "da":{
-        "name":"Danish",
-        "nativeName":"dansk",
-        "emoji": "🇩🇰"
+    "name":"Danish",
+    "nativeName":"dansk",
+    "emoji":"🇩🇰",
+    "bcp47":"da"
     },
     "nl":{
-        "name":"Dutch",
-        "emoji": "🇳🇱",
-        "nativeName":"Nederlands, Vlaams"
+    "name":"Dutch",
+    "emoji":"🇳🇱",
+    "nativeName":"Nederlands, Vlaams",
+    "bcp47":"nl"
     },
     "et":{
-        "name":"Estonian",
-        "emoji": "🇪🇪",
-        "nativeName":"eesti, eesti keel"
+    "name":"Estonian",
+    "emoji":"🇪🇪",
+    "nativeName":"eesti, eesti keel",
+    "bcp47":"et"
     },
     "fi":{
-        "name":"Finnish",
-        "emoji": "🇫🇮",
-        "nativeName":"suomi, suomen kieli"
+    "name":"Finnish",
+    "emoji":"🇫🇮",
+    "nativeName":"suomi, suomen kieli",
+    "bcp47":"fi"
     },
     "ka":{
-        "name":"Georgian",
-        "emoji": "🇬🇪",
-        "nativeName":"ქართული"
+    "name":"Georgian",
+    "emoji":"🇬🇪",
+    "nativeName":"ქართული",
+    "bcp47":"ka"
     },
     "el":{
-        "name":"Greek, Modern",
-        "emoji": "🇬🇷",
-        "nativeName":"Ελληνικά"
+    "name":"Greek, Modern",
+    "emoji":"🇬🇷",
+    "nativeName":"Ελληνικά",
+    "bcp47":"el"
     },
     "he":{
-        "name":"Hebrew",
-        "emoji": "🇮🇱",
-        "nativeName":"עברית"
+    "name":"Hebrew",
+    "emoji":"🇮🇱",
+    "nativeName":"עברית",
+    "bcp47":"he"
     },
     "hi":{
-        "name":"Hindi",
-        "emoji": "🇮🇳",
-        "nativeName":"हिन्दी, हिंदी"
+    "name":"Hindi",
+    "emoji":"🇮🇳",
+    "nativeName":"हिन्दी, हिंदी",
+    "bcp47":"hi"
     },
     "hu":{
-        "name":"Hungarian",
-        "emoji": "🇭🇺",
-        "nativeName":"Magyar"
+    "name":"Hungarian",
+    "emoji":"🇭🇺",
+    "nativeName":"Magyar",
+    "bcp47":"hu"
     },
     "id":{
-        "name":"Indonesian",
-        "emoji": "🇮🇩",
-        "nativeName":"Bahasa Indonesia"
+    "name":"Indonesian",
+    "emoji":"🇮🇩",
+    "nativeName":"Bahasa Indonesia",
+    "bcp47":"id"
     },
     "fa":{
-        "name":"Persian",
-        "emoji": "🇮🇷",
-        "nativeName":"فارسی"
+    "name":"Persian",
+    "emoji":"🇮🇷",
+    "nativeName":"فارسی",
+    "bcp47":"fa"
     },
     "pl":{
-        "name":"Polish",
-        "emoji": "🇵🇱",
-        "nativeName":"polski"
+    "name":"Polish",
+    "emoji":"🇵🇱",
+    "nativeName":"polski",
+    "bcp47":"pl"
     },
     "pt":{
-        "name":"Portuguese",
-        "emoji": "🇵🇹",
-        "nativeName":"Português"
+    "name":"Portuguese",
+    "emoji":"🇵🇹",
+    "nativeName":"Português",
+    "bcp47":"pt"
     },
     "ro":{
-        "emoji": "🇲🇩",
-        "name":"Romanian, Moldavian, Moldovan",
-        "nativeName":"română"
+    "emoji":"🇲🇩",
+    "name":"Romanian, Moldavian, Moldovan",
+    "nativeName":"română",
+    "bcp47":"ro"
     },
     "sr":{
-        "name":"Serbian",
-        "emoji": "🇷🇸",
-        "nativeName":"српски језик"
+    "name":"Serbian",
+    "emoji":"🇷🇸",
+    "nativeName":"српски језик",
+    "bcp47":"sr"
     },
     "sk":{
-        "name":"Slovak",
-        "emoji": "🇸🇰",
-        "nativeName":"slovenčina"
+    "name":"Slovak",
+    "emoji":"🇸🇰",
+    "nativeName":"slovenčina",
+    "bcp47":"sk"
     },
     "sl":{
-        "name":"Slovene",
-        "emoji": "🇸🇮",
-        "nativeName":"slovenščina"
+    "name":"Slovene",
+    "emoji":"🇸🇮",
+    "nativeName":"slovenščina",
+    "bcp47":"sl"
     },
     "sv":{
-        "name":"Swedish",
-        "emoji": "🇸🇪",
-        "nativeName":"svenska"
+    "name":"Swedish",
+    "emoji":"🇸🇪",
+    "nativeName":"svenska",
+    "bcp47":"sv"
     },
     "uk":{
-        "name":"Ukrainian",
-        "emoji": "🇺🇦",
-        "nativeName":"українська"
+    "name":"Ukrainian",
+    "emoji":"🇺🇦",
+    "nativeName":"українська",
+    "bcp47":"uk"
     }
 }

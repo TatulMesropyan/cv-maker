@@ -4,10 +4,11 @@ import {
 	Typography,
 	Box,
 } from "@mui/material";
-import "material-icons/iconfont/material-icons.css";
-import "./Form.css";
 import Section from "./SectionGenerator";
 import formatDate from "../../Helpers/utils";
+import useSessionData from "../../Helpers/useSessionData";
+import "material-icons/iconfont/material-icons.css";
+import "./Form.css";
 
 const content = [
 	{
@@ -39,6 +40,7 @@ const content = [
 ];
 
 export default function Education({ getData }) {
+	const [defaultValues, setDefaultValues, getValue] = useSessionData();
 	const topic = "Education";
 
 	const handleData = (data) => {
@@ -52,7 +54,7 @@ export default function Education({ getData }) {
 				};
 			}),
 		};
-		getData(val, topic);
+		getData(val, topic, data);
 	};
 
 	return (
@@ -60,13 +62,14 @@ export default function Education({ getData }) {
 			<Grid container columnSpacing={2} pt={4}>
 				<Grid item xs={12}>
 					<Box className="line" pb={2}>
-						<Typography fontSize="20px">Education Info</Typography>
+						<Typography fontSize="20px">{topic}</Typography>
 					</Box>
 				</Grid>
 			</Grid>
 			<Section
 				getData={handleData}
 				content={content}
+				defaultValues={getValue(["main", topic])}
 				sizeLimit={10}
 				divisionLine={true}
 			/>
