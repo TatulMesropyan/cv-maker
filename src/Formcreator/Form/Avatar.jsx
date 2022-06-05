@@ -45,6 +45,8 @@ const RenderAvatar = ({ getData, topic }) => {
   const [openWebcam, setWebcamOpen] = useState(false);
   const [showCropper, setShowCropper] = useState(false);
 
+  const localImage = getValue('header')? getValue('header').image:null;
+
 
   const onCropComplete = (croppedAreaPercentage, croppedAreaPixels) => {
     setCroppedArea(croppedAreaPixels);
@@ -78,6 +80,11 @@ const RenderAvatar = ({ getData, topic }) => {
   };
 
   useEffect(() => {
+    if (localImage)
+    {
+      getData([{image: localImage}], topic, [{image: localImage}]);
+      return;
+    }
     getData(
       [
         {
@@ -88,7 +95,6 @@ const RenderAvatar = ({ getData, topic }) => {
     );
   }, []);
   const webcamRef = useRef(null);
-  let localImage = getValue('header')? getValue('header').image:null
   const WebcamCapture = () => {
     const imageSrc = webcamRef.current.getScreenshot();
     setWebcamOpen(false);
