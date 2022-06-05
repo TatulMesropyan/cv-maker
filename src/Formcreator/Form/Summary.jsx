@@ -16,6 +16,7 @@ const content = [
 ];
 
 export default function Summary({ getData }) {
+	  /* eslint-disable no-unused-vars */
 	const [defaultValues, setDefaultValues, getValue] = useSessionData();
 	const topic = "Summary";
 

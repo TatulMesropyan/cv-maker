@@ -15,7 +15,8 @@ const content = [
 ];
 
 export default function Languages({ getData }) {
-	const [defaultValues, setDefaultValues, getValue] = useSessionData();
+  /* eslint-disable no-unused-vars */
+  const [defaultValues, setDefaultValues, getValue] = useSessionData();
 	const topic = "Languages";
 
 	const handleData = (data) => {

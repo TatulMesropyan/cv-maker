@@ -6,16 +6,12 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import Dropdown from "../../Helpers/LangDropdown";
 import languagePacket from "../../Helpers/languages.json";
 
-export default function GenerateInputs({
-	content,
-	index,
-	inputHandler,
-	values,
-}) {
-	/* eslint-disable no-unused-vars */
-	const [inputValue, setInputValue] = useState({});
+export default function GenerateInputs({ content, index, inputHandler, values }) {
+  /* eslint-disable no-unused-vars */
+ /* eslint-disable array-callback-return */
+  const [inputValue, setInputValue] = useState({});
 
-	const inputValidatior = (e, index, itmName, type) => {
+  const inputValidatior = (e, index, itmName, type) => {
 		let value = e.target.value;
 
 		switch (type) {

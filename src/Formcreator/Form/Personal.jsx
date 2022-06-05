@@ -54,6 +54,7 @@ const Bodycontent = [
 ];
 
 export default function Personal({ getData }) {
+	  /* eslint-disable no-unused-vars */
 	const [defaultValues, setDefaultValues, getValue] = useSessionData();
 	const topic = "Personal";
 

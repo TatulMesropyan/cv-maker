@@ -19,6 +19,7 @@ const content = [
 ];
 
 export default function Certifications({ getData }) {
+	  /* eslint-disable no-unused-vars */
 	const [defaultValues, setDefaultValues, getValue] = useSessionData();
 	const topic = "Certifications & Courses";
 

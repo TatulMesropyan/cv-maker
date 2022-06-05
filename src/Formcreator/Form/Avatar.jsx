@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
 import Cropper from "react-easy-crop";
-import Picture from "../../images/profileimg.webp";
 import { defaultPic } from "../../Helpers/defaultPic";
 import Webcam from "react-webcam";
 import CameraIcon from "@mui/icons-material/Camera";
@@ -98,7 +97,6 @@ const RenderAvatar = ({ getData, topic }) => {
   const webcamRef = useRef(null);
   const WebcamCapture = () => {
     const imageSrc = webcamRef.current.getScreenshot();
-    console.log(imageSrc);
     setWebcamOpen(false);
     setImage(imageSrc);
   };

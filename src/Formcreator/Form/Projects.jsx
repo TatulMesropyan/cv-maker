@@ -32,6 +32,8 @@ const content = [
 ];
 
 export default function Projects({ getData }) {
+	  /* eslint-disable no-unused-vars */
+
 	const [defaultValues, setDefaultValues, getValue] = useSessionData();
 	const topic = "Projects";
 
