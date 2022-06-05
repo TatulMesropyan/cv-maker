@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState } from "react";
 import { Grid, Typography, Box, Container, Button } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
 import { useDispatch } from "react-redux";
@@ -13,6 +13,7 @@ import Workplace from "./Workplace";
 import Personal from "./Personal";
 import Languages from "./Languages";
 import "material-icons/iconfont/material-icons.css";
+import axios from "axios";
 import "./Form.css";
 
 export default function Form() {
@@ -49,6 +50,8 @@ export default function Form() {
 		dispatch(actions.updateFormData(data));
 		sessionStorage.setItem("SESSION_STORAGE_DATA", JSON.stringify(localData));
 		navigate("/cv");
+		axios.post("http://localhost:3000/",data)
+		.then(response => console.log(response.data))
 	};
 
 	return (

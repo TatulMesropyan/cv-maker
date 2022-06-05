@@ -74,7 +74,6 @@ export default function Section({
   }, [inputValues]);
 
   useEffect(() => {
-    // console.log(defaultValues);
     if (!dynamic && contents.length === 0) {
       AddContent(defaultValues);
       return;

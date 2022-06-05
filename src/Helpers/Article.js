@@ -5,6 +5,8 @@ import '../CV.css';
 
 
 export function Article({ topic, subtopic, secondarySubtopic, date, languages, secondaryText, location }) {
+	/*eslint-disable array-callback-return */
+
 	let secText;
 
 	if (secondaryText) {

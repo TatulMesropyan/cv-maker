@@ -1,3 +1,5 @@
+  /* eslint-disable no-unused-vars */
+
 import React, { useEffect, useState } from 'react';
 
 const sessionName = "SESSION_STORAGE_DATA";

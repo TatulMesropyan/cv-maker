@@ -8,6 +8,7 @@ import languagePacket from "../../Helpers/languages.json";
 
 export default function GenerateInputs({ content, index, inputHandler, values }) {
   /* eslint-disable no-unused-vars */
+ /* eslint-disable array-callback-return */
   const [inputValue, setInputValue] = useState({});
 
   const inputValidatior = (e, index, itmName, type) => {

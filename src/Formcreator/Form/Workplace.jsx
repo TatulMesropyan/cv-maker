@@ -55,6 +55,7 @@ const content = [
 ];
 
 export default function Workplace({ getData }) {
+    /* eslint-disable no-unused-vars */
 	const [defaultValues, setDefaultValues, getValue] = useSessionData();
   const topic = "Experience";
 
