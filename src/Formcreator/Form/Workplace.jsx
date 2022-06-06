@@ -68,7 +68,7 @@ export default function Workplace({ getData }) {
         return {
           subtopic: _v.workplace_name,
           secondarySubtopic: _v.workplace_position,
-          date: formatDate(_v.wrokplace_from, _v.workplace_to),
+          date: formatDate(_v.workplace_from, _v.workplace_to),
           secondaryText: _v.workplace_description,
           location: _v.workplace_country + ", " + _v.workplace_city,
         };
