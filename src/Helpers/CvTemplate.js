@@ -8,6 +8,7 @@ import store from "../redux/store";
 import { Article } from "./Article";
 import { SectionColumn } from "./SectionColumn";
 import { SectionRow } from "./SectionRow";
+import useSessionData from "./../Helpers/useSessionData";
 import leftSectionPng from "../images/img_2.png";
 import logoPng from "../images/img.png";
 import textPng from "../images/img_1.png";
@@ -18,9 +19,10 @@ export default function CvTemplate() {
     const navigate = useNavigate();
     const data = store.getState();
     const pdfRef = useRef();
+    const [defaultValues, removeSession, getValue] = useSessionData();
 
-    let header = data.formDataReducer.header;
-    let main = Object.values(data.formDataReducer.main);
+    let header = data.formDataReducer.header || defaultValues.header;
+    let main = Object.values(data.formDataReducer.main || defaultValues.main);
     const imagePerson = 'url("' + header.image + '")';
 
     const [contentRow, contentSection] = useMemo(() => {
@@ -76,9 +78,18 @@ export default function CvTemplate() {
             let doc = new jsPDF(orientation, "px", [width, height]);
             const img = canvas.toDataURL("image/jpeg");
             doc.addImage(img, "JPEG", 0, 0, width, height);
-            doc.save(header.name?`${header.name}'s CV`:"CV");
+            doc.save(header.fname?`${header.fname}'s CV`:"CV");
         });
         pdfRef.current.style.boxShadow = shadowEffect;
+
+        const jsonString = `data:text/json,${encodeURIComponent(
+            JSON.stringify(defaultValues)
+        )}`;
+        const link = document.createElement("a");
+        link.href = jsonString;
+        link.download = (header.fname?`${header.fname}'s CV`:"CV") + ".json";
+
+        link.click();
     };
 
     useEffect(() => {
